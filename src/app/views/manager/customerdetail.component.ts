@@ -16,8 +16,9 @@ export class ManagerCustomerDetailComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private toastr: ToastrService
-    ) {}
+  ) {}
   @ViewChild("myModal") public myModal: ModalDirective;
+  @ViewChild("saleModal") public saleModal: ModalDirective;
   @ViewChild("deleteModal") public deleteModal: ModalDirective;
   @ViewChild("commentModal") public commentModal: ModalDirective;
 
@@ -27,8 +28,16 @@ export class ManagerCustomerDetailComponent implements OnInit {
   btnLoading = false;
   dateConverter = dateConverter;
   users: any = [];
+  kpcallers: any = [];
   agentForm = this.fb.group({
     agent: ["", Validators.required],
+  });
+  saleForm = this.fb.group({
+    CustomerStatus: ["", Validators.required],
+    isSaleClosed: true,
+    sale_closed_by:["", Validators.required],
+    sale_remarks: ["", Validators.required],
+    sale_closed_date: new Date().toISOString(),
   });
   commentForm = this.fb.group({
     RemarksText: ["", Validators.required],
@@ -53,8 +62,14 @@ export class ManagerCustomerDetailComponent implements OnInit {
     this.dataservice
       .getUsers("FIELD_AGENT")
       .valueChanges.subscribe((result: any) => {
-        console.log("getUsers", result.data.users);
+        console.log("FIELD_AGENT", result.data.users);
         this.users = result.data.users;
+      });
+    this.dataservice
+      .getUsers("KP_CALLER")
+      .valueChanges.subscribe((result: any) => {
+        console.log("KP_CALLER", result.data.users);
+        this.kpcallers = result.data.users;
       });
   }
   FormSubmit() {
@@ -102,5 +117,21 @@ export class ManagerCustomerDetailComponent implements OnInit {
         this.toastr.error("Failed. Please check again!");
       }
     });
+  }
+  closeCustomer() {
+    let resp = {};
+    console.log(this.saleForm.value);
+    this.dataservice
+      .Updatecustomer(this.details.id, this.saleForm.value)
+      .subscribe((result: any) => {
+        resp = result.data;
+        console.log("response", result);
+        if (result.data.updateCustomer) {
+          this.toastr.success("Sale closed successfully!");
+          this.saleModal.hide();
+        } else {
+          this.toastr.error("Failed. Please check the fields!");
+        }
+      });
   }
 }

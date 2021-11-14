@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customers_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./customers.component */ "MPuI");
 /* harmony import */ var _customerdetail_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./customerdetail.component */ "F9w6");
 /* harmony import */ var _enquiries_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./enquiries.component */ "EIdz");
+/* harmony import */ var _enquirydetails_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./enquirydetails.component */ "bmwW");
 
 // Angular
 
@@ -33,6 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // import { TypographyComponent } from './typography.component';
 // Theme Routing
+
 
 
 
@@ -54,12 +56,26 @@ ManagerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _verified_component__WEBPACK_IMPORTED_MODULE_7__["VerifiedListComponent"],
             _customers_component__WEBPACK_IMPORTED_MODULE_9__["ManagerCustomerComponent"],
             _customerdetail_component__WEBPACK_IMPORTED_MODULE_10__["ManagerCustomerDetailComponent"],
-            _enquiries_component__WEBPACK_IMPORTED_MODULE_11__["EnquiriesComponent"]
+            _enquiries_component__WEBPACK_IMPORTED_MODULE_11__["EnquiriesComponent"],
+            _enquirydetails_component__WEBPACK_IMPORTED_MODULE_12__["EnquiryDetailComponent"]
         ]
     })
 ], ManagerModule);
 
 
+
+/***/ }),
+
+/***/ "ALhq":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/manager/enquirydetails.component.html ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n  <div\r\n    bsModal\r\n    #deleteModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this enquiry?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-secondary\"\r\n            (click)=\"deleteModal.hide()\"\r\n          >\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteEnquiry()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"card\">\r\n    <div\r\n      class=\"card-header\"\r\n      style=\"display: flex; justify-content: space-between\"\r\n    >\r\n      <h2>Enquiry Details</h2>\r\n      <span>\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-primary\"\r\n          data-toggle=\"modal\"\r\n          (click)=\"myModal.show()\"\r\n        >\r\n          New Customer\r\n        </button>\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-danger\"\r\n          data-toggle=\"modal\"\r\n          (click)=\"deleteModal.show()\"\r\n        >\r\n          Delete\r\n        </button></span\r\n      >\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <table class=\"table table-striped\">\r\n            <tbody>\r\n              <tr>\r\n                <td>ID</td>\r\n                <td>{{ details.id }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name</td>\r\n                <td>{{ details.Name }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Phone Number</td>\r\n                <td>\r\n                  <h4>{{ details.PhoneNumber }}</h4>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>House Name</td>\r\n                <td>{{ details.HouseName }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Landmark</td>\r\n                <td>{{ details.Landmark }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>PostOffice Number</td>\r\n                <td>{{ details.PostOfficeNumber }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Is this a wedding purchase</td>\r\n                <td>\r\n                  <h4>\r\n                    <span class=\"badge badge-warning\">{{\r\n                      details.isWeddingPurchase\r\n                    }}</span>\r\n                  </h4>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>Marriage Date</td>\r\n                <td>\r\n                  <h4>{{ details.MarriageDate }}</h4>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>Quantity of gold</td>\r\n                <td>\r\n                  <h4>{{ details.QtyOfGold }}</h4>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>No cost EMI needed?</td>\r\n                <td>\r\n                  <h4>\r\n                    <span class=\"badge badge-warning\">{{\r\n                      details.OptNoCostEMI\r\n                    }}</span>\r\n                  </h4>\r\n                </td>\r\n              </tr>\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div\r\n      bsModal\r\n      #myModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Add as customer</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"myModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"customerForm\" (ngSubmit)=\"FormSubmit()\">\r\n              <div class=\"row\">\r\n                <div class=\"col\">\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Bride</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfBride\" name=\"NameOfBride\"\r\n                      formControlName=\"NameOfBride\" placeholder=\"Enter bride's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Father</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfFather\" name=\"NameOfFather\"\r\n                      formControlName=\"NameOfFather\" placeholder=\"Enter father's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Mother</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfMother\" name=\"NameOfMother\"\r\n                      formControlName=\"NameOfMother\" placeholder=\"Enter mother's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Contact number 1</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Contact_Number_1\" name=\"Contact_Number_1\"\r\n                      formControlName=\"Contact_Number_1\" placeholder=\"Enter primary contact number\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Contact number 2</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Contact_Number_2\" name=\"Contact_Number_2\"\r\n                      formControlName=\"Contact_Number_2\" placeholder=\"Enter secondary contact number\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"Post_office\">Post office</label>\r\n                    <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                      placeholder=\"Enter locality\" /> -->\r\n                    <select class=\"form-control\" id=\"Post_office\" required ngModel name=\"Post_office\"\r\n                      formControlName=\"Post_office\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of postoffices\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Latitude</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\"\r\n                      formControlName=\"Latitude\" placeholder=\"Enter Latitude\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Longitude</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\"\r\n                      formControlName=\"Longitude\" placeholder=\"Enter Longitude\" />\r\n                  </div>\r\n                </div>\r\n                <div class=\"col\">\r\n                  <div class=\"form-group\">\r\n                    <label for=\"email\">Marriage date</label>\r\n                    <input type=\"date\" class=\"form-control\" id=\"MarriageDate\" name=\"MarriageDate\"\r\n                      formControlName=\"MarriageDate\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"group\">Marriage month</label>\r\n                    <select class=\"form-control\" id=\"MarriageMonth\" required ngModel name=\"MarriageMonth\"\r\n                      formControlName=\"MarriageMonth\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of Months\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"group\">Agent</label>\r\n                    <select class=\"form-control\" id=\"tele_caller_contact\" required ngModel name=\"tele_caller_contact\"\r\n                      formControlName=\"tele_caller_contact\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of agents\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">House Name</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"HouseName\" name=\"HouseName\" formControlName=\"HouseName\"\r\n                      placeholder=\"Enter House Name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Landmark</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Landmark\" name=\"Landmark\" formControlName=\"Landmark\"\r\n                      placeholder=\"Enter Landmark\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"locality\">Name of locality</label>\r\n                    <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                      placeholder=\"Enter locality\" /> -->\r\n                    <select class=\"form-control\" id=\"locality\" required ngModel name=\"locality\"\r\n                      formControlName=\"locality\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of localities\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Map Plus code</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"GoogleMapPlusCode\" name=\"GoogleMapPlusCode\"\r\n                      formControlName=\"GoogleMapPlusCode\" placeholder=\"Enter Google Map PlusCode\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Google Map URL</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"GoogleMapURL\" name=\"GoogleMapURL\"\r\n                      formControlName=\"GoogleMapURL\" placeholder=\"Enter Google Map URL\" />\r\n                  </div>\r\n                </div>\r\n              </div>\r\n  \r\n  \r\n              <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n                Close\r\n              </button>\r\n              <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !customerForm.valid\">\r\n                <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -117,7 +133,7 @@ let EnquiriesComponent = class EnquiriesComponent {
         this.rowData = [];
         this.agents = [];
         this.localities = [];
-        this.columnDefs = [..._constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["customerColumnsWithKpCaller"]];
+        this.columnDefs = [..._constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["enquiriesColumn"]];
         this.Months = [..._constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["Months"]];
         this.rowSelection = "single";
     }
@@ -126,9 +142,9 @@ let EnquiriesComponent = class EnquiriesComponent {
     }
     getLists() {
         this.loading = true;
-        this.dataservice.getCustomers().valueChanges.subscribe((result) => {
-            console.log("getCustomers", result.data.customers);
-            this.rowData = result.data.customers;
+        this.dataservice.getEnquiries().valueChanges.subscribe((result) => {
+            console.log("getEnquiries", result.data.customerEnquiries);
+            this.rowData = result.data.customerEnquiries;
         });
         this.dataservice.getLocalities().valueChanges.subscribe((result) => {
             console.log("getLocalities", result.data.localities);
@@ -146,7 +162,7 @@ let EnquiriesComponent = class EnquiriesComponent {
     onSelectionChanged(event) {
         var selectedRows = this.gridApi.getSelectedRows();
         console.log(selectedRows);
-        this.router.navigate(["/manager/customer_details", selectedRows[0].id], {
+        this.router.navigate(["/manager/enquiry_details", selectedRows[0].id], {
             state: { data: selectedRows },
         });
     }
@@ -230,8 +246,16 @@ let ManagerCustomerDetailComponent = class ManagerCustomerDetailComponent {
         this.btnLoading = false;
         this.dateConverter = _constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["dateConverter"];
         this.users = [];
+        this.kpcallers = [];
         this.agentForm = this.fb.group({
             agent: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+        });
+        this.saleForm = this.fb.group({
+            CustomerStatus: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            isSaleClosed: true,
+            sale_closed_by: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            sale_remarks: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            sale_closed_date: new Date().toISOString(),
         });
         this.commentForm = this.fb.group({
             RemarksText: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
@@ -255,8 +279,14 @@ let ManagerCustomerDetailComponent = class ManagerCustomerDetailComponent {
         this.dataservice
             .getUsers("FIELD_AGENT")
             .valueChanges.subscribe((result) => {
-            console.log("getUsers", result.data.users);
+            console.log("FIELD_AGENT", result.data.users);
             this.users = result.data.users;
+        });
+        this.dataservice
+            .getUsers("KP_CALLER")
+            .valueChanges.subscribe((result) => {
+            console.log("KP_CALLER", result.data.users);
+            this.kpcallers = result.data.users;
         });
     }
     FormSubmit() {
@@ -308,6 +338,23 @@ let ManagerCustomerDetailComponent = class ManagerCustomerDetailComponent {
             }
         });
     }
+    closeCustomer() {
+        let resp = {};
+        console.log(this.saleForm.value);
+        this.dataservice
+            .Updatecustomer(this.details.id, this.saleForm.value)
+            .subscribe((result) => {
+            resp = result.data;
+            console.log("response", result);
+            if (result.data.updateCustomer) {
+                this.toastr.success("Sale closed successfully!");
+                this.saleModal.hide();
+            }
+            else {
+                this.toastr.error("Failed. Please check the fields!");
+            }
+        });
+    }
 };
 ManagerCustomerDetailComponent.ctorParameters = () => [
     { type: _data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"] },
@@ -318,6 +365,7 @@ ManagerCustomerDetailComponent.ctorParameters = () => [
 ];
 ManagerCustomerDetailComponent.propDecorators = {
     myModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["myModal",] }],
+    saleModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["saleModal",] }],
     deleteModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["deleteModal",] }],
     commentModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["commentModal",] }]
 };
@@ -1697,7 +1745,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customerdetail_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./customerdetail.component */ "F9w6");
 /* harmony import */ var _customers_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./customers.component */ "MPuI");
 /* harmony import */ var _enquiries_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enquiries.component */ "EIdz");
-/* harmony import */ var _verified_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./verified.component */ "Sx+e");
+/* harmony import */ var _enquirydetails_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./enquirydetails.component */ "bmwW");
+/* harmony import */ var _verified_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./verified.component */ "Sx+e");
+
 
 
 
@@ -1720,7 +1770,7 @@ const routes = [
             {
                 path: 'verified_list',
                 canActivate: [_login_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
-                component: _verified_component__WEBPACK_IMPORTED_MODULE_7__["VerifiedListComponent"],
+                component: _verified_component__WEBPACK_IMPORTED_MODULE_8__["VerifiedListComponent"],
                 data: {
                     roles: 'MANAGER',
                     title: 'Verified List'
@@ -1738,7 +1788,7 @@ const routes = [
             {
                 path: 'agents',
                 canActivate: [_login_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
-                component: _verified_component__WEBPACK_IMPORTED_MODULE_7__["VerifiedListComponent"],
+                component: _verified_component__WEBPACK_IMPORTED_MODULE_8__["VerifiedListComponent"],
                 data: {
                     roles: 'MANAGER',
                     title: 'Agents List'
@@ -1760,6 +1810,15 @@ const routes = [
                 data: {
                     roles: 'MANAGER',
                     title: 'Customer Details'
+                }
+            },
+            {
+                path: 'enquiry_details/:id',
+                canActivate: [_login_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
+                component: _enquirydetails_component__WEBPACK_IMPORTED_MODULE_7__["EnquiryDetailComponent"],
+                data: {
+                    roles: 'MANAGER',
+                    title: 'Enquiry Details'
                 }
             },
         ]
@@ -1955,6 +2014,201 @@ VerifiedListComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 /***/ }),
 
+/***/ "bmwW":
+/*!***********************************************************!*\
+  !*** ./src/app/views/manager/enquirydetails.component.ts ***!
+  \***********************************************************/
+/*! exports provided: EnquiryDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnquiryDetailComponent", function() { return EnquiryDetailComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_enquirydetails_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./enquirydetails.component.html */ "ALhq");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "5eHb");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-bootstrap/modal */ "LqlI");
+/* harmony import */ var _data_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../data.service */ "R7Hv");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "s7LF");
+/* harmony import */ var _constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants/columnMetadata */ "7nfi");
+
+
+
+
+
+
+
+
+
+let EnquiryDetailComponent = class EnquiryDetailComponent {
+    constructor(dataservice, activatedRouter, router, fb, toastr) {
+        this.dataservice = dataservice;
+        this.activatedRouter = activatedRouter;
+        this.router = router;
+        this.fb = fb;
+        this.toastr = toastr;
+        this.dateConverter = _constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["dateConverter"];
+        this.loading = true;
+        this.details = [];
+        this.btnLoading = false;
+        this.groups = [];
+        this.localities = [];
+        this.postoffices = [];
+        this.agents = [];
+        this.customerForm = this.fb.group({
+            NameOfBride: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            NameOfFather: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            NameOfMother: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            MarriageDate: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            Contact_Number_1: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            Contact_Number_2: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            MarriageMonth: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            tele_caller_contact: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            HouseName: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            Landmark: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            locality: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            Post_office: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            Latitude: [""],
+            Longitude: [""],
+            GoogleMapURL: [""],
+            GoogleMapPlusCode: [""],
+        });
+        this.commentForm = this.fb.group({
+            RemarksText: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+        });
+        this.Months = [..._constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["Months"]];
+    }
+    ngOnInit() {
+        this.getLists();
+        this.activatedRouter.params.subscribe((params) => {
+            this.id = params["id"];
+        });
+        this.dataservice
+            .getSingleEnquiry(this.id)
+            .valueChanges.subscribe((result) => {
+            console.log("getSingleAgent", result.data.customerEnquiry);
+            this.details = result.data.customerEnquiry;
+            this.customerForm = this.fb.group({
+                NameOfBride: [this.details.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                NameOfFather: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                NameOfMother: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                MarriageDate: [this.details.MarriageDate, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Contact_Number_1: [this.details.PhoneNumber, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Contact_Number_2: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                MarriageMonth: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                tele_caller_contact: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                HouseName: [this.details.HouseName, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Landmark: [this.details.Landmark, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                locality: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Post_office: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Latitude: [""],
+                Longitude: [""],
+                GoogleMapURL: [""],
+                GoogleMapPlusCode: [""],
+            });
+            this.loading = false;
+        });
+    }
+    getLists() {
+        this.loading = true;
+        this.dataservice.getLocalities().valueChanges.subscribe((result) => {
+            console.log("getLocalities", result.data.localities);
+            this.localities = result.data.localities;
+        });
+        this.dataservice.getPostOffices().valueChanges.subscribe((result) => {
+            console.log("getPostOffices", result.data.postOffices);
+            this.postoffices = result.data.postOffices;
+        });
+        this.dataservice.getAgents().valueChanges.subscribe((result) => {
+            console.log("getAgents", result.data.teleCallerContacts);
+            this.agents = result.data.teleCallerContacts;
+        });
+    }
+    // dateConverter(date) {
+    //   return new Date(date);
+    // }
+    FormSubmit() {
+        let resp = {};
+        console.log(this.customerForm.value);
+        this.dataservice
+            .Addcustomer(this.customerForm.value)
+            .subscribe((result) => {
+            resp = result.data;
+            console.log("response", result);
+            if (result.data.createCustomer) {
+                this.toastr.success("Customer added successfully!");
+                this.getLists();
+                this.myModal.hide();
+            }
+            else {
+                this.toastr.error("Failed. Please check the fields!");
+            }
+        });
+    }
+    customerSubmit() {
+        let resp = {};
+        console.log(this.customerForm.value);
+        this.dataservice
+            .Addcustomer(this.customerForm.value)
+            .subscribe((result) => {
+            resp = result.data;
+            console.log("response", result);
+            if (result.data.createCustomer) {
+                this.toastr.success("customer added successfully!");
+                this.getLists();
+                this.customerModal.hide();
+            }
+            else {
+                this.toastr.error("Failed. Please check the fields!");
+            }
+        });
+    }
+    deleteEnquiry() {
+        let resp = {};
+        this.dataservice.DeleteEnquiry(this.id).subscribe((result) => {
+            resp = result.data;
+            console.log("response", result);
+            if (result.data.deleteCustomerEnquiry) {
+                this.toastr.success("Enquiry deleted successfully!");
+                this.router.navigate(["/manager/enquiries"]);
+                this.deleteModal.hide();
+            }
+            else {
+                this.toastr.error("Failed. Please check again!");
+            }
+        });
+    }
+};
+EnquiryDetailComponent.ctorParameters = () => [
+    { type: _data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormBuilder"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"] }
+];
+EnquiryDetailComponent.propDecorators = {
+    myModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["myModal",] }],
+    customerModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["customerModal",] }],
+    deleteModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["deleteModal",] }],
+    commentModal: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"], args: ["commentModal",] }]
+};
+EnquiryDetailComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+        template: _raw_loader_enquirydetails_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+    }),
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormBuilder"],
+        ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+], EnquiryDetailComponent);
+
+
+
+/***/ }),
+
 /***/ "cVY+":
 /*!*********************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/manager/verified.component.html ***!
@@ -1977,7 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n    <div bsModal #deleteModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n        aria-hidden=\"true\">\r\n        <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-body text-center\">\r\n                    Do you want to delete this agent?\r\n                </div>\r\n                <div class=\"modal-footer justify-content-around\">\r\n                    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"deleteModal.hide()\">\r\n                        No! Cancel.\r\n                    </button>\r\n                    <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n                        Yes! Delete.\r\n                    </button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"card\">\r\n        <div class=\"card-header\" style=\"display: flex; justify-content: space-between\">\r\n            <h2>Customer Details</h2>\r\n            <span>\r\n                <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n                    Assign to field agent\r\n                </button>\r\n                <!-- <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" (click)=\"deleteModal.show()\">\r\n                Delete\r\n            </button> -->\r\n            </span>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <div class=\"row\">\r\n                <div class=\"col\">\r\n                    <div class=\"row\">\r\n                        <div style=\"display: flex; justify-content: space-between\">\r\n                            <h4>Basic details</h4>\r\n                        </div>\r\n                        <table class=\"table table-striped\">\r\n                            <tbody>\r\n                                <tr>\r\n                                    <td>ID</td>\r\n                                    <td>{{details?.id}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Name Of Bride</td>\r\n                                    <td>{{details?.NameOfBride}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Name Of Father</td>\r\n                                    <td>{{details?.NameOfFather}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Name Of Mother</td>\r\n                                    <td>{{ details?.NameOfMother }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Marriage Date</td>\r\n                                    <td>{{ details?.MarriageDate }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Marriage Month</td>\r\n                                    <td>{{ details?.MarriageMonth }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Contact number 1</td>\r\n                                    <td>{{ details?.Contact_Number_1 }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Contact number 2</td>\r\n                                    <td>{{ details?.Contact_Number_2 }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Agent</td>\r\n                                    <td>\r\n                                        <span class=\"badge badge-warning\">{{ details.tele_caller_contact?.Name }}</span>\r\n                                    </td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>KP Caller</td>\r\n                                    <td>\r\n                                        <span class=\"badge badge-primary\">{{ details.kp_caller_assigned?.username\r\n                                            }}</span>\r\n                                    </td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>House Name</td>\r\n                                    <td>{{ details.Address?.HouseName }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Landmark</td>\r\n                                    <td>{{ details.Address?.Landmark }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Locality</td>\r\n                                    <td>{{ details.Address?.locality?.Name }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Latitude</td>\r\n                                    <td>{{ details.Address?.GeoLocation.Latitude }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Longitude</td>\r\n                                    <td>{{ details.Address?.GeoLocation.Longitude }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Plus code</td>\r\n                                    <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Map URL</td>\r\n                                    <td><a href=\"https://www.google.com/maps/place/6JXRM9GR%2BMF/@{{\r\n                                          details.Address?.GeoLocation?.Latitude\r\n                                        }},{{\r\n                                          details.Address?.GeoLocation?.Longitude\r\n                                        }},17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d9.6766875!4d76.3911875\"\r\n                                            target=\"_blank\">Click here to view location</a></td>\r\n                                </tr>\r\n                            </tbody>\r\n                        </table>\r\n                    </div>\r\n                    <div class=\"row\">\r\n                        <div style=\"display: flex; justify-content: space-between\">\r\n                            <h4>Field Report</h4>\r\n                        </div>\r\n                        <table *ngIf=\"details.FieldReport\" class=\"table table-striped\">\r\n                            <tbody>\r\n                                <tr>\r\n                                    <td>Financial category</td>\r\n                                    <td>{{details.FieldReport?.FinancialBackground}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Quantity of intended purchase</td>\r\n                                    <td>{{details.FieldReport?.QtyOfGold}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Suitable set</td>\r\n                                    <td>{{details.FieldReport?.PreferredWeddingSet}}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Whether planning to exchange after marriage?</td>\r\n                                    <td>{{ details.FieldReport?.PlanningForReplacementAfterWedding }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Quantity of old gold for exchange</td>\r\n                                    <td>{{ details.FieldReport?.OldGoldExchangeQty }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>No cost emi needed?</td>\r\n                                    <td>{{ details.FieldReport?.NoCostEmiRequired }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>EMI tenure</td>\r\n                                    <td>\r\n                                        <span class=\"badge badge-warning\">{{ details.FieldReport?.EmiTenure }}</span>\r\n                                    </td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Number of repayments</td>\r\n                                    <td>\r\n                                        <span class=\"badge badge-primary\">{{ details.FieldReport?.EmiIntervals\r\n                                            }}</span>\r\n                                    </td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Token advance</td>\r\n                                    <td>{{ details.FieldReport?.TokenAdvance }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Rate advance</td>\r\n                                    <td>{{ details.FieldReport?.RateAdvance }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Whether approached by other jewelleries?</td>\r\n                                    <td>{{ details.FieldReport?.EnquiriesFromOthers }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Advance paid to other jewellery</td>\r\n                                    <td>{{ details.FieldReport?.AdvancePaidToOtherJewellery }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Whether received any fresh leads?</td>\r\n                                    <td>{{ details.FieldReport?.NumberOfNewMarriageAddress }}</td>\r\n                                </tr>\r\n                                <tr>\r\n                                    <td>Captured location</td>\r\n                                    <td><a href=\"https://www.google.com/maps/place/6JXRM9GR%2BMF/@{{details.FieldReport?.location?.Latitude}},{{details.FieldReport?.location?.Longitude}},17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d9.6766875!4d76.3911875\"\r\n                                            target=\"_blank\">Click\r\n                                            here to view location</a></td>\r\n                                </tr>\r\n                            </tbody>\r\n                        </table>\r\n                        <carousel [interval]=\"2000\">\r\n                            <slide *ngFor=\"let item of details.FieldReport?.images\">\r\n                                <img src=\"https://jewel-core.telemarketing.untanglepro.com{{item.url}}\"\r\n                                    alt=\"First slide\" style=\"display: block; width: 100%;\">\r\n                                <!-- <div class=\"carousel-caption d-none d-md-block\">\r\n                                <h3>First slide label</h3>\r\n                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>\r\n                              </div> -->\r\n                            </slide>\r\n                        </carousel>\r\n                    </div>\r\n\r\n                    <div *ngIf=\"!details.FieldReport\" class=\"card\">\r\n                        <div class=\"card-body text-center\">\r\n                            No field report found\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"col\">\r\n                    <div style=\"display: flex; justify-content: space-between\">\r\n                        <h4>Remarks</h4>\r\n                    </div>\r\n                    <div class=\"card\" *ngFor=\"let item of details.TelecallerRemarks\">\r\n                        <div class=\"card-body\">\r\n                            <h5 class=\"card-title\">{{dateConverter(item.CallHistory?.event_date_time)}}</h5>\r\n                            <p class=\"card-text\">{{item.RemarksText}}</p>\r\n                            <span\r\n                                class=\"badge badge-primary\">{{item.CallHistory.users_permissions_user?.username}}</span>\r\n                        </div>\r\n                    </div>\r\n                    <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"commentModal.show()\">\r\n                        Add Comment\r\n                    </button>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n        <div bsModal #myModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n            aria-hidden=\"true\">\r\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n                <div class=\"modal-content\">\r\n                    <div class=\"modal-header\">\r\n                        <h4 class=\"modal-title\">Assign to field Agent</h4>\r\n                        <button type=\"button\" class=\"close\" (click)=\"myModal.hide()\" aria-label=\"Close\">\r\n                            <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                    </div>\r\n                    <div class=\"modal-body\">\r\n                        <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n                            <div class=\"form-group\">\r\n                                <label for=\"group\">Field agent</label>\r\n                                <select class=\"form-control\" id=\"agent\" required ngModel name=\"agent\"\r\n                                    formControlName=\"agent\">\r\n                                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                                    <option *ngFor=\"let item of users\" value=\"{{ item.id }}\">\r\n                                        {{ item.username }}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n                                Close\r\n                            </button>\r\n                            <button type=\"submit\" class=\"btn btn-primary ml-2\"\r\n                                [disabled]=\"btnLoading || !agentForm.valid\">\r\n                                <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\"\r\n                                    aria-hidden=\"true\"></span>\r\n                                Save changes\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <!-- /.modal-content -->\r\n            </div>\r\n            <!-- /.modal-dialog -->\r\n        </div>\r\n        <div bsModal #commentModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\"\r\n            aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n                <div class=\"modal-content\">\r\n                    <div class=\"modal-header\">\r\n                        <h4 class=\"modal-title\">Add Comment</h4>\r\n                        <button type=\"button\" class=\"close\" (click)=\"commentModal.hide()\" aria-label=\"Close\">\r\n                            <span aria-hidden=\"true\">&times;</span>\r\n                        </button>\r\n                    </div>\r\n                    <div class=\"modal-body\">\r\n                        <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n                            <div class=\"form-group\">\r\n                                <label for=\"name\">Remarks</label>\r\n                                <textarea class=\"form-control\" maxlength=\"250\" id=\"RemarksText\" name=\"RemarksText\"\r\n                                    formControlName=\"RemarksText\" placeholder=\"Enter remarks\"></textarea>\r\n                            </div>\r\n                            <!-- <div class=\"form-group\">\r\n                                <label for=\"email\">Date</label>\r\n                                <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\"\r\n                                    name=\"event_date_time\" formControlName=\"event_date_time\" />\r\n                            </div> -->\r\n                            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"commentModal.hide()\">\r\n                                Close\r\n                            </button>\r\n                            <button type=\"submit\" class=\"btn btn-primary ml-2\"\r\n                                [disabled]=\"btnLoading || !commentForm.valid\">\r\n                                <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\"\r\n                                    aria-hidden=\"true\"></span>\r\n                                Save changes\r\n                            </button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n                <!-- /.modal-content -->\r\n            </div>\r\n            <!-- /.modal-dialog -->\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"animated fadeIn\">\r\n  <div\r\n    bsModal\r\n    #saleModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Close Sale</h4>\r\n          <button\r\n            type=\"button\"\r\n            class=\"close\"\r\n            (click)=\"saleModal.hide()\"\r\n            aria-label=\"Close\"\r\n          >\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"saleForm\" (ngSubmit)=\"closeCustomer()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"group\">Status</label>\r\n              <select\r\n                class=\"form-control\"\r\n                id=\"CustomerStatus\"\r\n                required\r\n                ngModel\r\n                name=\"CustomerStatus\"\r\n                formControlName=\"CustomerStatus\"\r\n              >\r\n                <option value=\"\" disabled selected hidden>Choose...</option>\r\n                <option value=\"Sale successful\">Sale successful</option>\r\n                <option value=\"Other Purchase\">Other Purchase</option>\r\n                <option value=\"Plan dropped\">Plan dropped</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"group\">Closed by</label>\r\n              <select\r\n                class=\"form-control\"\r\n                id=\"sale_closed_by\"\r\n                required\r\n                ngModel\r\n                name=\"sale_closed_by\"\r\n                formControlName=\"sale_closed_by\"\r\n              >\r\n                <option value=\"\" disabled selected hidden>Choose...</option>\r\n                <option *ngFor=\"let item of kpcallers\" value=\"{{ item.id }}\">\r\n                  {{ item.username }}\r\n                </option>\r\n              </select>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"sale_remarks\">Sale remarks</label>\r\n              <textarea\r\n                class=\"form-control\"\r\n                maxlength=\"250\"\r\n                id=\"sale_remarks\"\r\n                name=\"sale_remarks\"\r\n                formControlName=\"sale_remarks\"\r\n                placeholder=\"Enter remarks\"\r\n              ></textarea>\r\n            </div>\r\n            <button\r\n              type=\"button\"\r\n              class=\"btn btn-secondary\"\r\n              (click)=\"saleModal.hide()\"\r\n            >\r\n              Close\r\n            </button>\r\n            <button\r\n              type=\"submit\"\r\n              class=\"btn btn-primary ml-2\"\r\n              [disabled]=\"btnLoading || !saleForm.valid\"\r\n            >\r\n              <span\r\n                *ngIf=\"btnLoading\"\r\n                class=\"spinner-border spinner-border-sm\"\r\n                role=\"status\"\r\n                aria-hidden=\"true\"\r\n              ></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n  </div>\r\n  <div\r\n    bsModal\r\n    #deleteModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this agent?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-secondary\"\r\n            (click)=\"deleteModal.hide()\"\r\n          >\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"card\">\r\n    <div\r\n      class=\"card-header\"\r\n      style=\"display: flex; justify-content: space-between\"\r\n    >\r\n      <h2>Customer Details</h2>\r\n      <span>\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-primary\"\r\n          data-toggle=\"modal\"\r\n          (click)=\"myModal.show()\"\r\n        >\r\n          Assign to field agent\r\n        </button>\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-danger\"\r\n          data-toggle=\"modal\"\r\n          (click)=\"saleModal.show()\"\r\n        >\r\n          Close Sale\r\n        </button>\r\n      </span>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <div class=\"row\">\r\n            <div style=\"display: flex; justify-content: space-between\">\r\n              <h4>Basic details</h4>\r\n            </div>\r\n            <table class=\"table table-striped\">\r\n              <tbody>\r\n                <tr>\r\n                  <td>ID</td>\r\n                  <td>{{ details?.id }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Name Of Bride</td>\r\n                  <td>{{ details?.NameOfBride }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Name Of Father</td>\r\n                  <td>{{ details?.NameOfFather }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Name Of Mother</td>\r\n                  <td>{{ details?.NameOfMother }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Marriage Date</td>\r\n                  <td>{{ details?.MarriageDate }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Marriage Month</td>\r\n                  <td>{{ details?.MarriageMonth }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Contact number 1</td>\r\n                  <td>{{ details?.Contact_Number_1 }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Contact number 2</td>\r\n                  <td>{{ details?.Contact_Number_2 }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Agent</td>\r\n                  <td>\r\n                    <span class=\"badge badge-warning\">{{\r\n                      details.tele_caller_contact?.Name\r\n                    }}</span>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>KP Caller</td>\r\n                  <td>\r\n                    <span class=\"badge badge-primary\">{{\r\n                      details.kp_caller_assigned?.username\r\n                    }}</span>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>House Name</td>\r\n                  <td>{{ details.Address?.HouseName }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Landmark</td>\r\n                  <td>{{ details.Address?.Landmark }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Locality</td>\r\n                  <td>{{ details.Address?.locality?.Name }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Latitude</td>\r\n                  <td>{{ details.Address?.GeoLocation?.Latitude }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Longitude</td>\r\n                  <td>{{ details.Address?.GeoLocation?.Longitude }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Plus code</td>\r\n                  <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Map URL</td>\r\n                  <td>\r\n                    <a\r\n                      href=\"https://www.google.com/maps/search/?api=1&query={{\r\n                        details.Address?.GeoLocation?.Latitude\r\n                      }}%2C{{ details.Address?.GeoLocation?.Longitude }}\"\r\n                      target=\"_blank\"\r\n                      >Click here to view location</a\r\n                    >\r\n                  </td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div style=\"display: flex; justify-content: space-between\">\r\n              <h4>Field Report</h4>\r\n            </div>\r\n            <table *ngIf=\"details.FieldReport\" class=\"table table-striped\">\r\n              <tbody>\r\n                <tr>\r\n                  <td>Financial category</td>\r\n                  <td>{{ details.FieldReport?.FinancialBackground }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Quantity of intended purchase</td>\r\n                  <td>{{ details.FieldReport?.QtyOfGold }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Suitable set</td>\r\n                  <td>{{ details.FieldReport?.PreferredWeddingSet }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Whether planning to exchange after marriage?</td>\r\n                  <td>\r\n                    {{\r\n                      details.FieldReport?.PlanningForReplacementAfterWedding\r\n                    }}\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Quantity of old gold for exchange</td>\r\n                  <td>{{ details.FieldReport?.OldGoldExchangeQty }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>No cost emi needed?</td>\r\n                  <td>{{ details.FieldReport?.NoCostEmiRequired }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>EMI tenure</td>\r\n                  <td>\r\n                    <span class=\"badge badge-warning\">{{\r\n                      details.FieldReport?.EmiTenure\r\n                    }}</span>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Number of repayments</td>\r\n                  <td>\r\n                    <span class=\"badge badge-primary\">{{\r\n                      details.FieldReport?.EmiIntervals\r\n                    }}</span>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Token advance</td>\r\n                  <td>{{ details.FieldReport?.TokenAdvance }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Rate advance</td>\r\n                  <td>{{ details.FieldReport?.RateAdvance }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Whether approached by other jewelleries?</td>\r\n                  <td>{{ details.FieldReport?.EnquiriesFromOthers }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Advance paid to other jewellery</td>\r\n                  <td>\r\n                    {{ details.FieldReport?.AdvancePaidToOtherJewellery }}\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Whether received any fresh leads?</td>\r\n                  <td>{{ details.FieldReport?.NumberOfNewMarriageAddress }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <td>Captured location</td>\r\n                  <td>\r\n                    <a\r\n                      href=\"https://www.google.com/maps/search/?api=1&query={{\r\n                        details.FieldReport?.location?.Latitude\r\n                      }}%2C{{ details.FieldReport?.location?.Longitude }}\"\r\n                      target=\"_blank\"\r\n                      >Click here to view location</a\r\n                    >\r\n                  </td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n            <carousel [interval]=\"2000\">\r\n              <slide *ngFor=\"let item of details.FieldReport?.images\">\r\n                <img\r\n                  src=\"https://jewel-core.telemarketing.untanglepro.com{{\r\n                    item.url\r\n                  }}\"\r\n                  alt=\"First slide\"\r\n                  style=\"display: block; width: 100%\"\r\n                />\r\n                <!-- <div class=\"carousel-caption d-none d-md-block\">\r\n                                <h3>First slide label</h3>\r\n                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>\r\n                              </div> -->\r\n              </slide>\r\n            </carousel>\r\n          </div>\r\n\r\n          <div *ngIf=\"!details.FieldReport\" class=\"card\">\r\n            <div class=\"card-body text-center\">No field report found</div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col\">\r\n          <div *ngIf=\"details.isSaleClosed\">\r\n            <div style=\"display: flex; justify-content: space-between\">\r\n              <h4 class=\"text-danger\">Sale Closed</h4>\r\n            </div>\r\n            <div class=\"card\">\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">\r\n                  Customer status : {{ details.CustomerStatus }}\r\n                </h5>\r\n                <p class=\"card-text\">\r\n                  Closed on : {{ details.sale_closed_date }}\r\n                </p>\r\n                <p class=\"card-text\">Remarks : {{ details.sale_remarks }}</p>\r\n                Closed by :\r\n                <span class=\"badge badge-primary\">{{\r\n                  details.sale_closed_by.username\r\n                }}</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div style=\"display: flex; justify-content: space-between\">\r\n            <h4>Remarks</h4>\r\n          </div>\r\n          <div class=\"card\" *ngFor=\"let item of details.TelecallerRemarks\">\r\n            <div class=\"card-body\">\r\n              <h5 class=\"card-title\">\r\n                {{ dateConverter(item.CallHistory?.event_date_time) }}\r\n              </h5>\r\n              <p class=\"card-text\">{{ item.RemarksText }}</p>\r\n              <span class=\"badge badge-primary\">{{\r\n                item.CallHistory.users_permissions_user?.username\r\n              }}</span>\r\n            </div>\r\n          </div>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-primary\"\r\n            data-toggle=\"modal\"\r\n            (click)=\"commentModal.show()\"\r\n          >\r\n            Add Comment\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div\r\n      bsModal\r\n      #myModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Assign to field Agent</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"myModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"group\">Field agent</label>\r\n                <select\r\n                  class=\"form-control\"\r\n                  id=\"agent\"\r\n                  required\r\n                  ngModel\r\n                  name=\"agent\"\r\n                  formControlName=\"agent\"\r\n                >\r\n                  <option value=\"\" disabled selected hidden>Choose...</option>\r\n                  <option *ngFor=\"let item of users\" value=\"{{ item.id }}\">\r\n                    {{ item.username }}\r\n                  </option>\r\n                </select>\r\n              </div>\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"myModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !agentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n    <div\r\n      bsModal\r\n      #commentModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Add Comment</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"commentModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"name\">Remarks</label>\r\n                <textarea\r\n                  class=\"form-control\"\r\n                  maxlength=\"250\"\r\n                  id=\"RemarksText\"\r\n                  name=\"RemarksText\"\r\n                  formControlName=\"RemarksText\"\r\n                  placeholder=\"Enter remarks\"\r\n                ></textarea>\r\n              </div>\r\n              <!-- <div class=\"form-group\">\r\n                                <label for=\"email\">Date</label>\r\n                                <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\"\r\n                                    name=\"event_date_time\" formControlName=\"event_date_time\" />\r\n                            </div> -->\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"commentModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !commentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 

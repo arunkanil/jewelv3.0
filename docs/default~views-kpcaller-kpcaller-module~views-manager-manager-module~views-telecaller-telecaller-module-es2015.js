@@ -4,7 +4,7 @@
 /*!*********************************************!*\
   !*** ./src/app/constants/columnMetadata.ts ***!
   \*********************************************/
-/*! exports provided: filterParams, Months, AgentsColumn, DNFcustomersColumn, customersColumn, customerColumnsWithKpCaller, dateConverter */
+/*! exports provided: filterParams, Months, AgentsColumn, DNFcustomersColumn, customersColumn, enquiriesColumn, customerColumnsWithKpCaller, dateConverter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AgentsColumn", function() { return AgentsColumn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DNFcustomersColumn", function() { return DNFcustomersColumn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "customersColumn", function() { return customersColumn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "enquiriesColumn", function() { return enquiriesColumn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "customerColumnsWithKpCaller", function() { return customerColumnsWithKpCaller; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateConverter", function() { return dateConverter; });
 var filterParams = {
@@ -120,6 +121,18 @@ const AgentsColumn = [
         headerName: "Contact Number 3",
         minWidth: 150,
         resizable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "assigned_telecaller.username",
+        headerName: "Assigned to",
+        minWidth: 150,
+        resizable: true,
+        sortable: true,
         filter: "agTextColumnFilter",
         filterParams: {
             filterOptions: ["contains"],
@@ -301,6 +314,112 @@ const customersColumn = [
     {
         field: "tele_caller_contact.Name",
         headerName: "Agent",
+        minWidth: 150,
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+];
+const enquiriesColumn = [
+    {
+        field: "id",
+        headerName: "ID",
+        checkboxSelection: true,
+        width: 100,
+        headerCheckboxSelection: true,
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "Name",
+        headerName: "Name",
+        minWidth: 150,
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "MarriageDate",
+        headerName: "Marriage Date",
+        minWidth: 120,
+        resizable: true,
+        sortable: true,
+        filter: "agDateColumnFilter",
+        filterParams: filterParams,
+    },
+    {
+        field: "PhoneNumber",
+        headerName: "Phone Number",
+        minWidth: 120,
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "HouseName",
+        headerName: "House name",
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "Landmark",
+        headerName: "Landmark",
+        resizable: true,
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "PostOfficeNumber",
+        headerName: "Post office",
+        sortable: true,
+        minWidth: 150,
+        resizable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "isWeddingPurchase",
+        headerName: "isWeddingPurchase",
+        minWidth: 150,
+        resizable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+            filterOptions: ["contains"],
+            buttons: ["reset"],
+        },
+    },
+    {
+        field: "QtyOfGold",
+        headerName: "QtyOfGold",
         minWidth: 150,
         resizable: true,
         sortable: true,

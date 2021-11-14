@@ -104,6 +104,7 @@ export class CustomerDetailComponent implements OnInit {
         if (result.data.updateCustomer) {
           this.toastr.success("Comment added successfully!");
           this.commentModal.hide();
+          this.getLists();
         } else {
           this.toastr.error("Failed. Please check the fields!");
         }

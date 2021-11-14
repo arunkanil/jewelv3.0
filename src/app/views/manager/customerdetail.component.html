@@ -1,306 +1,533 @@
 <div class="animated fadeIn">
-    <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    Do you want to delete this agent?
-                </div>
-                <div class="modal-footer justify-content-around">
-                    <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">
-                        No! Cancel.
-                    </button>
-                    <button type="button" class="btn btn-primary" (click)="deleteAgent()">
-                        Yes! Delete.
-                    </button>
-                </div>
+  <div
+    bsModal
+    #saleModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Close Sale</h4>
+          <button
+            type="button"
+            class="close"
+            (click)="saleModal.hide()"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="saleForm" (ngSubmit)="closeCustomer()">
+            <div class="form-group">
+              <label for="group">Status</label>
+              <select
+                class="form-control"
+                id="CustomerStatus"
+                required
+                ngModel
+                name="CustomerStatus"
+                formControlName="CustomerStatus"
+              >
+                <option value="" disabled selected hidden>Choose...</option>
+                <option value="Sale successful">Sale successful</option>
+                <option value="Other Purchase">Other Purchase</option>
+                <option value="Plan dropped">Plan dropped</option>
+              </select>
             </div>
+            <div class="form-group">
+              <label for="group">Closed by</label>
+              <select
+                class="form-control"
+                id="sale_closed_by"
+                required
+                ngModel
+                name="sale_closed_by"
+                formControlName="sale_closed_by"
+              >
+                <option value="" disabled selected hidden>Choose...</option>
+                <option *ngFor="let item of kpcallers" value="{{ item.id }}">
+                  {{ item.username }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sale_remarks">Sale remarks</label>
+              <textarea
+                class="form-control"
+                maxlength="250"
+                id="sale_remarks"
+                name="sale_remarks"
+                formControlName="sale_remarks"
+                placeholder="Enter remarks"
+              ></textarea>
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="saleModal.hide()"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary ml-2"
+              [disabled]="btnLoading || !saleForm.valid"
+            >
+              <span
+                *ngIf="btnLoading"
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Save changes
+            </button>
+          </form>
         </div>
+      </div>
+      <!-- /.modal-content -->
     </div>
-    <div class="card">
-        <div class="card-header" style="display: flex; justify-content: space-between">
-            <h2>Customer Details</h2>
-            <span>
-                <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myModal.show()">
-                    Assign to field agent
-                </button>
-                <!-- <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteModal.show()">
-                Delete
-            </button> -->
-            </span>
+  </div>
+  <div
+    bsModal
+    #deleteModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          Do you want to delete this agent?
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div style="display: flex; justify-content: space-between">
-                            <h4>Basic details</h4>
-                        </div>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>{{details?.id}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name Of Bride</td>
-                                    <td>{{details?.NameOfBride}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name Of Father</td>
-                                    <td>{{details?.NameOfFather}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name Of Mother</td>
-                                    <td>{{ details?.NameOfMother }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Marriage Date</td>
-                                    <td>{{ details?.MarriageDate }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Marriage Month</td>
-                                    <td>{{ details?.MarriageMonth }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Contact number 1</td>
-                                    <td>{{ details?.Contact_Number_1 }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Contact number 2</td>
-                                    <td>{{ details?.Contact_Number_2 }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Agent</td>
-                                    <td>
-                                        <span class="badge badge-warning">{{ details.tele_caller_contact?.Name }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>KP Caller</td>
-                                    <td>
-                                        <span class="badge badge-primary">{{ details.kp_caller_assigned?.username
-                                            }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>House Name</td>
-                                    <td>{{ details.Address?.HouseName }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Landmark</td>
-                                    <td>{{ details.Address?.Landmark }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Locality</td>
-                                    <td>{{ details.Address?.locality?.Name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Latitude</td>
-                                    <td>{{ details.Address?.GeoLocation?.Latitude }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Longitude</td>
-                                    <td>{{ details.Address?.GeoLocation?.Longitude }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Plus code</td>
-                                    <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Map URL</td>
-                                    <td><a href="https://www.google.com/maps/search/?api=1&query={{
-                                        details.Address?.GeoLocation?.Latitude
-                                        }}%2C{{
-                                            details.Address?.GeoLocation?.Longitude
-                                          }}" target="_blank">Click here to view location</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div style="display: flex; justify-content: space-between">
-                            <h4>Field Report</h4>
-                        </div>
-                        <table *ngIf="details.FieldReport" class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>Financial category</td>
-                                    <td>{{details.FieldReport?.FinancialBackground}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity of intended purchase</td>
-                                    <td>{{details.FieldReport?.QtyOfGold}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Suitable set</td>
-                                    <td>{{details.FieldReport?.PreferredWeddingSet}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Whether planning to exchange after marriage?</td>
-                                    <td>{{ details.FieldReport?.PlanningForReplacementAfterWedding }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity of old gold for exchange</td>
-                                    <td>{{ details.FieldReport?.OldGoldExchangeQty }}</td>
-                                </tr>
-                                <tr>
-                                    <td>No cost emi needed?</td>
-                                    <td>{{ details.FieldReport?.NoCostEmiRequired }}</td>
-                                </tr>
-                                <tr>
-                                    <td>EMI tenure</td>
-                                    <td>
-                                        <span class="badge badge-warning">{{ details.FieldReport?.EmiTenure }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Number of repayments</td>
-                                    <td>
-                                        <span class="badge badge-primary">{{ details.FieldReport?.EmiIntervals
-                                            }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Token advance</td>
-                                    <td>{{ details.FieldReport?.TokenAdvance }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Rate advance</td>
-                                    <td>{{ details.FieldReport?.RateAdvance }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Whether approached by other jewelleries?</td>
-                                    <td>{{ details.FieldReport?.EnquiriesFromOthers }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Advance paid to other jewellery</td>
-                                    <td>{{ details.FieldReport?.AdvancePaidToOtherJewellery }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Whether received any fresh leads?</td>
-                                    <td>{{ details.FieldReport?.NumberOfNewMarriageAddress }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Captured location</td>
-                                    <td><a href="https://www.google.com/maps/search/?api=1&query={{details.FieldReport?.location?.Latitude}}%2C{{details.FieldReport?.location?.Longitude}}"
-                                            target="_blank">Click
-                                            here to view location</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <carousel [interval]="2000">
-                            <slide *ngFor="let item of details.FieldReport?.images">
-                                <img src="https://jewel-core.telemarketing.untanglepro.com{{item.url}}"
-                                    alt="First slide" style="display: block; width: 100%;">
-                                <!-- <div class="carousel-caption d-none d-md-block">
+        <div class="modal-footer justify-content-around">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="deleteModal.hide()"
+          >
+            No! Cancel.
+          </button>
+          <button type="button" class="btn btn-primary" (click)="deleteAgent()">
+            Yes! Delete.
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div
+      class="card-header"
+      style="display: flex; justify-content: space-between"
+    >
+      <h2>Customer Details</h2>
+      <span>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          (click)="myModal.show()"
+        >
+          Assign to field agent
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-toggle="modal"
+          (click)="saleModal.show()"
+        >
+          Close Sale
+        </button>
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div style="display: flex; justify-content: space-between">
+              <h4>Basic details</h4>
+            </div>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>ID</td>
+                  <td>{{ details?.id }}</td>
+                </tr>
+                <tr>
+                  <td>Name Of Bride</td>
+                  <td>{{ details?.NameOfBride }}</td>
+                </tr>
+                <tr>
+                  <td>Name Of Father</td>
+                  <td>{{ details?.NameOfFather }}</td>
+                </tr>
+                <tr>
+                  <td>Name Of Mother</td>
+                  <td>{{ details?.NameOfMother }}</td>
+                </tr>
+                <tr>
+                  <td>Marriage Date</td>
+                  <td>{{ details?.MarriageDate }}</td>
+                </tr>
+                <tr>
+                  <td>Marriage Month</td>
+                  <td>{{ details?.MarriageMonth }}</td>
+                </tr>
+                <tr>
+                  <td>Contact number 1</td>
+                  <td>{{ details?.Contact_Number_1 }}</td>
+                </tr>
+                <tr>
+                  <td>Contact number 2</td>
+                  <td>{{ details?.Contact_Number_2 }}</td>
+                </tr>
+                <tr>
+                  <td>Agent</td>
+                  <td>
+                    <span class="badge badge-warning">{{
+                      details.tele_caller_contact?.Name
+                    }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>KP Caller</td>
+                  <td>
+                    <span class="badge badge-primary">{{
+                      details.kp_caller_assigned?.username
+                    }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>House Name</td>
+                  <td>{{ details.Address?.HouseName }}</td>
+                </tr>
+                <tr>
+                  <td>Landmark</td>
+                  <td>{{ details.Address?.Landmark }}</td>
+                </tr>
+                <tr>
+                  <td>Locality</td>
+                  <td>{{ details.Address?.locality?.Name }}</td>
+                </tr>
+                <tr>
+                  <td>Latitude</td>
+                  <td>{{ details.Address?.GeoLocation?.Latitude }}</td>
+                </tr>
+                <tr>
+                  <td>Longitude</td>
+                  <td>{{ details.Address?.GeoLocation?.Longitude }}</td>
+                </tr>
+                <tr>
+                  <td>Plus code</td>
+                  <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>
+                </tr>
+                <tr>
+                  <td>Map URL</td>
+                  <td>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query={{
+                        details.Address?.GeoLocation?.Latitude
+                      }}%2C{{ details.Address?.GeoLocation?.Longitude }}"
+                      target="_blank"
+                      >Click here to view location</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div style="display: flex; justify-content: space-between">
+              <h4>Field Report</h4>
+            </div>
+            <table *ngIf="details.FieldReport" class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Financial category</td>
+                  <td>{{ details.FieldReport?.FinancialBackground }}</td>
+                </tr>
+                <tr>
+                  <td>Quantity of intended purchase</td>
+                  <td>{{ details.FieldReport?.QtyOfGold }}</td>
+                </tr>
+                <tr>
+                  <td>Suitable set</td>
+                  <td>{{ details.FieldReport?.PreferredWeddingSet }}</td>
+                </tr>
+                <tr>
+                  <td>Whether planning to exchange after marriage?</td>
+                  <td>
+                    {{
+                      details.FieldReport?.PlanningForReplacementAfterWedding
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Quantity of old gold for exchange</td>
+                  <td>{{ details.FieldReport?.OldGoldExchangeQty }}</td>
+                </tr>
+                <tr>
+                  <td>No cost emi needed?</td>
+                  <td>{{ details.FieldReport?.NoCostEmiRequired }}</td>
+                </tr>
+                <tr>
+                  <td>EMI tenure</td>
+                  <td>
+                    <span class="badge badge-warning">{{
+                      details.FieldReport?.EmiTenure
+                    }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Number of repayments</td>
+                  <td>
+                    <span class="badge badge-primary">{{
+                      details.FieldReport?.EmiIntervals
+                    }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Token advance</td>
+                  <td>{{ details.FieldReport?.TokenAdvance }}</td>
+                </tr>
+                <tr>
+                  <td>Rate advance</td>
+                  <td>{{ details.FieldReport?.RateAdvance }}</td>
+                </tr>
+                <tr>
+                  <td>Whether approached by other jewelleries?</td>
+                  <td>{{ details.FieldReport?.EnquiriesFromOthers }}</td>
+                </tr>
+                <tr>
+                  <td>Advance paid to other jewellery</td>
+                  <td>
+                    {{ details.FieldReport?.AdvancePaidToOtherJewellery }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Whether received any fresh leads?</td>
+                  <td>{{ details.FieldReport?.NumberOfNewMarriageAddress }}</td>
+                </tr>
+                <tr>
+                  <td>Captured location</td>
+                  <td>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query={{
+                        details.FieldReport?.location?.Latitude
+                      }}%2C{{ details.FieldReport?.location?.Longitude }}"
+                      target="_blank"
+                      >Click here to view location</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <carousel [interval]="2000">
+              <slide *ngFor="let item of details.FieldReport?.images">
+                <img
+                  src="https://jewel-core.telemarketing.untanglepro.com{{
+                    item.url
+                  }}"
+                  alt="First slide"
+                  style="display: block; width: 100%"
+                />
+                <!-- <div class="carousel-caption d-none d-md-block">
                                 <h3>First slide label</h3>
                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                               </div> -->
-                            </slide>
-                        </carousel>
-                    </div>
+              </slide>
+            </carousel>
+          </div>
 
-                    <div *ngIf="!details.FieldReport" class="card">
-                        <div class="card-body text-center">
-                            No field report found
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div style="display: flex; justify-content: space-between">
-                        <h4>Remarks</h4>
-                    </div>
-                    <div class="card" *ngFor="let item of details.TelecallerRemarks">
-                        <div class="card-body">
-                            <h5 class="card-title">{{dateConverter(item.CallHistory?.event_date_time)}}</h5>
-                            <p class="card-text">{{item.RemarksText}}</p>
-                            <span
-                                class="badge badge-primary">{{item.CallHistory.users_permissions_user?.username}}</span>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" (click)="commentModal.show()">
-                        Add Comment
-                    </button>
-                </div>
-            </div>
-
+          <div *ngIf="!details.FieldReport" class="card">
+            <div class="card-body text-center">No field report found</div>
+          </div>
         </div>
-        <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Assign to field Agent</h4>
-                        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form [formGroup]="agentForm" (ngSubmit)="FormSubmit()">
-                            <div class="form-group">
-                                <label for="group">Field agent</label>
-                                <select class="form-control" id="agent" required ngModel name="agent"
-                                    formControlName="agent">
-                                    <option value="" disabled selected hidden>Choose...</option>
-                                    <option *ngFor="let item of users" value="{{ item.id }}">
-                                        {{ item.username }}
-                                    </option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-secondary" (click)="myModal.hide()">
-                                Close
-                            </button>
-                            <button type="submit" class="btn btn-primary ml-2"
-                                [disabled]="btnLoading || !agentForm.valid">
-                                <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status"
-                                    aria-hidden="true"></span>
-                                Save changes
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
+        <div class="col">
+          <div *ngIf="details.isSaleClosed">
+            <div style="display: flex; justify-content: space-between">
+              <h4 class="text-danger">Sale Closed</h4>
             </div>
-            <!-- /.modal-dialog -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Customer status : {{ details.CustomerStatus }}
+                </h5>
+                <p class="card-text">
+                  Closed on : {{ details.sale_closed_date }}
+                </p>
+                <p class="card-text">Remarks : {{ details.sale_remarks }}</p>
+                Closed by :
+                <span class="badge badge-primary">{{
+                  details.sale_closed_by.username
+                }}</span>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <h4>Remarks</h4>
+          </div>
+          <div class="card" *ngFor="let item of details.TelecallerRemarks">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ dateConverter(item.CallHistory?.event_date_time) }}
+              </h5>
+              <p class="card-text">{{ item.RemarksText }}</p>
+              <span class="badge badge-primary">{{
+                item.CallHistory.users_permissions_user?.username
+              }}</span>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            (click)="commentModal.show()"
+          >
+            Add Comment
+          </button>
         </div>
-        <div bsModal #commentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-            aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Comment</h4>
-                        <button type="button" class="close" (click)="commentModal.hide()" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form [formGroup]="commentForm" (ngSubmit)="CommentSubmit()">
-                            <div class="form-group">
-                                <label for="name">Remarks</label>
-                                <textarea class="form-control" maxlength="250" id="RemarksText" name="RemarksText"
-                                    formControlName="RemarksText" placeholder="Enter remarks"></textarea>
-                            </div>
-                            <!-- <div class="form-group">
+      </div>
+    </div>
+    <div
+      bsModal
+      #myModal="bs-modal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Assign to field Agent</h4>
+            <button
+              type="button"
+              class="close"
+              (click)="myModal.hide()"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="agentForm" (ngSubmit)="FormSubmit()">
+              <div class="form-group">
+                <label for="group">Field agent</label>
+                <select
+                  class="form-control"
+                  id="agent"
+                  required
+                  ngModel
+                  name="agent"
+                  formControlName="agent"
+                >
+                  <option value="" disabled selected hidden>Choose...</option>
+                  <option *ngFor="let item of users" value="{{ item.id }}">
+                    {{ item.username }}
+                  </option>
+                </select>
+              </div>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="myModal.hide()"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary ml-2"
+                [disabled]="btnLoading || !agentForm.valid"
+              >
+                <span
+                  *ngIf="btnLoading"
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Save changes
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <div
+      bsModal
+      #commentModal="bs-modal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add Comment</h4>
+            <button
+              type="button"
+              class="close"
+              (click)="commentModal.hide()"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="commentForm" (ngSubmit)="CommentSubmit()">
+              <div class="form-group">
+                <label for="name">Remarks</label>
+                <textarea
+                  class="form-control"
+                  maxlength="250"
+                  id="RemarksText"
+                  name="RemarksText"
+                  formControlName="RemarksText"
+                  placeholder="Enter remarks"
+                ></textarea>
+              </div>
+              <!-- <div class="form-group">
                                 <label for="email">Date</label>
                                 <input type="datetime-local" class="form-control" id="event_date_time"
                                     name="event_date_time" formControlName="event_date_time" />
                             </div> -->
-                            <button type="button" class="btn btn-secondary" (click)="commentModal.hide()">
-                                Close
-                            </button>
-                            <button type="submit" class="btn btn-primary ml-2"
-                                [disabled]="btnLoading || !commentForm.valid">
-                                <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status"
-                                    aria-hidden="true"></span>
-                                Save changes
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="commentModal.hide()"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary ml-2"
+                [disabled]="btnLoading || !commentForm.valid"
+              >
+                <span
+                  *ngIf="btnLoading"
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Save changes
+              </button>
+            </form>
+          </div>
         </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
     </div>
+  </div>
 </div>

@@ -206,6 +206,7 @@ let ButtonsComponent = class ButtonsComponent {
         if (this.router.url === "/kpcaller/verification") {
             this.filter = {
                 is_verified: false,
+                condition: "last_called_time:asc"
             };
             this.title = "Verification";
         }
@@ -214,6 +215,7 @@ let ButtonsComponent = class ButtonsComponent {
                 MarriageDateOR_null: false,
                 MarriageMonthOR_null: false,
                 kp_id: localStorage.getItem("uid"),
+                condition: "last_called_time:asc"
             };
             this.title = "Assigned";
         }
@@ -222,6 +224,7 @@ let ButtonsComponent = class ButtonsComponent {
                 MarriageDate_null: true,
                 MarriageMonth_null: true,
                 kp_id: localStorage.getItem("uid"),
+                condition: "last_called_time:asc"
             };
             this.title = "Date Not Fixed";
             this.columnDefs = [..._constants_columnMetadata__WEBPACK_IMPORTED_MODULE_7__["DNFcustomersColumn"]];
@@ -355,6 +358,9 @@ let KPCustomerDetailComponent = class KPCustomerDetailComponent {
     }
     ngOnInit() {
         this.getLists();
+    }
+    getLists() {
+        this.loading = true;
         this.activatedRouter.params.subscribe((params) => {
             this.id = params["id"];
             if (params["from"] === "/kpcaller/verification") {
@@ -367,9 +373,6 @@ let KPCustomerDetailComponent = class KPCustomerDetailComponent {
             this.loading = false;
         });
         console.log(this.from);
-    }
-    getLists() {
-        this.loading = true;
         this.dataservice.getGroups().valueChanges.subscribe((result) => {
             console.log("getGroups", result.data.groups);
             this.groups = result.data.groups;
@@ -386,6 +389,7 @@ let KPCustomerDetailComponent = class KPCustomerDetailComponent {
             if (result.data.updateCustomer) {
                 this.toastr.success("Comment added successfully!");
                 this.commentModal.hide();
+                this.getLists();
             }
             else {
                 this.toastr.error("Failed. Please check the fields!");

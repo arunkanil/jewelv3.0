@@ -53,22 +53,6 @@ export class AgentDetailComponent implements OnInit {
     this.activatedRouter.params.subscribe((params) => {
       this.id = params["id"];
     });
-    this.dataservice
-      .getSingleAgent(this.id)
-      .valueChanges.subscribe((result: any) => {
-        console.log("getSingleAgent", result.data.teleCallerContact);
-        this.details = result.data.teleCallerContact;
-        this.agentForm = this.fb.group({
-          name: [this.details.Name, Validators.required],
-          email: [this.details.Email, Validators.required],
-          phone1: [this.details.Contact_Number_1, Validators.required],
-          phone2: [this.details.Contact_Number_2, Validators.required],
-          phone3: [this.details.Contact_Number_3, Validators.required],
-          group: [this.details.group.Name, Validators.required],
-        });
-        // console.log(new Date(this.details.telecaller_remarks[0].CallHistory.event_date_time))
-        this.loading = false;
-      });
     this.customerForm = this.fb.group({
       NameOfBride: ["", Validators.required],
       NameOfFather: ["", Validators.required],
@@ -89,7 +73,26 @@ export class AgentDetailComponent implements OnInit {
     });
   }
   getLists() {
-    this.loading = true;
+    console.log("jsdgkjsdfksghdfksdhfskldfhklsdfhskljdfhslkdfhlskd");
+    this.dataservice
+      .getfilteredAgents(
+        localStorage.getItem("uid"),
+        "last_called_date_time:asc"
+      )
+      .valueChanges.subscribe((result: any) => {
+        console.log("getSingleAgent", result.data.teleCallerContacts);
+        this.details = result.data.teleCallerContacts[0];
+        this.agentForm = this.fb.group({
+          name: [this.details.Name, Validators.required],
+          email: [this.details.Email, Validators.required],
+          phone1: [this.details.Contact_Number_1, Validators.required],
+          phone2: [this.details.Contact_Number_2, Validators.required],
+          phone3: [this.details.Contact_Number_3, Validators.required],
+          group: [this.details.group.Name, Validators.required],
+        });
+        // console.log(new Date(this.details.telecaller_remarks[0].CallHistory.event_date_time))
+        this.loading = false;
+      });
     this.dataservice.getGroups().valueChanges.subscribe((result: any) => {
       console.log("getGroups", result.data.groups);
       this.groups = result.data.groups;
@@ -121,6 +124,7 @@ export class AgentDetailComponent implements OnInit {
         if (result.data.updateTeleCallerContact) {
           this.toastr.success("Agent edited successfully!");
           this.myModal.hide();
+          this.getLists();
         } else {
           this.toastr.error("Failed. Please check the fields!");
         }
@@ -136,8 +140,8 @@ export class AgentDetailComponent implements OnInit {
         console.log("response", result);
         if (result.data.createCustomer) {
           this.toastr.success("customer added successfully!");
-          this.getLists();
           this.customerModal.hide();
+          this.getLists();
         } else {
           this.toastr.error("Failed. Please check the fields!");
         }
@@ -155,6 +159,8 @@ export class AgentDetailComponent implements OnInit {
         if (result.data.updateTeleCallerContact) {
           this.toastr.success("Comment added successfully!");
           this.commentModal.hide();
+          this.getLists();
+          // window.location.reload();
         } else {
           this.toastr.error("Failed. Please check the fields!");
         }
@@ -167,7 +173,7 @@ export class AgentDetailComponent implements OnInit {
       console.log("response", result);
       if (result.data.deleteTeleCallerContact) {
         this.toastr.success("Agent deleted successfully!");
-        this.router.navigate(["/order/order_processing"]);
+        this.router.navigate(["/telecaller/agents"]);
         this.deleteModal.hide();
       } else {
         this.toastr.error("Failed. Please check again!");

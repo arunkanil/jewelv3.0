@@ -33,6 +33,9 @@ export class KPCustomerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLists();
+  }
+  getLists() {
+    this.loading = true;
     this.activatedRouter.params.subscribe((params) => {
       this.id = params["id"];
       if(params["from"] === "/kpcaller/verification"){
@@ -45,9 +48,6 @@ export class KPCustomerDetailComponent implements OnInit {
       this.loading = false;
     });
     console.log(this.from);
-  }
-  getLists() {
-    this.loading = true;
     this.dataservice.getGroups().valueChanges.subscribe((result: any) => {
       console.log("getGroups", result.data.groups);
       this.groups = result.data.groups;
@@ -64,6 +64,7 @@ export class KPCustomerDetailComponent implements OnInit {
         if (result.data.updateCustomer) {
           this.toastr.success("Comment added successfully!");
           this.commentModal.hide();
+          this.getLists();
         } else {
           this.toastr.error("Failed. Please check the fields!");
         }

@@ -5,8 +5,11 @@ import { environment } from "../environments/environment";
 import { Apollo, gql } from "apollo-angular";
 
 const AgentsQuery = gql`
-  query ($tele_caller_id: String) {
-    teleCallerContacts(where: { assigned_telecaller: $tele_caller_id }) {
+  query ($tele_caller_id: String, $condition: String) {
+    teleCallerContacts(
+      sort: $condition
+      where: { assigned_telecaller: $tele_caller_id }
+    ) {
       id
       Name
       Contact_Number_1
@@ -21,6 +24,16 @@ const AgentsQuery = gql`
         username
         email
       }
+      telecaller_remarks {
+        RemarksText
+        CallHistory {
+          event_date_time
+          users_permissions_user {
+            username
+          }
+        }
+      }
+      last_called_date_time
     }
   }
 `;
@@ -185,6 +198,7 @@ const AddCommentMutation = gql`
             RemarksText: $remarks
             CallHistory: { event_date_time: $date }
           }
+          last_called_date_time: $date
         }
       }
     ) {
@@ -208,6 +222,7 @@ const AddCommentMutation = gql`
             }
           }
         }
+        last_called_date_time
       }
     }
   }
@@ -285,8 +300,10 @@ const CustomersFilterQuery = gql`
     $MarriageDateOR_null: Boolean
     $MarriageDate_gte: String
     $MarriageDate_lte: String
+    $condition: String
   ) {
     customers(
+      sort: $condition
       where: {
         is_verified: $is_verified
         kp_caller_assigned_null: $kp_caller_assigned_null
@@ -296,7 +313,10 @@ const CustomersFilterQuery = gql`
         added_by_user: $added_by_user
         MarriageDate_gte: $MarriageDate_gte
         MarriageDate_lte: $MarriageDate_lte
-        _or: [{ MarriageDate_null: $MarriageDateOR_null }, { MarriageMonth_null: $MarriageMonthOR_null }]
+        _or: [
+          { MarriageDate_null: $MarriageDateOR_null }
+          { MarriageMonth_null: $MarriageMonthOR_null }
+        ]
       }
     ) {
       id
@@ -430,6 +450,15 @@ const CustomerSingleQuery = gql`
           GoogleMapPlusCode
         }
       }
+      isSaleClosed
+      CustomerStatus
+      sale_closed_by {
+        id
+        email
+        username
+      }
+      sale_closed_date
+      sale_remarks
       TelecallerRemarks {
         RemarksText
         CallHistory {
@@ -528,6 +557,36 @@ const AddCustomerMutation = gql`
     }
   }
 `;
+const UpdateCustomerMutation = gql`
+  mutation (
+    $id: ID!
+    $sale_remarks: String!
+    $sale_closed_date: DateTime!
+    $CustomerStatus: String
+    $isSaleClosed: Boolean
+    $sale_closed_by: ID
+  ) {
+    updateCustomer(
+      input: {
+        where: { id: $id }
+        data: {
+          CustomerStatus: $CustomerStatus
+          isSaleClosed: $isSaleClosed
+          sale_remarks: $sale_remarks
+          sale_closed_date: $sale_closed_date
+          sale_closed_by: $sale_closed_by
+          kp_caller_assigned: null
+        }
+      }
+    ) {
+      customer {
+        id
+        NameOfBride
+        NameOfFather
+      }
+    }
+  }
+`;
 const AddCustomerCommentMutation = gql`
   mutation (
     $id: ID!
@@ -543,6 +602,7 @@ const AddCustomerCommentMutation = gql`
             RemarksText: $remarks
             CallHistory: { event_date_time: $date }
           }
+          last_called_time: $date
           is_verified: $is_verified
         }
       }
@@ -555,6 +615,7 @@ const AddCustomerCommentMutation = gql`
         NameOfMother
         MarriageDate
         MarriageMonth
+        last_called_time
         tele_caller_contact {
           Name
           id
@@ -687,47 +748,50 @@ const AddCustomerEnquiry = gql`
     }
   }
 `;
-const EnquiriesQuery = gql `
-query {
-  customerEnquiries{
-    id
-    Name
-    PhoneNumber
-    HouseName
-    Landmark
-    PostOfficeNumber
-    isWeddingPurchase
-    MarriageDate
-    QtyOfGold
-    OptNoCostEMI
-  }
-}`
-const SingleEnquiryQuery = gql `
-query($id: ID!) {
-  customerEnquiry(id: $id){
-    id
-    Name
-    PhoneNumber
-    HouseName
-    Landmark
-    PostOfficeNumber
-    isWeddingPurchase
-    MarriageDate
-    QtyOfGold
-    OptNoCostEMI
-  }
-}`
-const deleteEnquiry = gql `
-mutation($id: ID!){
-  deleteCustomerEnquiry(input: { where: { id: $id } }){
-    customerEnquiry{
+const EnquiriesQuery = gql`
+  query {
+    customerEnquiries {
+      id
       Name
       PhoneNumber
       HouseName
       Landmark
+      PostOfficeNumber
+      isWeddingPurchase
+      MarriageDate
+      QtyOfGold
+      OptNoCostEMI
     }
   }
-}`;
+`;
+const SingleEnquiryQuery = gql`
+  query ($id: ID!) {
+    customerEnquiry(id: $id) {
+      id
+      Name
+      PhoneNumber
+      HouseName
+      Landmark
+      PostOfficeNumber
+      isWeddingPurchase
+      MarriageDate
+      QtyOfGold
+      OptNoCostEMI
+    }
+  }
+`;
+const deleteEnquiry = gql`
+  mutation ($id: ID!) {
+    deleteCustomerEnquiry(input: { where: { id: $id } }) {
+      customerEnquiry {
+        Name
+        PhoneNumber
+        HouseName
+        Landmark
+      }
+    }
+  }
+`;
 @Injectable({
   providedIn: "root",
 })
@@ -746,32 +810,38 @@ export class DataService {
   getAgents() {
     return this.apollo.watchQuery({
       query: AgentsQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getEnquiries() {
     return this.apollo.watchQuery({
       query: EnquiriesQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getSingleEnquiry(id) {
     return this.apollo.watchQuery({
       query: SingleEnquiryQuery,
+      fetchPolicy: "no-cache",
       variables: {
         id: id,
       },
     });
   }
-  getfilteredAgents(id) {
+  getfilteredAgents(id, condition) {
     return this.apollo.watchQuery({
       query: AgentsQuery,
+      fetchPolicy: "no-cache",
       variables: {
         tele_caller_id: id,
+        condition: condition,
       },
     });
   }
   getSingleAgent(id) {
     return this.apollo.watchQuery({
       query: AgentsSingleQuery,
+      fetchPolicy: "no-cache",
       variables: {
         id: id,
       },
@@ -831,38 +901,45 @@ export class DataService {
   getGroups() {
     return this.apollo.watchQuery({
       query: GroupsQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getLocalities() {
     return this.apollo.watchQuery({
       query: localitiesQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getPostOffices() {
     return this.apollo.watchQuery({
       query: postOfficesQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getCustomers() {
     return this.apollo.watchQuery({
       query: CustomersQuery,
+      fetchPolicy: "no-cache",
     });
   }
   getUsers(type) {
     return this.apollo.watchQuery({
       query: UsersQuery,
+      fetchPolicy: "no-cache",
       variables: { type: type },
     });
   }
   getCustomersFilter(verified) {
     return this.apollo.watchQuery({
       query: CustomersFilterQuery,
+      fetchPolicy: "no-cache",
       variables: verified,
     });
   }
   getSingleCustomer(id) {
     return this.apollo.watchQuery({
       query: CustomerSingleQuery,
+      fetchPolicy: "no-cache",
       variables: {
         id: id,
       },
@@ -889,6 +966,20 @@ export class DataService {
         Longitude: parseFloat(Customer.Longitude),
         GoogleMapURL: Customer.GoogleMapURL,
         GoogleMapPlusCode: Customer.GoogleMapPlusCode,
+      },
+      errorPolicy: "all",
+    });
+  }
+  Updatecustomer(id,Customer) {
+    return this.apollo.mutate({
+      mutation: UpdateCustomerMutation,
+      variables: {
+        id: id,
+        sale_remarks: Customer.sale_remarks,
+        sale_closed_date: Customer.sale_closed_date,
+        CustomerStatus: Customer.CustomerStatus,
+        isSaleClosed: Customer.isSaleClosed,
+        sale_closed_by: Customer.sale_closed_by,
       },
       errorPolicy: "all",
     });

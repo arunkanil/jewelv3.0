@@ -27,7 +27,7 @@ const routes: Routes = [
       {
         path: 'agents',
         canActivate: [AuthGuard],
-        component: AgentsComponent,
+        component: AgentDetailComponent,
         data: {
           roles: 'TELE_CALLER',
           title: 'Agents'

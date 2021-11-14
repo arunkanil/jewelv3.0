@@ -312,21 +312,24 @@
 
             if (this.router.url === "/kpcaller/verification") {
               this.filter = {
-                is_verified: false
+                is_verified: false,
+                condition: "last_called_time:asc"
               };
               this.title = "Verification";
             } else if (this.router.url === "/kpcaller/assigned") {
               this.filter = {
                 MarriageDateOR_null: false,
                 MarriageMonthOR_null: false,
-                kp_id: localStorage.getItem("uid")
+                kp_id: localStorage.getItem("uid"),
+                condition: "last_called_time:asc"
               };
               this.title = "Assigned";
             } else {
               this.filter = {
                 MarriageDate_null: true,
                 MarriageMonth_null: true,
-                kp_id: localStorage.getItem("uid")
+                kp_id: localStorage.getItem("uid"),
+                condition: "last_called_time:asc"
               };
               this.title = "Date Not Fixed";
               this.columnDefs = _toConsumableArray(_constants_columnMetadata__WEBPACK_IMPORTED_MODULE_7__["DNFcustomersColumn"]);
@@ -548,9 +551,14 @@
         _createClass(KPCustomerDetailComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
+            this.getLists();
+          }
+        }, {
+          key: "getLists",
+          value: function getLists() {
             var _this2 = this;
 
-            this.getLists();
+            this.loading = true;
             this.activatedRouter.params.subscribe(function (params) {
               _this2.id = params["id"];
 
@@ -564,22 +572,15 @@
               _this2.loading = false;
             });
             console.log(this.from);
-          }
-        }, {
-          key: "getLists",
-          value: function getLists() {
-            var _this3 = this;
-
-            this.loading = true;
             this.dataservice.getGroups().valueChanges.subscribe(function (result) {
               console.log("getGroups", result.data.groups);
-              _this3.groups = result.data.groups;
+              _this2.groups = result.data.groups;
             });
           }
         }, {
           key: "CommentSubmit",
           value: function CommentSubmit() {
-            var _this4 = this;
+            var _this3 = this;
 
             var resp = {};
             console.log(this.commentForm.value);
@@ -588,11 +589,13 @@
               console.log("response", result);
 
               if (result.data.updateCustomer) {
-                _this4.toastr.success("Comment added successfully!");
+                _this3.toastr.success("Comment added successfully!");
 
-                _this4.commentModal.hide();
+                _this3.commentModal.hide();
+
+                _this3.getLists();
               } else {
-                _this4.toastr.error("Failed. Please check the fields!");
+                _this3.toastr.error("Failed. Please check the fields!");
               }
             });
           }
