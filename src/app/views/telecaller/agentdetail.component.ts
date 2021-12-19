@@ -36,11 +36,11 @@ export class AgentDetailComponent implements OnInit {
   postoffices: any = [];
   agentForm = this.fb.group({
     name: ["", Validators.required],
-    email: ["", Validators.required],
+    email: [""],
     phone1: ["", Validators.required],
-    phone2: ["", Validators.required],
-    phone3: ["", Validators.required],
-    group: ["", Validators.required],
+    phone2: [""],
+    phone3: [""],
+    group: [""],
   });
   customerForm;
   commentForm = this.fb.group({
@@ -50,30 +50,11 @@ export class AgentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLists();
-    this.activatedRouter.params.subscribe((params) => {
-      this.id = params["id"];
-    });
-    this.customerForm = this.fb.group({
-      NameOfBride: ["", Validators.required],
-      NameOfFather: ["", Validators.required],
-      NameOfMother: ["", Validators.required],
-      MarriageDate: ["", Validators.required],
-      Contact_Number_1: ["", Validators.required],
-      Contact_Number_2: ["", Validators.required],
-      MarriageMonth: ["", Validators.required],
-      tele_caller_contact: [this.id, Validators.required],
-      HouseName: ["", Validators.required],
-      Landmark: ["", Validators.required],
-      locality: ["", Validators.required],
-      Post_office: ["", Validators.required],
-      Latitude: [""],
-      Longitude: [""],
-      GoogleMapURL: [""],
-      GoogleMapPlusCode: [""],
-    });
+    // this.activatedRouter.params.subscribe((params) => {
+    //   this.id = params["id"];
+    // });
   }
   getLists() {
-    console.log("jsdgkjsdfksghdfksdhfskldfhklsdfhskljdfhslkdfhlskd");
     this.dataservice
       .getfilteredAgents(
         localStorage.getItem("uid"),
@@ -84,13 +65,30 @@ export class AgentDetailComponent implements OnInit {
         this.details = result.data.teleCallerContacts[0];
         this.agentForm = this.fb.group({
           name: [this.details.Name, Validators.required],
-          email: [this.details.Email, Validators.required],
+          email: [this.details.Email],
           phone1: [this.details.Contact_Number_1, Validators.required],
-          phone2: [this.details.Contact_Number_2, Validators.required],
-          phone3: [this.details.Contact_Number_3, Validators.required],
-          group: [this.details.group.Name, Validators.required],
+          phone2: [this.details.Contact_Number_2],
+          phone3: [this.details.Contact_Number_3],
+          group: [this.details.group.Name],
         });
-        // console.log(new Date(this.details.telecaller_remarks[0].CallHistory.event_date_time))
+        this.customerForm = this.fb.group({
+          NameOfBride: ["", Validators.required],
+          NameOfFather: ["",],
+          NameOfMother: ["",],
+          MarriageDate: ["",],
+          Contact_Number_1: ["", Validators.required],
+          Contact_Number_2: ["",],
+          MarriageMonth: ["", Validators.required],
+          tele_caller_contact: [this.details.id],
+          HouseName: ["",],
+          Landmark: ["",],
+          locality: ["",],
+          Post_office: ["", Validators.required],
+          Latitude: [""],
+          Longitude: [""],
+          GoogleMapURL: [""],
+          GoogleMapPlusCode: [""],
+        }); 
         this.loading = false;
       });
     this.dataservice.getGroups().valueChanges.subscribe((result: any) => {
@@ -168,7 +166,7 @@ export class AgentDetailComponent implements OnInit {
   }
   deleteAgent() {
     let resp = {};
-    this.dataservice.DeleteAgent(this.id).subscribe((result: any) => {
+    this.dataservice.DeleteAgent(this.details.id).subscribe((result: any) => {
       resp = result.data;
       console.log("response", result);
       if (result.data.deleteTeleCallerContact) {

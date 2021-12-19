@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppComponent } from './app.component';
 // Import containers
@@ -46,6 +47,7 @@ import { ExposedFormComponent } from './views/exposed_form/exposed_form.componen
     ToastrModule.forRoot(),
     AppFooterModule,
     AppHeaderModule,
+    NgSelectModule,
     AppSidebarModule,
     BsDropdownModule.forRoot(),
     GraphQLModule,

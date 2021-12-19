@@ -4,26 +4,15 @@
   </div>
 </div>
 <div class="animated fadeIn">
-  <div
-    bsModal
-    #deleteModal="bs-modal"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
-    aria-hidden="true"
-  >
+  <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
         <div class="modal-body text-center">
           Do you want to delete this agent?
         </div>
         <div class="modal-footer justify-content-around">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            (click)="deleteModal.hide()"
-          >
+          <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">
             No! Cancel.
           </button>
           <button type="button" class="btn btn-primary" (click)="deleteAgent()">
@@ -35,37 +24,18 @@
   </div>
 </div>
 <div *ngIf="!loading" class="card animated fadeIn">
-  <div
-    class="card-header"
-    style="display: flex; justify-content: space-between"
-  >
+  <div class="card-header" style="display: flex; justify-content: space-between">
     <h2>Agent Details</h2>
     <span>
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        (click)="customerModal.show()"
-      >
+      <button type="button" class="btn btn-primary" data-toggle="modal" (click)="customerModal.show()">
         New Customer
       </button>
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        (click)="myModal.show()"
-      >
+      <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myModal.show()">
         Edit
       </button>
-      <button
-        type="button"
-        class="btn btn-danger"
-        data-toggle="modal"
-        (click)="deleteModal.show()"
-      >
+      <button type="button" class="btn btn-danger" data-toggle="modal" (click)="deleteModal.show()">
         Delete
-      </button></span
-    >
+      </button></span>
   </div>
   <div class="card-body">
     <div class="row">
@@ -107,7 +77,7 @@
               <td>
                 <span class="badge badge-warning">{{
                   details.group?.Name
-                }}</span>
+                  }}</span>
               </td>
             </tr>
           </tbody>
@@ -122,39 +92,22 @@
             <p class="card-text">{{ item.RemarksText }}</p>
             <span class="badge badge-primary">{{
               item.CallHistory.users_permissions_user?.username
-            }}</span>
+              }}</span>
           </div>
         </div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          (click)="commentModal.show()"
-        >
+        <button type="button" class="btn btn-primary" data-toggle="modal" (click)="commentModal.show()">
           Add Comment
         </button>
       </div>
     </div>
   </div>
-  <div
-    bsModal
-    #myModal="bs-modal"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
-    aria-hidden="true"
-  >
+  <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Edit Agent</h4>
-          <button
-            type="button"
-            class="close"
-            (click)="myModal.hide()"
-            aria-label="Close"
-          >
+          <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -162,93 +115,43 @@
           <form [formGroup]="agentForm" (ngSubmit)="FormSubmit()">
             <div class="form-group">
               <label for="name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                formControlName="name"
-                placeholder="Enter agent name"
-              />
+              <input type="text" class="form-control" id="name" name="name" formControlName="name"
+                placeholder="Enter agent name" />
             </div>
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                formControlName="email"
-                placeholder="Enter agent email"
-              />
+              <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                placeholder="Enter agent email" />
             </div>
             <div class="form-group">
               <label for="street">Phone 1</label>
-              <input
-                type="number"
-                class="form-control"
-                id="phone1"
-                name="phone1"
-                formControlName="phone1"
-                placeholder="Enter Phone 1"
-              />
+              <input type="number" class="form-control" id="phone1" name="phone1" formControlName="phone1"
+                placeholder="Enter Phone 1" />
             </div>
             <div class="form-group">
               <label for="phone2">Phone 2</label>
-              <input
-                type="number"
-                class="form-control"
-                id="phone2"
-                name="phone2"
-                formControlName="phone2"
-                placeholder="Enter Phone 2"
-              />
+              <input type="number" class="form-control" id="phone2" name="phone2" formControlName="phone2"
+                placeholder="Enter Phone 2" />
             </div>
             <div class="form-group">
               <label for="phone3">Phone 3</label>
-              <input
-                type="number"
-                class="form-control"
-                id="phone3"
-                name="phone3"
-                formControlName="phone3"
-                placeholder="Enter Phone 3"
-              />
+              <input type="number" class="form-control" id="phone3" name="phone3" formControlName="phone3"
+                placeholder="Enter Phone 3" />
             </div>
             <div class="form-group">
               <label for="group">Group</label>
-              <select
-                class="form-control"
-                id="group"
-                required
-                ngModel
-                name="group"
-                formControlName="group"
-              >
+              <select class="form-control" id="group" required ngModel name="group" formControlName="group">
                 <option value="" disabled selected hidden>Choose...</option>
                 <option *ngFor="let item of groups" value="{{ item.id }}">
                   {{ item.Name }}
                 </option>
               </select>
             </div>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="myModal.hide()"
-            >
+            <button type="button" class="btn btn-secondary" (click)="myModal.hide()">
               Close
             </button>
-            <button
-              type="submit"
-              class="btn btn-primary ml-2"
-              [disabled]="btnLoading || !agentForm.valid"
-            >
-              <span
-                *ngIf="btnLoading"
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
+            <button type="submit" class="btn btn-primary ml-2" [disabled]="btnLoading || !agentForm.valid">
+              <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Save changes
             </button>
           </form>
@@ -258,25 +161,13 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  <div
-    bsModal
-    #commentModal="bs-modal"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
-    aria-hidden="true"
-  >
+  <div bsModal #commentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Add Comment</h4>
-          <button
-            type="button"
-            class="close"
-            (click)="commentModal.hide()"
-            aria-label="Close"
-          >
+          <button type="button" class="close" (click)="commentModal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -284,38 +175,19 @@
           <form [formGroup]="commentForm" (ngSubmit)="CommentSubmit()">
             <div class="form-group">
               <label for="name">Remarks</label>
-              <textarea
-                class="form-control"
-                maxlength="250"
-                id="RemarksText"
-                name="RemarksText"
-                formControlName="RemarksText"
-                placeholder="Enter remarks"
-              ></textarea>
+              <textarea class="form-control" maxlength="250" id="RemarksText" name="RemarksText"
+                formControlName="RemarksText" placeholder="Enter remarks"></textarea>
             </div>
             <!-- <div class="form-group">
               <label for="email">Date</label>
               <input type="datetime-local" class="form-control" id="event_date_time" name="event_date_time"
                 formControlName="event_date_time" />
             </div> -->
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="commentModal.hide()"
-            >
+            <button type="button" class="btn btn-secondary" (click)="commentModal.hide()">
               Close
             </button>
-            <button
-              type="submit"
-              class="btn btn-primary ml-2"
-              [disabled]="btnLoading || !commentForm.valid"
-            >
-              <span
-                *ngIf="btnLoading"
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
+            <button type="submit" class="btn btn-primary ml-2" [disabled]="btnLoading || !commentForm.valid">
+              <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Save changes
             </button>
           </form>
@@ -325,25 +197,13 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  <div
-    bsModal
-    #customerModal="bs-modal"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
-    aria-hidden="true"
-  >
+  <div bsModal #customerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Add New Customer</h4>
-          <button
-            type="button"
-            class="close"
-            (click)="customerModal.hide()"
-            aria-label="Close"
-          >
+          <button type="button" class="close" (click)="customerModal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -353,65 +213,34 @@
               <div class="col">
                 <div class="form-group">
                   <label for="name">Name of Bride</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="NameOfBride"
-                    name="NameOfBride"
-                    formControlName="NameOfBride"
-                    placeholder="Enter bride's name"
-                  />
+                  <input type="text" class="form-control" id="NameOfBride" name="NameOfBride"
+                    formControlName="NameOfBride" placeholder="Enter bride's name" />
                 </div>
                 <div class="form-group">
                   <label for="name">Name of Father</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="NameOfFather"
-                    name="NameOfFather"
-                    formControlName="NameOfFather"
-                    placeholder="Enter father's name"
-                  />
+                  <input type="text" class="form-control" id="NameOfFather" name="NameOfFather"
+                    formControlName="NameOfFather" placeholder="Enter father's name" />
                 </div>
                 <div class="form-group">
                   <label for="name">Name of Mother</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="NameOfMother"
-                    name="NameOfMother"
-                    formControlName="NameOfMother"
-                    placeholder="Enter mother's name"
-                  />
+                  <input type="text" class="form-control" id="NameOfMother" name="NameOfMother"
+                    formControlName="NameOfMother" placeholder="Enter mother's name" />
                 </div>
                 <div class="form-group">
                   <label for="name">Contact number 1</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Contact_Number_1"
-                    name="Contact_Number_1"
-                    formControlName="Contact_Number_1"
-                    placeholder="Enter primary contact number"
-                  />
+                  <input type="text" class="form-control" id="Contact_Number_1" name="Contact_Number_1"
+                    formControlName="Contact_Number_1" placeholder="Enter primary contact number" />
                 </div>
                 <div class="form-group">
                   <label for="name">Contact number 2</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Contact_Number_2"
-                    name="Contact_Number_2"
-                    formControlName="Contact_Number_2"
-                    placeholder="Enter secondary contact number"
-                  />
+                  <input type="text" class="form-control" id="Contact_Number_2" name="Contact_Number_2"
+                    formControlName="Contact_Number_2" placeholder="Enter secondary contact number" />
                 </div>
                 <div class="form-group">
                   <label for="Post_office">Post office</label>
-                  <select
+                  <!-- <select
                     class="form-control"
                     id="Post_office"
-                    required
                     ngModel
                     name="Post_office"
                     formControlName="Post_office"
@@ -423,52 +252,32 @@
                     >
                       {{ item.Name }}
                     </option>
-                  </select>
+                  </select> -->
+                  <ng-select id="Post_office" name="Post_office" placeholder="Select postoffice" formControlName="Post_office">
+                    <ng-option *ngFor="let item of postoffices" [value]="item.id">{{ item.Name }}</ng-option>
+                  </ng-select>
                 </div>
                 <div class="form-group">
                   <label for="name">Latitude</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Latitude"
-                    name="Latitude"
-                    formControlName="Latitude"
-                    placeholder="Enter Latitude"
-                  />
+                  <input type="text" class="form-control" id="Latitude" name="Latitude" formControlName="Latitude"
+                    placeholder="Enter Latitude" />
                 </div>
                 <div class="form-group">
                   <label for="name">Longitude</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Longitude"
-                    name="Longitude"
-                    formControlName="Longitude"
-                    placeholder="Enter Longitude"
-                  />
+                  <input type="text" class="form-control" id="Longitude" name="Longitude" formControlName="Longitude"
+                    placeholder="Enter Longitude" />
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label for="email">Marriage date</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="MarriageDate"
-                    name="MarriageDate"
-                    formControlName="MarriageDate"
-                  />
+                  <input type="date" class="form-control" id="MarriageDate" name="MarriageDate"
+                    formControlName="MarriageDate" />
                 </div>
                 <div class="form-group">
                   <label for="MarriageMonth">Marriage month</label>
-                  <select
-                    class="form-control"
-                    id="MarriageMonth"
-                    required
-                    ngModel
-                    name="MarriageMonth"
-                    formControlName="MarriageMonth"
-                  >
+                  <select class="form-control" id="MarriageMonth" required ngModel name="MarriageMonth"
+                    formControlName="MarriageMonth">
                     <option value="" disabled selected hidden>Choose...</option>
                     <option *ngFor="let item of Months" value="{{ item.id }}">
                       {{ item.Name }}
@@ -478,15 +287,8 @@
                 <div class="form-group">
                   <label for="group">Agent</label>
                   <!-- {{ details.Name }} -->
-                  <input
-                    type="text"
-                    class="form-control"
-                    disabled
-                    id="tele_caller_contact"
-                    [value]="details.Name"
-                    name="tele_caller_contact"
-                    formControlName="tele_caller_contact"
-                  />
+                  <input type="text" class="form-control" disabled id="tele_caller_contact" [value]="details.Name"
+                    name="tele_caller_contact" formControlName="tele_caller_contact" />
                   <!-- <select class="form-control" id="tele_caller_contact" disabled [selectedIndex]="2" required ngModel name="tele_caller_contact"
                     formControlName="tele_caller_contact">
                     <option value="" disabled selected hidden>Choose...</option>
@@ -497,88 +299,41 @@
                 </div>
                 <div class="form-group">
                   <label for="name">House Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="HouseName"
-                    name="HouseName"
-                    formControlName="HouseName"
-                    placeholder="Enter House Name"
-                  />
+                  <input type="text" class="form-control" id="HouseName" name="HouseName" formControlName="HouseName"
+                    placeholder="Enter House Name" />
                 </div>
                 <div class="form-group">
                   <label for="name">Landmark</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Landmark"
-                    name="Landmark"
-                    formControlName="Landmark"
-                    placeholder="Enter Landmark"
-                  />
+                  <input type="text" class="form-control" id="Landmark" name="Landmark" formControlName="Landmark"
+                    placeholder="Enter Landmark" />
                 </div>
                 <div class="form-group">
                   <label for="locality">Name of locality</label>
-                  <select
-                    class="form-control"
-                    id="locality"
-                    required
-                    ngModel
-                    name="locality"
-                    formControlName="locality"
-                  >
+                  <select class="form-control" id="locality" ngModel name="locality" formControlName="locality">
                     <option value="" disabled selected hidden>Choose...</option>
-                    <option
-                      *ngFor="let item of localities"
-                      value="{{ item.id }}"
-                    >
+                    <option *ngFor="let item of localities" value="{{ item.id }}">
                       {{ item.Name }}
                     </option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="name">Map Plus code</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="GoogleMapPlusCode"
-                    name="GoogleMapPlusCode"
-                    formControlName="GoogleMapPlusCode"
-                    placeholder="Enter Google Map PlusCode"
-                  />
+                  <input type="text" class="form-control" id="GoogleMapPlusCode" name="GoogleMapPlusCode"
+                    formControlName="GoogleMapPlusCode" placeholder="Enter Google Map PlusCode" />
                 </div>
                 <div class="form-group">
                   <label for="name">Google Map URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="GoogleMapURL"
-                    name="GoogleMapURL"
-                    formControlName="GoogleMapURL"
-                    placeholder="Enter Google Map URL"
-                  />
+                  <input type="text" class="form-control" id="GoogleMapURL" name="GoogleMapURL"
+                    formControlName="GoogleMapURL" placeholder="Enter Google Map URL" />
                 </div>
               </div>
             </div>
 
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="myModal.hide()"
-            >
+            <button type="button" class="btn btn-secondary" (click)="myModal.hide()">
               Close
             </button>
-            <button
-              type="submit"
-              class="btn btn-primary ml-2"
-              [disabled]="btnLoading || !customerForm.valid"
-            >
-              <span
-                *ngIf="btnLoading"
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
+            <button type="submit" class="btn btn-primary ml-2" [disabled]="btnLoading || !customerForm.valid">
+              <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Save changes
             </button>
           </form>

@@ -32,7 +32,7 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 // Tooltip Component
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 // Components Routing
 import { TelecallerRoutingModule } from './telecaller-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
@@ -48,6 +48,7 @@ import { CustomerDetailComponent } from './customerdetail.component';
     TelecallerRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule,
+    NgSelectModule,
     IvyCarouselModule,
     // CarouselModule.forRoot(),
     CollapseModule.forRoot(),

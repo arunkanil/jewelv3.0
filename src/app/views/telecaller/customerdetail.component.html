@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-  <div
+  <!-- <div
     bsModal
     #deleteModal="bs-modal"
     class="modal fade"
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="card">
     <div
       class="card-header"
@@ -178,7 +178,7 @@
               </h5>
               <p class="card-text">{{ item.RemarksText }}</p>
               <span class="badge badge-primary">{{
-                item.CallHistory.users_permissions_user.username
+                item.CallHistory?.users_permissions_user?.username
               }}</span>
             </div>
           </div>
@@ -194,7 +194,7 @@
       </div>
     </div>
 
-    <div
+    <!-- <div
       bsModal
       #myModal="bs-modal"
       class="modal fade"
@@ -312,10 +312,8 @@
             </form>
           </div>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
-    </div>
+    </div> -->
     <div
       bsModal
       #commentModal="bs-modal"
@@ -379,9 +377,7 @@
             </form>
           </div>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
     </div>
   </div>
 </div>

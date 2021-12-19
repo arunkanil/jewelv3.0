@@ -66,6 +66,7 @@ export class CustomersComponent {
       .valueChanges.subscribe((result: any) => {
         console.log("getCustomers", result.data.customers);
         this.rowData = result.data.customers;
+        this.loading = false;
       });
     this.dataservice.getLocalities().valueChanges.subscribe((result: any) => {
       console.log("getLocalities", result.data.localities);
