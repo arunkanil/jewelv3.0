@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Projects\Angular Apps\jewelv3.0\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! E:\Projects\Angular Apps\jewelv3.0\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -1667,16 +1667,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "IheW");
 /* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ag-grid-angular */ "YFAK");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-toastr */ "5eHb");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "Sy1n");
-/* harmony import */ var _containers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./containers */ "G/4p");
-/* harmony import */ var _views_error_404_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/error/404.component */ "8gg5");
-/* harmony import */ var _views_error_500_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/error/500.component */ "dxhq");
-/* harmony import */ var _views_login_login_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/login/login.component */ "QB/w");
-/* harmony import */ var _coreui_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @coreui/angular */ "Iluq");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.routing */ "beVS");
-/* harmony import */ var ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-bootstrap/dropdown */ "FE24");
-/* harmony import */ var _graphql_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./graphql.module */ "4KHl");
-/* harmony import */ var _views_exposed_form_exposed_form_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/exposed_form/exposed_form.component */ "H0P9");
+/* harmony import */ var _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-select/ng-select */ "ZOsW");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "Sy1n");
+/* harmony import */ var _containers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./containers */ "G/4p");
+/* harmony import */ var _views_error_404_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/error/404.component */ "8gg5");
+/* harmony import */ var _views_error_500_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/error/500.component */ "dxhq");
+/* harmony import */ var _views_login_login_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/login/login.component */ "QB/w");
+/* harmony import */ var _coreui_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @coreui/angular */ "Iluq");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.routing */ "beVS");
+/* harmony import */ var ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-bootstrap/dropdown */ "FE24");
+/* harmony import */ var _graphql_module__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./graphql.module */ "4KHl");
+/* harmony import */ var _views_exposed_form_exposed_form_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./views/exposed_form/exposed_form.component */ "H0P9");
+
 
 
 
@@ -1712,23 +1714,24 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-            _app_routing__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
-            _coreui_angular__WEBPACK_IMPORTED_MODULE_13__["AppAsideModule"],
-            _coreui_angular__WEBPACK_IMPORTED_MODULE_13__["AppBreadcrumbModule"].forRoot(),
+            _app_routing__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"],
+            _coreui_angular__WEBPACK_IMPORTED_MODULE_14__["AppAsideModule"],
+            _coreui_angular__WEBPACK_IMPORTED_MODULE_14__["AppBreadcrumbModule"].forRoot(),
             ngx_toastr__WEBPACK_IMPORTED_MODULE_7__["ToastrModule"].forRoot(),
-            _coreui_angular__WEBPACK_IMPORTED_MODULE_13__["AppFooterModule"],
-            _coreui_angular__WEBPACK_IMPORTED_MODULE_13__["AppHeaderModule"],
-            _coreui_angular__WEBPACK_IMPORTED_MODULE_13__["AppSidebarModule"],
-            ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_15__["BsDropdownModule"].forRoot(),
-            _graphql_module__WEBPACK_IMPORTED_MODULE_16__["GraphQLModule"],
+            _coreui_angular__WEBPACK_IMPORTED_MODULE_14__["AppFooterModule"],
+            _coreui_angular__WEBPACK_IMPORTED_MODULE_14__["AppHeaderModule"],
+            _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_8__["NgSelectModule"],
+            _coreui_angular__WEBPACK_IMPORTED_MODULE_14__["AppSidebarModule"],
+            ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_16__["BsDropdownModule"].forRoot(),
+            _graphql_module__WEBPACK_IMPORTED_MODULE_17__["GraphQLModule"],
         ],
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-            _views_error_404_component__WEBPACK_IMPORTED_MODULE_10__["P404Component"],
-            _views_error_500_component__WEBPACK_IMPORTED_MODULE_11__["P500Component"],
-            _views_login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
-            _views_exposed_form_exposed_form_component__WEBPACK_IMPORTED_MODULE_17__["ExposedFormComponent"],
-            _containers__WEBPACK_IMPORTED_MODULE_9__["DefaultLayoutComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
+            _views_error_404_component__WEBPACK_IMPORTED_MODULE_11__["P404Component"],
+            _views_error_500_component__WEBPACK_IMPORTED_MODULE_12__["P500Component"],
+            _views_login_login_component__WEBPACK_IMPORTED_MODULE_13__["LoginComponent"],
+            _views_exposed_form_exposed_form_component__WEBPACK_IMPORTED_MODULE_18__["ExposedFormComponent"],
+            _containers__WEBPACK_IMPORTED_MODULE_10__["DefaultLayoutComponent"],
         ],
         providers: [
             {
@@ -1736,7 +1739,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
                 useClass: _angular_common__WEBPACK_IMPORTED_MODULE_2__["HashLocationStrategy"]
             },
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
     })
 ], AppModule);
 

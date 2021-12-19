@@ -3542,15 +3542,15 @@
           this.dateConverter = _constants_columnMetadata__WEBPACK_IMPORTED_MODULE_8__["dateConverter"];
           this.btnLoading = false;
           this.groups = [];
-          this.maplink = "";
-          this.agentForm = this.fb.group({
-            name: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            email: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            phone1: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            phone2: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            phone3: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            group: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
-          });
+          this.maplink = ""; // agentForm = this.fb.group({
+          //   name: ["", Validators.required],
+          //   email: ["", Validators.required],
+          //   phone1: ["", Validators.required],
+          //   phone2: ["", Validators.required],
+          //   phone3: ["", Validators.required],
+          //   group: ["", Validators.required],
+          // });
+
           this.commentForm = this.fb.group({
             RemarksText: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
           });
@@ -3575,45 +3575,43 @@
               _this4.id = params["id"];
             });
             this.dataservice.getSingleCustomer(this.id).valueChanges.subscribe(function (result) {
+              var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+
               console.log("getSingleCustomer", result.data.customer);
               _this4.details = result.data.customer;
-              _this4.maplink = "https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=" + result.data.customer.Address.GeoLocation.Latitude.toString() + "," + " " + result.data.customer.Address.GeoLocation.Longitude.toString() + "&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed";
-              console.log(_this4.maplink);
-              _this4.agentForm = _this4.fb.group({
-                name: [_this4.details.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                email: [_this4.details.Email, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone1: [_this4.details.Contact_Number_1, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone2: [_this4.details.Contact_Number_2, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone3: [_this4.details.Contact_Number_3, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                group: [_this4.details.group.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
-              });
+              _this4.maplink = "https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=" + ((_e = (_d = (_c = (_b = (_a = result.data) === null || _a === void 0 ? void 0 : _a.customer) === null || _b === void 0 ? void 0 : _b.Address) === null || _c === void 0 ? void 0 : _c.GeoLocation) === null || _d === void 0 ? void 0 : _d.Latitude) === null || _e === void 0 ? void 0 : _e.toString()) + "," + " " + ((_k = (_j = (_h = (_g = (_f = result.data) === null || _f === void 0 ? void 0 : _f.customer) === null || _g === void 0 ? void 0 : _g.Address) === null || _h === void 0 ? void 0 : _h.GeoLocation) === null || _j === void 0 ? void 0 : _j.Longitude) === null || _k === void 0 ? void 0 : _k.toString()) + "&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed";
+              console.log(_this4.maplink); // this.agentForm = this.fb.group({
+              //   name: [this.details.Name, Validators.required],
+              //   email: [this.details.Email, Validators.required],
+              //   phone1: [this.details.Contact_Number_1, Validators.required],
+              //   phone2: [this.details.Contact_Number_2, Validators.required],
+              //   phone3: [this.details.Contact_Number_3, Validators.required],
+              //   group: [this.details.group.Name, Validators.required],
+              // });
+
               _this4.loading = false;
             });
-          }
-        }, {
-          key: "FormSubmit",
-          value: function FormSubmit() {
-            var _this5 = this;
+          } // FormSubmit() {
+          //   let resp = {};
+          //   console.log(this.agentForm.value);
+          //   this.dataservice
+          //     .EditAgent(this.details.id, this.agentForm.value)
+          //     .subscribe((result: any) => {
+          //       resp = result.data;
+          //       console.log("response", result);
+          //       if (result.data.updateTeleCallerContact) {
+          //         this.toastr.success("Agent edited successfully!");
+          //         this.myModal.hide();
+          //       } else {
+          //         this.toastr.error("Failed. Please check the fields!");
+          //       }
+          //     });
+          // }
 
-            var resp = {};
-            console.log(this.agentForm.value);
-            this.dataservice.EditAgent(this.details.id, this.agentForm.value).subscribe(function (result) {
-              resp = result.data;
-              console.log("response", result);
-
-              if (result.data.updateTeleCallerContact) {
-                _this5.toastr.success("Agent edited successfully!");
-
-                _this5.myModal.hide();
-              } else {
-                _this5.toastr.error("Failed. Please check the fields!");
-              }
-            });
-          }
         }, {
           key: "CommentSubmit",
           value: function CommentSubmit() {
-            var _this6 = this;
+            var _this5 = this;
 
             var resp = {};
             console.log(this.commentForm.value);
@@ -3622,34 +3620,13 @@
               console.log("response", result);
 
               if (result.data.updateCustomer) {
-                _this6.toastr.success("Comment added successfully!");
+                _this5.toastr.success("Comment added successfully!");
 
-                _this6.commentModal.hide();
+                _this5.commentModal.hide();
 
-                _this6.getLists();
+                _this5.getLists();
               } else {
-                _this6.toastr.error("Failed. Please check the fields!");
-              }
-            });
-          }
-        }, {
-          key: "deleteAgent",
-          value: function deleteAgent() {
-            var _this7 = this;
-
-            var resp = {};
-            this.dataservice.DeleteAgent(this.id).subscribe(function (result) {
-              resp = result.data;
-              console.log("response", result);
-
-              if (result.data.deleteTeleCallerContact) {
-                _this7.toastr.success("Agent deleted successfully!");
-
-                _this7.router.navigate(["/telecaller/agents"]);
-
-                _this7.deleteModal.hide();
-              } else {
-                _this7.toastr.error("Failed. Please check again!");
+                _this5.toastr.error("Failed. Please check the fields!");
               }
             });
           }
@@ -3700,7 +3677,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"animated fadeIn\">\r\n  <div\r\n    bsModal\r\n    #deleteModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this agent?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-secondary\"\r\n            (click)=\"deleteModal.hide()\"\r\n          >\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"card\">\r\n    <div\r\n      class=\"card-header\"\r\n      style=\"display: flex; justify-content: space-between\"\r\n    >\r\n      <h2>Customer Details</h2>\r\n      <span>\r\n        <!-- <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n                Edit\r\n            </button> -->\r\n        <!-- <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" (click)=\"deleteModal.show()\">\r\n                Delete\r\n            </button> -->\r\n      </span>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <table class=\"table table-striped\">\r\n            <tbody>\r\n              <tr>\r\n                <td>ID</td>\r\n                <td>{{ details?.id }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Bride</td>\r\n                <td>{{ details?.NameOfBride }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Father</td>\r\n                <td>{{ details?.NameOfFather }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Mother</td>\r\n                <td>{{ details?.NameOfMother }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Marriage Date</td>\r\n                <td>{{ details?.MarriageDate }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Marriage Month</td>\r\n                <td>{{ details?.MarriageMonth }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Contact number 1</td>\r\n                <td>{{ details?.Contact_Number_1 }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Contact number 2</td>\r\n                <td>{{ details?.Contact_Number_2 }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Agent</td>\r\n                <td>\r\n                  <span class=\"badge badge-warning\">{{\r\n                    details.tele_caller_contact?.Name\r\n                  }}</span>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>House Name</td>\r\n                <td>{{ details.Address?.HouseName }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Landmark</td>\r\n                <td>{{ details.Address?.Landmark }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Locality</td>\r\n                <td>{{ details.Address?.locality?.Name }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Post office</td>\r\n                <td>{{ details.Address?.post_office?.Name }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Latitude</td>\r\n                <td>{{ details.Address?.GeoLocation?.Latitude }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Longitude</td>\r\n                <td>{{ details.Address?.GeoLocation?.Longitude }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Plus code</td>\r\n                <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Map URL</td>\r\n                <td>\r\n                  <a\r\n                    href=\"https://www.google.com/maps/place/6JXRM9GR%2BMF/@{{\r\n                      details.Address?.GeoLocation?.Latitude\r\n                    }},{{\r\n                      details.Address?.GeoLocation?.Longitude\r\n                    }},17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d9.6766875!4d76.3911875\"\r\n                    target=\"_blank\"\r\n                    >Click here to view location</a\r\n                  >\r\n                </td>\r\n              </tr>\r\n            </tbody>\r\n          </table>\r\n          <!-- <div class=\"mapouter\">\r\n            <div class=\"gmap_canvas\">\r\n              <iframe\r\n                class=\"gmap_iframe\"\r\n                frameborder=\"0\"\r\n                scrolling=\"no\"\r\n                marginheight=\"0\"\r\n                marginwidth=\"0\"\r\n                src=\"https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q={{\r\n                  details.Address.GeoLocation?.Latitude\r\n                }},{{\r\n                  details.Address.GeoLocation?.Longitude\r\n                }}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed\"\r\n              ></iframe\r\n              ><a href=\"https://www.fnfgo.com/\">Friday Night Funkin Mods</a>\r\n            </div>\r\n            <style>\r\n              .mapouter {\r\n                position: relative;\r\n                text-align: right;\r\n                width: 600px;\r\n                height: 400px;\r\n              }\r\n\r\n              .gmap_canvas {\r\n                overflow: hidden;\r\n                background: none !important;\r\n                width: 600px;\r\n                height: 400px;\r\n              }\r\n\r\n              .gmap_iframe {\r\n                width: 600px !important;\r\n                height: 400px !important;\r\n              }\r\n            </style>\r\n          </div> -->\r\n        </div>\r\n        <div class=\"col\">\r\n          <div class=\"card\" *ngFor=\"let item of details.TelecallerRemarks\">\r\n            <div class=\"card-body\">\r\n              <h5 class=\"card-title\">\r\n                {{ dateConverter(item.CallHistory?.event_date_time) }}\r\n              </h5>\r\n              <p class=\"card-text\">{{ item.RemarksText }}</p>\r\n              <span class=\"badge badge-primary\">{{\r\n                item.CallHistory.users_permissions_user.username\r\n              }}</span>\r\n            </div>\r\n          </div>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-primary\"\r\n            data-toggle=\"modal\"\r\n            (click)=\"commentModal.show()\"\r\n          >\r\n            Add Comment\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      bsModal\r\n      #myModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Edit Agent</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"myModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"name\">Name</label>\r\n                <input\r\n                  type=\"text\"\r\n                  class=\"form-control\"\r\n                  id=\"name\"\r\n                  name=\"name\"\r\n                  formControlName=\"name\"\r\n                  placeholder=\"Enter agent name\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"email\">E-mail</label>\r\n                <input\r\n                  type=\"email\"\r\n                  class=\"form-control\"\r\n                  id=\"email\"\r\n                  name=\"email\"\r\n                  formControlName=\"email\"\r\n                  placeholder=\"Enter agent email\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"street\">Phone 1</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone1\"\r\n                  name=\"phone1\"\r\n                  formControlName=\"phone1\"\r\n                  placeholder=\"Enter Phone 1\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"phone2\">Phone 2</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone2\"\r\n                  name=\"phone2\"\r\n                  formControlName=\"phone2\"\r\n                  placeholder=\"Enter Phone 2\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"phone3\">Phone 3</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone3\"\r\n                  name=\"phone3\"\r\n                  formControlName=\"phone3\"\r\n                  placeholder=\"Enter Phone 3\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"group\">Group</label>\r\n                <select\r\n                  class=\"form-control\"\r\n                  id=\"group\"\r\n                  required\r\n                  ngModel\r\n                  name=\"group\"\r\n                  formControlName=\"group\"\r\n                >\r\n                  <option value=\"\" disabled selected hidden>Choose...</option>\r\n                  <option *ngFor=\"let item of groups\" value=\"{{ item.id }}\">\r\n                    {{ item.Name }}\r\n                  </option>\r\n                </select>\r\n              </div>\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"myModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !agentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n    <div\r\n      bsModal\r\n      #commentModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Add Comment</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"commentModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"name\">Remarks</label>\r\n                <textarea\r\n                  class=\"form-control\"\r\n                  maxlength=\"250\"\r\n                  id=\"RemarksText\"\r\n                  name=\"RemarksText\"\r\n                  formControlName=\"RemarksText\"\r\n                  placeholder=\"Enter remarks\"\r\n                ></textarea>\r\n              </div>\r\n              <!-- <div class=\"form-group\">\r\n                                <label for=\"email\">Date</label>\r\n                                <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\"\r\n                                    name=\"event_date_time\" formControlName=\"event_date_time\" />\r\n                            </div> -->\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"commentModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !commentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n  </div>\r\n</div>\r\n";
+      __webpack_exports__["default"] = "<div class=\"animated fadeIn\">\r\n  <!-- <div\r\n    bsModal\r\n    #deleteModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this agent?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-secondary\"\r\n            (click)=\"deleteModal.hide()\"\r\n          >\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div> -->\r\n  <div class=\"card\">\r\n    <div\r\n      class=\"card-header\"\r\n      style=\"display: flex; justify-content: space-between\"\r\n    >\r\n      <h2>Customer Details</h2>\r\n      <span>\r\n        <!-- <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n                Edit\r\n            </button> -->\r\n        <!-- <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" (click)=\"deleteModal.show()\">\r\n                Delete\r\n            </button> -->\r\n      </span>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n          <table class=\"table table-striped\">\r\n            <tbody>\r\n              <tr>\r\n                <td>ID</td>\r\n                <td>{{ details?.id }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Bride</td>\r\n                <td>{{ details?.NameOfBride }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Father</td>\r\n                <td>{{ details?.NameOfFather }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Name Of Mother</td>\r\n                <td>{{ details?.NameOfMother }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Marriage Date</td>\r\n                <td>{{ details?.MarriageDate }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Marriage Month</td>\r\n                <td>{{ details?.MarriageMonth }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Contact number 1</td>\r\n                <td>{{ details?.Contact_Number_1 }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Contact number 2</td>\r\n                <td>{{ details?.Contact_Number_2 }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Agent</td>\r\n                <td>\r\n                  <span class=\"badge badge-warning\">{{\r\n                    details.tele_caller_contact?.Name\r\n                  }}</span>\r\n                </td>\r\n              </tr>\r\n              <tr>\r\n                <td>House Name</td>\r\n                <td>{{ details.Address?.HouseName }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Landmark</td>\r\n                <td>{{ details.Address?.Landmark }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Locality</td>\r\n                <td>{{ details.Address?.locality?.Name }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Post office</td>\r\n                <td>{{ details.Address?.post_office?.Name }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Latitude</td>\r\n                <td>{{ details.Address?.GeoLocation?.Latitude }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Longitude</td>\r\n                <td>{{ details.Address?.GeoLocation?.Longitude }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Plus code</td>\r\n                <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Map URL</td>\r\n                <td>\r\n                  <a\r\n                    href=\"https://www.google.com/maps/place/6JXRM9GR%2BMF/@{{\r\n                      details.Address?.GeoLocation?.Latitude\r\n                    }},{{\r\n                      details.Address?.GeoLocation?.Longitude\r\n                    }},17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d9.6766875!4d76.3911875\"\r\n                    target=\"_blank\"\r\n                    >Click here to view location</a\r\n                  >\r\n                </td>\r\n              </tr>\r\n            </tbody>\r\n          </table>\r\n          <!-- <div class=\"mapouter\">\r\n            <div class=\"gmap_canvas\">\r\n              <iframe\r\n                class=\"gmap_iframe\"\r\n                frameborder=\"0\"\r\n                scrolling=\"no\"\r\n                marginheight=\"0\"\r\n                marginwidth=\"0\"\r\n                src=\"https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q={{\r\n                  details.Address.GeoLocation?.Latitude\r\n                }},{{\r\n                  details.Address.GeoLocation?.Longitude\r\n                }}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed\"\r\n              ></iframe\r\n              ><a href=\"https://www.fnfgo.com/\">Friday Night Funkin Mods</a>\r\n            </div>\r\n            <style>\r\n              .mapouter {\r\n                position: relative;\r\n                text-align: right;\r\n                width: 600px;\r\n                height: 400px;\r\n              }\r\n\r\n              .gmap_canvas {\r\n                overflow: hidden;\r\n                background: none !important;\r\n                width: 600px;\r\n                height: 400px;\r\n              }\r\n\r\n              .gmap_iframe {\r\n                width: 600px !important;\r\n                height: 400px !important;\r\n              }\r\n            </style>\r\n          </div> -->\r\n        </div>\r\n        <div class=\"col\">\r\n          <div class=\"card\" *ngFor=\"let item of details.TelecallerRemarks\">\r\n            <div class=\"card-body\">\r\n              <h5 class=\"card-title\">\r\n                {{ dateConverter(item.CallHistory?.event_date_time) }}\r\n              </h5>\r\n              <p class=\"card-text\">{{ item.RemarksText }}</p>\r\n              <span class=\"badge badge-primary\">{{\r\n                item.CallHistory?.users_permissions_user?.username\r\n              }}</span>\r\n            </div>\r\n          </div>\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-primary\"\r\n            data-toggle=\"modal\"\r\n            (click)=\"commentModal.show()\"\r\n          >\r\n            Add Comment\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- <div\r\n      bsModal\r\n      #myModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Edit Agent</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"myModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"name\">Name</label>\r\n                <input\r\n                  type=\"text\"\r\n                  class=\"form-control\"\r\n                  id=\"name\"\r\n                  name=\"name\"\r\n                  formControlName=\"name\"\r\n                  placeholder=\"Enter agent name\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"email\">E-mail</label>\r\n                <input\r\n                  type=\"email\"\r\n                  class=\"form-control\"\r\n                  id=\"email\"\r\n                  name=\"email\"\r\n                  formControlName=\"email\"\r\n                  placeholder=\"Enter agent email\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"street\">Phone 1</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone1\"\r\n                  name=\"phone1\"\r\n                  formControlName=\"phone1\"\r\n                  placeholder=\"Enter Phone 1\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"phone2\">Phone 2</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone2\"\r\n                  name=\"phone2\"\r\n                  formControlName=\"phone2\"\r\n                  placeholder=\"Enter Phone 2\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"phone3\">Phone 3</label>\r\n                <input\r\n                  type=\"number\"\r\n                  class=\"form-control\"\r\n                  id=\"phone3\"\r\n                  name=\"phone3\"\r\n                  formControlName=\"phone3\"\r\n                  placeholder=\"Enter Phone 3\"\r\n                />\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"group\">Group</label>\r\n                <select\r\n                  class=\"form-control\"\r\n                  id=\"group\"\r\n                  required\r\n                  ngModel\r\n                  name=\"group\"\r\n                  formControlName=\"group\"\r\n                >\r\n                  <option value=\"\" disabled selected hidden>Choose...</option>\r\n                  <option *ngFor=\"let item of groups\" value=\"{{ item.id }}\">\r\n                    {{ item.Name }}\r\n                  </option>\r\n                </select>\r\n              </div>\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"myModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !agentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div> -->\r\n    <div\r\n      bsModal\r\n      #commentModal=\"bs-modal\"\r\n      class=\"modal fade\"\r\n      tabindex=\"-1\"\r\n      role=\"dialog\"\r\n      aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Add Comment</h4>\r\n            <button\r\n              type=\"button\"\r\n              class=\"close\"\r\n              (click)=\"commentModal.hide()\"\r\n              aria-label=\"Close\"\r\n            >\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n              <div class=\"form-group\">\r\n                <label for=\"name\">Remarks</label>\r\n                <textarea\r\n                  class=\"form-control\"\r\n                  maxlength=\"250\"\r\n                  id=\"RemarksText\"\r\n                  name=\"RemarksText\"\r\n                  formControlName=\"RemarksText\"\r\n                  placeholder=\"Enter remarks\"\r\n                ></textarea>\r\n              </div>\r\n              <!-- <div class=\"form-group\">\r\n                                <label for=\"email\">Date</label>\r\n                                <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\"\r\n                                    name=\"event_date_time\" formControlName=\"event_date_time\" />\r\n                            </div> -->\r\n              <button\r\n                type=\"button\"\r\n                class=\"btn btn-secondary\"\r\n                (click)=\"commentModal.hide()\"\r\n              >\r\n                Close\r\n              </button>\r\n              <button\r\n                type=\"submit\"\r\n                class=\"btn btn-primary ml-2\"\r\n                [disabled]=\"btnLoading || !commentForm.valid\"\r\n              >\r\n                <span\r\n                  *ngIf=\"btnLoading\"\r\n                  class=\"spinner-border spinner-border-sm\"\r\n                  role=\"status\"\r\n                  aria-hidden=\"true\"\r\n                ></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
       /***/
     },
 
@@ -3712,7 +3689,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"animated fadeIn\">\r\n  <div class=\"card\">\r\n    <div class=\"card-header\" style=\"display: flex; justify-content: space-between\">\r\n      <h2>Customers</h2>\r\n      <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n        New\r\n      </button>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <div class=\"row\">\r\n        <div class=\"col-12\">\r\n          <ag-grid-angular #agGrid style=\"width: 100%; height: 500px\" id=\"myGrid\" class=\"ag-theme-alpine\"\r\n            [columnDefs]=\"columnDefs\" [rowData]=\"rowData\" [rowSelection]=\"rowSelection\"\r\n            (gridReady)=\"onGridReady($event)\" (selectionChanged)=\"onSelectionChanged($event)\" animateRows=\"true\">\r\n          </ag-grid-angular>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div bsModal #myModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Add New Customer</h4>\r\n          <button type=\"button\" class=\"close\" (click)=\"myModal.hide()\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"customerForm\" (ngSubmit)=\"FormSubmit()\">\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Bride</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfBride\" name=\"NameOfBride\"\r\n                    formControlName=\"NameOfBride\" placeholder=\"Enter bride's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Father</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfFather\" name=\"NameOfFather\"\r\n                    formControlName=\"NameOfFather\" placeholder=\"Enter father's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Mother</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfMother\" name=\"NameOfMother\"\r\n                    formControlName=\"NameOfMother\" placeholder=\"Enter mother's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 1</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Contact_Number_1\" name=\"Contact_Number_1\"\r\n                    formControlName=\"Contact_Number_1\" placeholder=\"Enter primary contact number\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 2</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Contact_Number_2\" name=\"Contact_Number_2\"\r\n                    formControlName=\"Contact_Number_2\" placeholder=\"Enter secondary contact number\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"Post_office\">Post office</label>\r\n                  <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                    placeholder=\"Enter locality\" /> -->\r\n                  <select class=\"form-control\" id=\"Post_office\" required ngModel name=\"Post_office\"\r\n                    formControlName=\"Post_office\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of postoffices\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Latitude</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\"\r\n                    formControlName=\"Latitude\" placeholder=\"Enter Latitude\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Longitude</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\"\r\n                    formControlName=\"Longitude\" placeholder=\"Enter Longitude\" />\r\n                </div>\r\n              </div>\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"email\">Marriage date</label>\r\n                  <input type=\"date\" class=\"form-control\" id=\"MarriageDate\" name=\"MarriageDate\"\r\n                    formControlName=\"MarriageDate\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"group\">Marriage month</label>\r\n                  <select class=\"form-control\" id=\"MarriageMonth\" required ngModel name=\"MarriageMonth\"\r\n                    formControlName=\"MarriageMonth\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of Months\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"group\">Agent</label>\r\n                  <select class=\"form-control\" id=\"tele_caller_contact\" required ngModel name=\"tele_caller_contact\"\r\n                    formControlName=\"tele_caller_contact\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of agents\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">House Name</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"HouseName\" name=\"HouseName\" formControlName=\"HouseName\"\r\n                    placeholder=\"Enter House Name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Landmark</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Landmark\" name=\"Landmark\" formControlName=\"Landmark\"\r\n                    placeholder=\"Enter Landmark\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"locality\">Name of locality</label>\r\n                  <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                    placeholder=\"Enter locality\" /> -->\r\n                  <select class=\"form-control\" id=\"locality\" required ngModel name=\"locality\"\r\n                    formControlName=\"locality\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of localities\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Map Plus code</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"GoogleMapPlusCode\" name=\"GoogleMapPlusCode\"\r\n                    formControlName=\"GoogleMapPlusCode\" placeholder=\"Enter Google Map PlusCode\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Google Map URL</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"GoogleMapURL\" name=\"GoogleMapURL\"\r\n                    formControlName=\"GoogleMapURL\" placeholder=\"Enter Google Map URL\" />\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n\r\n            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n              Close\r\n            </button>\r\n            <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !customerForm.valid\">\r\n              <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n  <!-- /.modal -->\r\n</div>";
+      __webpack_exports__["default"] = "<div class=\"animated fadeIn\">\r\n  <div *ngIf=\"loading\" class=\"text-center\">\r\n    <div class=\"spinner-border\" style=\"width: 3rem; height: 3rem;\" role=\"status\">\r\n      <span class=\"visually-hidden\"></span>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"!loading\">\r\n    <div class=\"card\">\r\n      <div class=\"card-header\" style=\"display: flex; justify-content: space-between\">\r\n        <h2>Customers</h2>\r\n        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n          New\r\n        </button>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <div class=\"row\">\r\n          <div class=\"col-12\">\r\n            <ag-grid-angular #agGrid style=\"width: 100%; height: 500px\" id=\"myGrid\" class=\"ag-theme-alpine\"\r\n              [columnDefs]=\"columnDefs\" [rowData]=\"rowData\" [rowSelection]=\"rowSelection\"\r\n              (gridReady)=\"onGridReady($event)\" (selectionChanged)=\"onSelectionChanged($event)\" animateRows=\"true\">\r\n            </ag-grid-angular>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div bsModal #myModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n      aria-hidden=\"true\">\r\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h4 class=\"modal-title\">Add New Customer</h4>\r\n            <button type=\"button\" class=\"close\" (click)=\"myModal.hide()\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <form [formGroup]=\"customerForm\" (ngSubmit)=\"FormSubmit()\">\r\n              <div class=\"row\">\r\n                <div class=\"col\">\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Bride</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfBride\" name=\"NameOfBride\"\r\n                      formControlName=\"NameOfBride\" placeholder=\"Enter bride's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Father</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfFather\" name=\"NameOfFather\"\r\n                      formControlName=\"NameOfFather\" placeholder=\"Enter father's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Name of Mother</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"NameOfMother\" name=\"NameOfMother\"\r\n                      formControlName=\"NameOfMother\" placeholder=\"Enter mother's name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Contact number 1</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Contact_Number_1\" name=\"Contact_Number_1\"\r\n                      formControlName=\"Contact_Number_1\" placeholder=\"Enter primary contact number\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Contact number 2</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Contact_Number_2\" name=\"Contact_Number_2\"\r\n                      formControlName=\"Contact_Number_2\" placeholder=\"Enter secondary contact number\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"Post_office\">Post office</label>\r\n                    <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                    placeholder=\"Enter locality\" /> -->\r\n                    <select class=\"form-control\" id=\"Post_office\" required ngModel name=\"Post_office\"\r\n                      formControlName=\"Post_office\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of postoffices\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Latitude</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" formControlName=\"Latitude\"\r\n                      placeholder=\"Enter Latitude\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Longitude</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" formControlName=\"Longitude\"\r\n                      placeholder=\"Enter Longitude\" />\r\n                  </div>\r\n                </div>\r\n                <div class=\"col\">\r\n                  <div class=\"form-group\">\r\n                    <label for=\"email\">Marriage date</label>\r\n                    <input type=\"date\" class=\"form-control\" id=\"MarriageDate\" name=\"MarriageDate\"\r\n                      formControlName=\"MarriageDate\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"group\">Marriage month</label>\r\n                    <select class=\"form-control\" id=\"MarriageMonth\" required ngModel name=\"MarriageMonth\"\r\n                      formControlName=\"MarriageMonth\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of Months\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"group\">Agent</label>\r\n                    <select class=\"form-control\" id=\"tele_caller_contact\" required ngModel name=\"tele_caller_contact\"\r\n                      formControlName=\"tele_caller_contact\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of agents\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">House Name</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"HouseName\" name=\"HouseName\" formControlName=\"HouseName\"\r\n                      placeholder=\"Enter House Name\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Landmark</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"Landmark\" name=\"Landmark\" formControlName=\"Landmark\"\r\n                      placeholder=\"Enter Landmark\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"locality\">Name of locality</label>\r\n                    <!-- <input type=\"text\" class=\"form-control\" id=\"locality\" name=\"locality\" formControlName=\"locality\"\r\n                    placeholder=\"Enter locality\" /> -->\r\n                    <select class=\"form-control\" id=\"locality\" required ngModel name=\"locality\"\r\n                      formControlName=\"locality\">\r\n                      <option value=\"\" disabled selected hidden>Choose...</option>\r\n                      <option *ngFor=\"let item of localities\" value=\"{{ item.id }}\">\r\n                        {{ item.Name }}\r\n                      </option>\r\n                    </select>\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Map Plus code</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"GoogleMapPlusCode\" name=\"GoogleMapPlusCode\"\r\n                      formControlName=\"GoogleMapPlusCode\" placeholder=\"Enter Google Map PlusCode\" />\r\n                  </div>\r\n                  <div class=\"form-group\">\r\n                    <label for=\"name\">Google Map URL</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"GoogleMapURL\" name=\"GoogleMapURL\"\r\n                      formControlName=\"GoogleMapURL\" placeholder=\"Enter Google Map URL\" />\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n\r\n              <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n                Close\r\n              </button>\r\n              <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !customerForm.valid\">\r\n                <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\"\r\n                  aria-hidden=\"true\"></span>\r\n                Save changes\r\n              </button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n      </div>\r\n      <!-- /.modal-dialog -->\r\n    </div>\r\n  </div>\r\n  <!-- /.modal -->\r\n</div>";
       /***/
     },
 
@@ -4114,7 +4091,7 @@
         }, {
           key: "show",
           value: function show() {
-            var _this8 = this;
+            var _this6 = this;
 
             if (this._popover.isShown || !this.popover || this._delayTimeoutId) {
               return;
@@ -4138,29 +4115,29 @@
             * @return {?}
             */
             function showPopover() {
-              if (_this8._delayTimeoutId) {
-                _this8._delayTimeoutId = undefined;
+              if (_this6._delayTimeoutId) {
+                _this6._delayTimeoutId = undefined;
               }
 
-              _this8._popover.attach(PopoverContainerComponent).to(_this8.container).position({
-                attachment: _this8.placement
+              _this6._popover.attach(PopoverContainerComponent).to(_this6.container).position({
+                attachment: _this6.placement
               }).show({
-                content: _this8.popover,
-                context: _this8.popoverContext,
-                placement: _this8.placement,
-                title: _this8.popoverTitle,
-                containerClass: _this8.containerClass
+                content: _this6.popover,
+                context: _this6.popoverContext,
+                placement: _this6.placement,
+                title: _this6.popoverTitle,
+                containerClass: _this6.containerClass
               });
 
-              if (!_this8.adaptivePosition) {
-                _this8._positionService.calcPosition();
+              if (!_this6.adaptivePosition) {
+                _this6._positionService.calcPosition();
 
-                _this8._positionService.deletePositionElement(_this8._popover._componentRef.location);
+                _this6._positionService.deletePositionElement(_this6._popover._componentRef.location);
               }
 
-              _this8.isOpen = true;
+              _this6.isOpen = true;
 
-              _this8.setAriaDescribedBy();
+              _this6.setAriaDescribedBy();
             };
             /** @type {?} */
 
@@ -4170,8 +4147,8 @@
             * @return {?}
             */
             function cancelDelayedTooltipShowing() {
-              if (_this8._popoverCancelShowFn) {
-                _this8._popoverCancelShowFn();
+              if (_this6._popoverCancelShowFn) {
+                _this6._popoverCancelShowFn();
               }
             };
 
@@ -4193,7 +4170,7 @@
                 * @return {?}
                 */
                 function (trigger) {
-                  _this8._popoverCancelShowFn = _this8._renderer.listen(_this8._elementRef.nativeElement, trigger.close,
+                  _this6._popoverCancelShowFn = _this6._renderer.listen(_this6._elementRef.nativeElement, trigger.close,
                   /**
                   * @return {?}
                   */
@@ -4251,7 +4228,7 @@
         }, {
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this9 = this;
+            var _this7 = this;
 
             // fix: seems there are an issue with `routerLinkActive`
             // which result in duplicated call ngOnInit without call to ngOnDestroy
@@ -4270,14 +4247,14 @@
               * @return {?}
               */
               function show() {
-                return _this9.show();
+                return _this7.show();
               },
               hide:
               /**
               * @return {?}
               */
               function hide() {
-                return _this9.hide();
+                return _this7.hide();
               }
             });
           }
@@ -4748,11 +4725,11 @@
           this.postoffices = [];
           this.agentForm = this.fb.group({
             name: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            email: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+            email: [""],
             phone1: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            phone2: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            phone3: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-            group: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
+            phone2: [""],
+            phone3: [""],
+            group: [""]
           });
           this.commentForm = this.fb.group({
             RemarksText: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
@@ -4763,66 +4740,61 @@
         _createClass(AgentDetailComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this10 = this;
-
-            this.getLists();
-            this.activatedRouter.params.subscribe(function (params) {
-              _this10.id = params["id"];
-            });
-            this.customerForm = this.fb.group({
-              NameOfBride: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              NameOfFather: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              NameOfMother: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              MarriageDate: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              Contact_Number_1: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              Contact_Number_2: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              MarriageMonth: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              tele_caller_contact: [this.id, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              HouseName: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              Landmark: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              locality: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              Post_office: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-              Latitude: [""],
-              Longitude: [""],
-              GoogleMapURL: [""],
-              GoogleMapPlusCode: [""]
-            });
+            this.getLists(); // this.activatedRouter.params.subscribe((params) => {
+            //   this.id = params["id"];
+            // });
           }
         }, {
           key: "getLists",
           value: function getLists() {
-            var _this11 = this;
+            var _this8 = this;
 
-            console.log("jsdgkjsdfksghdfksdhfskldfhklsdfhskljdfhslkdfhlskd");
             this.dataservice.getfilteredAgents(localStorage.getItem("uid"), "last_called_date_time:asc").valueChanges.subscribe(function (result) {
               console.log("getSingleAgent", result.data.teleCallerContacts);
-              _this11.details = result.data.teleCallerContacts[0];
-              _this11.agentForm = _this11.fb.group({
-                name: [_this11.details.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                email: [_this11.details.Email, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone1: [_this11.details.Contact_Number_1, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone2: [_this11.details.Contact_Number_2, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                phone3: [_this11.details.Contact_Number_3, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
-                group: [_this11.details.group.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]
-              }); // console.log(new Date(this.details.telecaller_remarks[0].CallHistory.event_date_time))
-
-              _this11.loading = false;
+              _this8.details = result.data.teleCallerContacts[0];
+              _this8.agentForm = _this8.fb.group({
+                name: [_this8.details.Name, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                email: [_this8.details.Email],
+                phone1: [_this8.details.Contact_Number_1, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                phone2: [_this8.details.Contact_Number_2],
+                phone3: [_this8.details.Contact_Number_3],
+                group: [_this8.details.group.Name]
+              });
+              _this8.customerForm = _this8.fb.group({
+                NameOfBride: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                NameOfFather: [""],
+                NameOfMother: [""],
+                MarriageDate: [""],
+                Contact_Number_1: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Contact_Number_2: [""],
+                MarriageMonth: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                tele_caller_contact: [_this8.details.id],
+                HouseName: [""],
+                Landmark: [""],
+                locality: [""],
+                Post_office: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required],
+                Latitude: [""],
+                Longitude: [""],
+                GoogleMapURL: [""],
+                GoogleMapPlusCode: [""]
+              });
+              _this8.loading = false;
             });
             this.dataservice.getGroups().valueChanges.subscribe(function (result) {
               console.log("getGroups", result.data.groups);
-              _this11.groups = result.data.groups;
+              _this8.groups = result.data.groups;
             });
             this.dataservice.getLocalities().valueChanges.subscribe(function (result) {
               console.log("getLocalities", result.data.localities);
-              _this11.localities = result.data.localities;
+              _this8.localities = result.data.localities;
             });
             this.dataservice.getAgents().valueChanges.subscribe(function (result) {
               console.log("getAgents", result.data.teleCallerContacts);
-              _this11.agents = result.data.teleCallerContacts;
+              _this8.agents = result.data.teleCallerContacts;
             });
             this.dataservice.getPostOffices().valueChanges.subscribe(function (result) {
               console.log("getPostOffices", result.data.postOffices);
-              _this11.postoffices = result.data.postOffices;
+              _this8.postoffices = result.data.postOffices;
             });
           } // dateConverter(date) {
           //   return new Date(date);
@@ -4831,7 +4803,7 @@
         }, {
           key: "FormSubmit",
           value: function FormSubmit() {
-            var _this12 = this;
+            var _this9 = this;
 
             var resp = {};
             console.log(this.agentForm.value);
@@ -4840,20 +4812,20 @@
               console.log("response", result);
 
               if (result.data.updateTeleCallerContact) {
-                _this12.toastr.success("Agent edited successfully!");
+                _this9.toastr.success("Agent edited successfully!");
 
-                _this12.myModal.hide();
+                _this9.myModal.hide();
 
-                _this12.getLists();
+                _this9.getLists();
               } else {
-                _this12.toastr.error("Failed. Please check the fields!");
+                _this9.toastr.error("Failed. Please check the fields!");
               }
             });
           }
         }, {
           key: "customerSubmit",
           value: function customerSubmit() {
-            var _this13 = this;
+            var _this10 = this;
 
             var resp = {};
             console.log(this.customerForm.value);
@@ -4862,20 +4834,20 @@
               console.log("response", result);
 
               if (result.data.createCustomer) {
-                _this13.toastr.success("customer added successfully!");
+                _this10.toastr.success("customer added successfully!");
 
-                _this13.customerModal.hide();
+                _this10.customerModal.hide();
 
-                _this13.getLists();
+                _this10.getLists();
               } else {
-                _this13.toastr.error("Failed. Please check the fields!");
+                _this10.toastr.error("Failed. Please check the fields!");
               }
             });
           }
         }, {
           key: "CommentSubmit",
           value: function CommentSubmit() {
-            var _this14 = this;
+            var _this11 = this;
 
             var resp = {};
             console.log(this.commentForm.value);
@@ -4884,35 +4856,35 @@
               console.log("response", result);
 
               if (result.data.updateTeleCallerContact) {
-                _this14.toastr.success("Comment added successfully!");
+                _this11.toastr.success("Comment added successfully!");
 
-                _this14.commentModal.hide();
+                _this11.commentModal.hide();
 
-                _this14.getLists(); // window.location.reload();
+                _this11.getLists(); // window.location.reload();
 
               } else {
-                _this14.toastr.error("Failed. Please check the fields!");
+                _this11.toastr.error("Failed. Please check the fields!");
               }
             });
           }
         }, {
           key: "deleteAgent",
           value: function deleteAgent() {
-            var _this15 = this;
+            var _this12 = this;
 
             var resp = {};
-            this.dataservice.DeleteAgent(this.id).subscribe(function (result) {
+            this.dataservice.DeleteAgent(this.details.id).subscribe(function (result) {
               resp = result.data;
               console.log("response", result);
 
               if (result.data.deleteTeleCallerContact) {
-                _this15.toastr.success("Agent deleted successfully!");
+                _this12.toastr.success("Agent deleted successfully!");
 
-                _this15.router.navigate(["/telecaller/agents"]);
+                _this12.router.navigate(["/telecaller/agents"]);
 
-                _this15.deleteModal.hide();
+                _this12.deleteModal.hide();
               } else {
-                _this15.toastr.error("Failed. Please check again!");
+                _this12.toastr.error("Failed. Please check again!");
               }
             });
           }
@@ -5158,7 +5130,7 @@
         }, {
           key: "hide",
           value: function hide() {
-            var _this16 = this;
+            var _this13 = this;
 
             this.isCollapsing = true;
             this.isExpanded = false;
@@ -5171,17 +5143,17 @@
             * @return {?}
             */
             function () {
-              _this16._isAnimationDone = true;
+              _this13._isAnimationDone = true;
 
-              if (_this16.collapseNewValue !== _this16.isCollapsed && _this16.isAnimated) {
-                _this16.show();
+              if (_this13.collapseNewValue !== _this13.isCollapsed && _this13.isAnimated) {
+                _this13.show();
 
                 return;
               }
 
-              _this16.collapsed.emit(_this16);
+              _this13.collapsed.emit(_this13);
 
-              _this16._renderer.setStyle(_this16._el.nativeElement, 'display', 'none');
+              _this13._renderer.setStyle(_this13._el.nativeElement, 'display', 'none');
             });
           }
           /**
@@ -5192,7 +5164,7 @@
         }, {
           key: "show",
           value: function show() {
-            var _this17 = this;
+            var _this14 = this;
 
             this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
 
@@ -5207,17 +5179,17 @@
             * @return {?}
             */
             function () {
-              _this17._isAnimationDone = true;
+              _this14._isAnimationDone = true;
 
-              if (_this17.collapseNewValue !== _this17.isCollapsed && _this17.isAnimated) {
-                _this17.hide();
+              if (_this14.collapseNewValue !== _this14.isCollapsed && _this14.isAnimated) {
+                _this14.hide();
 
                 return;
               }
 
-              _this17.expanded.emit(_this17);
+              _this14.expanded.emit(_this14);
 
-              _this17._renderer.removeStyle(_this17._el.nativeElement, 'overflow');
+              _this14._renderer.removeStyle(_this14._el.nativeElement, 'overflow');
             });
           }
           /**
@@ -5229,7 +5201,7 @@
         }, {
           key: "animationRun",
           value: function animationRun(isAnimated, action) {
-            var _this18 = this;
+            var _this15 = this;
 
             if (!isAnimated || !this._stylesLoaded) {
               return (
@@ -5265,7 +5237,7 @@
               * @return {?}
               */
               function (callback) {
-                return _this18._player.onDone(callback);
+                return _this15._player.onDone(callback);
               }
             );
           }
@@ -5678,7 +5650,7 @@
 
       var Touches = /*#__PURE__*/function () {
         function Touches(properties) {
-          var _this19 = this;
+          var _this16 = this;
 
           _classCallCheck(this, Touches);
 
@@ -5713,14 +5685,14 @@
           /* Touchstart */
 
           this.handleTouchstart = function (event) {
-            _this19.elementPosition = _this19.getElementPosition();
-            _this19.touchstartTime = new Date().getTime();
+            _this16.elementPosition = _this16.getElementPosition();
+            _this16.touchstartTime = new Date().getTime();
 
-            if (_this19.eventType === undefined) {
-              _this19.getTouchstartPosition(event);
+            if (_this16.eventType === undefined) {
+              _this16.getTouchstartPosition(event);
             }
 
-            _this19.runHandler("touchstart", event);
+            _this16.runHandler("touchstart", event);
           };
           /* Touchmove */
 
@@ -5728,35 +5700,35 @@
           this.handleTouchmove = function (event) {
             var touches = event.touches; // Pan
 
-            if (_this19.detectPan(touches)) {
-              _this19.runHandler("pan", event);
+            if (_this16.detectPan(touches)) {
+              _this16.runHandler("pan", event);
             } // Pinch
 
 
-            if (_this19.detectPinch(event)) {
-              _this19.runHandler("pinch", event);
+            if (_this16.detectPinch(event)) {
+              _this16.runHandler("pinch", event);
             } // Linear swipe
 
 
-            switch (_this19.detectLinearSwipe(event)) {
+            switch (_this16.detectLinearSwipe(event)) {
               case "horizontal-swipe":
                 event.swipeType = "horizontal-swipe";
 
-                _this19.runHandler("horizontal-swipe", event);
+                _this16.runHandler("horizontal-swipe", event);
 
                 break;
 
               case "vertical-swipe":
                 event.swipeType = "vertical-swipe";
 
-                _this19.runHandler("vertical-swipe", event);
+                _this16.runHandler("vertical-swipe", event);
 
                 break;
             } // Linear swipe
 
 
-            if (_this19.detectLinearSwipe(event) || _this19.eventType === 'horizontal-swipe' || _this19.eventType === 'vertical-swipe') {
-              _this19.handleLinearSwipe(event);
+            if (_this16.detectLinearSwipe(event) || _this16.eventType === 'horizontal-swipe' || _this16.eventType === 'vertical-swipe') {
+              _this16.handleLinearSwipe(event);
             }
           };
           /* Touchend */
@@ -5765,68 +5737,68 @@
           this.handleTouchend = function (event) {
             var touches = event.touches; // Double Tap
 
-            if (_this19.detectDoubleTap()) {
-              _this19.runHandler("double-tap", event);
+            if (_this16.detectDoubleTap()) {
+              _this16.runHandler("double-tap", event);
             } // Tap
 
 
-            _this19.detectTap();
+            _this16.detectTap();
 
-            _this19.runHandler("touchend", event);
+            _this16.runHandler("touchend", event);
 
-            _this19.eventType = 'touchend';
+            _this16.eventType = 'touchend';
 
             if (touches && touches.length === 0) {
-              _this19.eventType = undefined;
-              _this19.i = 0;
+              _this16.eventType = undefined;
+              _this16.i = 0;
             }
           };
           /* Mousedown */
 
 
           this.handleMousedown = function (event) {
-            _this19.isMousedown = true;
-            _this19.elementPosition = _this19.getElementPosition();
-            _this19.touchstartTime = new Date().getTime();
+            _this16.isMousedown = true;
+            _this16.elementPosition = _this16.getElementPosition();
+            _this16.touchstartTime = new Date().getTime();
 
-            if (_this19.eventType === undefined) {
-              _this19.getMousedownPosition(event);
+            if (_this16.eventType === undefined) {
+              _this16.getMousedownPosition(event);
             }
 
-            _this19.runHandler("mousedown", event);
+            _this16.runHandler("mousedown", event);
           };
           /* Mousemove */
 
 
           this.handleMousemove = function (event) {
             //event.preventDefault();
-            if (!_this19.isMousedown) {
+            if (!_this16.isMousedown) {
               return;
             } // Pan
 
 
-            _this19.runHandler("pan", event); // Linear swipe
+            _this16.runHandler("pan", event); // Linear swipe
 
 
-            switch (_this19.detectLinearSwipe(event)) {
+            switch (_this16.detectLinearSwipe(event)) {
               case "horizontal-swipe":
                 event.swipeType = "horizontal-swipe";
 
-                _this19.runHandler("horizontal-swipe", event);
+                _this16.runHandler("horizontal-swipe", event);
 
                 break;
 
               case "vertical-swipe":
                 event.swipeType = "vertical-swipe";
 
-                _this19.runHandler("vertical-swipe", event);
+                _this16.runHandler("vertical-swipe", event);
 
                 break;
             } // Linear swipe
 
 
-            if (_this19.detectLinearSwipe(event) || _this19.eventType === 'horizontal-swipe' || _this19.eventType === 'vertical-swipe') {
-              _this19.handleLinearSwipe(event);
+            if (_this16.detectLinearSwipe(event) || _this16.eventType === 'horizontal-swipe' || _this16.eventType === 'vertical-swipe') {
+              _this16.handleLinearSwipe(event);
             }
           };
           /* Mouseup */
@@ -5834,26 +5806,26 @@
 
           this.handleMouseup = function (event) {
             // Tap
-            _this19.detectTap();
+            _this16.detectTap();
 
-            _this19.isMousedown = false;
+            _this16.isMousedown = false;
 
-            _this19.runHandler("mouseup", event);
+            _this16.runHandler("mouseup", event);
 
-            _this19.eventType = undefined;
-            _this19.i = 0;
+            _this16.eventType = undefined;
+            _this16.i = 0;
           };
           /* Wheel */
 
 
           this.handleWheel = function (event) {
-            _this19.runHandler("wheel", event);
+            _this16.runHandler("wheel", event);
           };
           /* Resize */
 
 
           this.handleResize = function (event) {
-            _this19.runHandler("resize", event);
+            _this16.runHandler("resize", event);
           };
 
           this.properties = properties;
@@ -5980,7 +5952,7 @@
         }, {
           key: "detectDoubleTap",
           value: function detectDoubleTap() {
-            var _this20 = this;
+            var _this17 = this;
 
             if (this.eventType != undefined) {
               return;
@@ -5994,7 +5966,7 @@
               return true;
             } else {
               this.doubleTapTimeout = setTimeout(function () {
-                clearTimeout(_this20.doubleTapTimeout);
+                clearTimeout(_this17.doubleTapTimeout);
               }, this.doubleTapMinTimeout);
             }
 
@@ -6131,7 +6103,7 @@
 
       var Carousel = /*#__PURE__*/function () {
         function Carousel(properties, utils, cells, container, slide) {
-          var _this21 = this;
+          var _this18 = this;
 
           _classCallCheck(this, Carousel);
 
@@ -6151,31 +6123,31 @@
           this.containerPullLimit = 100;
 
           this.handleTouchstart = function (event) {
-            _this21.container.handleTouchstart();
+            _this18.container.handleTouchstart();
 
-            _this21.slide.handleTouchstart(event);
+            _this18.slide.handleTouchstart(event);
           };
 
           this.handleHorizontalSwipe = function (event) {
-            _this21.container.handleHorizontalSwipe();
+            _this18.container.handleHorizontalSwipe();
           };
 
           this.handleTouchend = function (event) {
-            if (_this21.properties.freeScroll) {
-              _this21.container.handleTouchend();
+            if (_this18.properties.freeScroll) {
+              _this18.container.handleTouchend();
             } else {
-              _this21.container.handleTouchend(true);
+              _this18.container.handleTouchend(true);
 
-              _this21.slide.handleTouchend(event);
+              _this18.slide.handleTouchend(event);
             }
           };
 
           this.isNextArrowDisabled = function () {
-            return _this21.slide.isNextArrowDisabled();
+            return _this18.slide.isNextArrowDisabled();
           };
 
           this.isPrevArrowDisabled = function () {
-            return _this21.slide.isPrevArrowDisabled();
+            return _this18.slide.isPrevArrowDisabled();
           };
 
           this.init();
@@ -6325,10 +6297,10 @@
         }, {
           key: "autoplay",
           value: function autoplay() {
-            var _this22 = this;
+            var _this19 = this;
 
             this.autoplayId = setInterval(function () {
-              _this22.next();
+              _this19.next();
             }, this.properties.autoplayInterval);
           }
         }, {
@@ -7599,7 +7571,7 @@
 
       var CarouselComponent = /*#__PURE__*/function () {
         function CarouselComponent(elementRef, ref) {
-          var _this23 = this;
+          var _this20 = this;
 
           _classCallCheck(this, CarouselComponent);
 
@@ -7635,39 +7607,39 @@
           this.hostClassCarousel = true;
 
           this.handleTouchstart = function (event) {
-            _this23.touches.addEventListeners("mousemove", "handleMousemove");
+            _this20.touches.addEventListeners("mousemove", "handleMousemove");
 
-            _this23.carousel.handleTouchstart(event);
+            _this20.carousel.handleTouchstart(event);
 
-            _this23.isMoving = true;
+            _this20.isMoving = true;
           };
 
           this.handleHorizontalSwipe = function (event) {
             event.preventDefault();
 
-            _this23.carousel.handleHorizontalSwipe(event);
+            _this20.carousel.handleHorizontalSwipe(event);
           };
 
           this.handleTouchend = function (event) {
             var touches = event.touches;
 
-            _this23.carousel.handleTouchend(event);
+            _this20.carousel.handleTouchend(event);
 
-            _this23.touches.removeEventListeners("mousemove", "handleMousemove");
+            _this20.touches.removeEventListeners("mousemove", "handleMousemove");
 
-            _this23.isMoving = false;
+            _this20.isMoving = false;
           };
 
           this.handleTap = function (event) {
             var outboundEvent = {
               name: 'click'
             };
-            var nodes = Array.prototype.slice.call(_this23.cellsElement.children);
+            var nodes = Array.prototype.slice.call(_this20.cellsElement.children);
             var cellElement = event.srcElement.closest(".carousel-cell");
             var i = nodes.indexOf(cellElement);
             var cellIndex = nodes.indexOf(cellElement);
 
-            if (_this23.images) {//outboundEvent.fileIndex = this.carousel.getFileIndex(i);
+            if (_this20.images) {//outboundEvent.fileIndex = this.carousel.getFileIndex(i);
               //outboundEvent.file = this.carousel.getFile(cellIndex);
             } else {
               outboundEvent.cellIndex = cellIndex;
@@ -7922,10 +7894,10 @@
         }, {
           key: "detectDomChanges",
           value: function detectDomChanges() {
-            var _this24 = this;
+            var _this21 = this;
 
             var observer = new MutationObserver(function (mutations) {
-              _this24.onDomChanges();
+              _this21.onDomChanges();
             });
             var config = {
               attributes: true,
@@ -8558,7 +8530,7 @@
         }, {
           key: "getLists",
           value: function getLists() {
-            var _this25 = this;
+            var _this22 = this;
 
             var filter = {
               added_by_user: localStorage.getItem("uid")
@@ -8566,19 +8538,20 @@
             this.loading = true;
             this.dataservice.getCustomersFilter(filter).valueChanges.subscribe(function (result) {
               console.log("getCustomers", result.data.customers);
-              _this25.rowData = result.data.customers;
+              _this22.rowData = result.data.customers;
+              _this22.loading = false;
             });
             this.dataservice.getLocalities().valueChanges.subscribe(function (result) {
               console.log("getLocalities", result.data.localities);
-              _this25.localities = result.data.localities;
+              _this22.localities = result.data.localities;
             });
             this.dataservice.getPostOffices().valueChanges.subscribe(function (result) {
               console.log("getPostOffices", result.data.postOffices);
-              _this25.postoffices = result.data.postOffices;
+              _this22.postoffices = result.data.postOffices;
             });
             this.dataservice.getAgents().valueChanges.subscribe(function (result) {
               console.log("getAgents", result.data.teleCallerContacts);
-              _this25.agents = result.data.teleCallerContacts;
+              _this22.agents = result.data.teleCallerContacts;
             });
           }
         }, {
@@ -8601,7 +8574,7 @@
         }, {
           key: "FormSubmit",
           value: function FormSubmit() {
-            var _this26 = this;
+            var _this23 = this;
 
             var resp = {};
             console.log(this.customerForm.value);
@@ -8610,13 +8583,13 @@
               console.log("response", result);
 
               if (result.data.createCustomer) {
-                _this26.toastr.success("customer added successfully!");
+                _this23.toastr.success("customer added successfully!");
 
-                _this26.getLists();
+                _this23.getLists();
 
-                _this26.myModal.hide();
+                _this23.myModal.hide();
               } else {
-                _this26.toastr.error("Failed. Please check the fields!");
+                _this23.toastr.error("Failed. Please check the fields!");
               }
             });
           }
@@ -8657,7 +8630,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div *ngIf=\"loading\" class=\"text-center\">\r\n  <div class=\"spinner-border\" style=\"width: 3rem; height: 3rem;\" role=\"status\">\r\n    <span class=\"visually-hidden\"></span>\r\n  </div>\r\n</div>\r\n<div class=\"animated fadeIn\">\r\n  <div\r\n    bsModal\r\n    #deleteModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this agent?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button\r\n            type=\"button\"\r\n            class=\"btn btn-secondary\"\r\n            (click)=\"deleteModal.hide()\"\r\n          >\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"card animated fadeIn\">\r\n  <div\r\n    class=\"card-header\"\r\n    style=\"display: flex; justify-content: space-between\"\r\n  >\r\n    <h2>Agent Details</h2>\r\n    <span>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-primary\"\r\n        data-toggle=\"modal\"\r\n        (click)=\"customerModal.show()\"\r\n      >\r\n        New Customer\r\n      </button>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-primary\"\r\n        data-toggle=\"modal\"\r\n        (click)=\"myModal.show()\"\r\n      >\r\n        Edit\r\n      </button>\r\n      <button\r\n        type=\"button\"\r\n        class=\"btn btn-danger\"\r\n        data-toggle=\"modal\"\r\n        (click)=\"deleteModal.show()\"\r\n      >\r\n        Delete\r\n      </button></span\r\n    >\r\n  </div>\r\n  <div class=\"card-body\">\r\n    <div class=\"row\">\r\n      <div class=\"col\">\r\n        <table class=\"table table-striped\">\r\n          <tbody>\r\n            <tr>\r\n              <td>ID</td>\r\n              <td>{{ details.id }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Name</td>\r\n              <td>{{ details.Name }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 1</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_1 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 2</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_2 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 3</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_3 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Email</td>\r\n              <td>{{ details.Email }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Group</td>\r\n              <td>\r\n                <span class=\"badge badge-warning\">{{\r\n                  details.group?.Name\r\n                }}</span>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"col\">\r\n        <div class=\"card\" *ngFor=\"let item of details.telecaller_remarks\">\r\n          <div class=\"card-body\">\r\n            <h5 class=\"card-title\">\r\n              {{ dateConverter(item.CallHistory?.event_date_time) }}\r\n            </h5>\r\n            <p class=\"card-text\">{{ item.RemarksText }}</p>\r\n            <span class=\"badge badge-primary\">{{\r\n              item.CallHistory.users_permissions_user?.username\r\n            }}</span>\r\n          </div>\r\n        </div>\r\n        <button\r\n          type=\"button\"\r\n          class=\"btn btn-primary\"\r\n          data-toggle=\"modal\"\r\n          (click)=\"commentModal.show()\"\r\n        >\r\n          Add Comment\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div\r\n    bsModal\r\n    #myModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Edit Agent</h4>\r\n          <button\r\n            type=\"button\"\r\n            class=\"close\"\r\n            (click)=\"myModal.hide()\"\r\n            aria-label=\"Close\"\r\n          >\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"name\">Name</label>\r\n              <input\r\n                type=\"text\"\r\n                class=\"form-control\"\r\n                id=\"name\"\r\n                name=\"name\"\r\n                formControlName=\"name\"\r\n                placeholder=\"Enter agent name\"\r\n              />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"email\">E-mail</label>\r\n              <input\r\n                type=\"email\"\r\n                class=\"form-control\"\r\n                id=\"email\"\r\n                name=\"email\"\r\n                formControlName=\"email\"\r\n                placeholder=\"Enter agent email\"\r\n              />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"street\">Phone 1</label>\r\n              <input\r\n                type=\"number\"\r\n                class=\"form-control\"\r\n                id=\"phone1\"\r\n                name=\"phone1\"\r\n                formControlName=\"phone1\"\r\n                placeholder=\"Enter Phone 1\"\r\n              />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"phone2\">Phone 2</label>\r\n              <input\r\n                type=\"number\"\r\n                class=\"form-control\"\r\n                id=\"phone2\"\r\n                name=\"phone2\"\r\n                formControlName=\"phone2\"\r\n                placeholder=\"Enter Phone 2\"\r\n              />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"phone3\">Phone 3</label>\r\n              <input\r\n                type=\"number\"\r\n                class=\"form-control\"\r\n                id=\"phone3\"\r\n                name=\"phone3\"\r\n                formControlName=\"phone3\"\r\n                placeholder=\"Enter Phone 3\"\r\n              />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"group\">Group</label>\r\n              <select\r\n                class=\"form-control\"\r\n                id=\"group\"\r\n                required\r\n                ngModel\r\n                name=\"group\"\r\n                formControlName=\"group\"\r\n              >\r\n                <option value=\"\" disabled selected hidden>Choose...</option>\r\n                <option *ngFor=\"let item of groups\" value=\"{{ item.id }}\">\r\n                  {{ item.Name }}\r\n                </option>\r\n              </select>\r\n            </div>\r\n            <button\r\n              type=\"button\"\r\n              class=\"btn btn-secondary\"\r\n              (click)=\"myModal.hide()\"\r\n            >\r\n              Close\r\n            </button>\r\n            <button\r\n              type=\"submit\"\r\n              class=\"btn btn-primary ml-2\"\r\n              [disabled]=\"btnLoading || !agentForm.valid\"\r\n            >\r\n              <span\r\n                *ngIf=\"btnLoading\"\r\n                class=\"spinner-border spinner-border-sm\"\r\n                role=\"status\"\r\n                aria-hidden=\"true\"\r\n              ></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n  <div\r\n    bsModal\r\n    #commentModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Add Comment</h4>\r\n          <button\r\n            type=\"button\"\r\n            class=\"close\"\r\n            (click)=\"commentModal.hide()\"\r\n            aria-label=\"Close\"\r\n          >\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"name\">Remarks</label>\r\n              <textarea\r\n                class=\"form-control\"\r\n                maxlength=\"250\"\r\n                id=\"RemarksText\"\r\n                name=\"RemarksText\"\r\n                formControlName=\"RemarksText\"\r\n                placeholder=\"Enter remarks\"\r\n              ></textarea>\r\n            </div>\r\n            <!-- <div class=\"form-group\">\r\n              <label for=\"email\">Date</label>\r\n              <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\" name=\"event_date_time\"\r\n                formControlName=\"event_date_time\" />\r\n            </div> -->\r\n            <button\r\n              type=\"button\"\r\n              class=\"btn btn-secondary\"\r\n              (click)=\"commentModal.hide()\"\r\n            >\r\n              Close\r\n            </button>\r\n            <button\r\n              type=\"submit\"\r\n              class=\"btn btn-primary ml-2\"\r\n              [disabled]=\"btnLoading || !commentForm.valid\"\r\n            >\r\n              <span\r\n                *ngIf=\"btnLoading\"\r\n                class=\"spinner-border spinner-border-sm\"\r\n                role=\"status\"\r\n                aria-hidden=\"true\"\r\n              ></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n  <div\r\n    bsModal\r\n    #customerModal=\"bs-modal\"\r\n    class=\"modal fade\"\r\n    tabindex=\"-1\"\r\n    role=\"dialog\"\r\n    aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\"\r\n  >\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Add New Customer</h4>\r\n          <button\r\n            type=\"button\"\r\n            class=\"close\"\r\n            (click)=\"customerModal.hide()\"\r\n            aria-label=\"Close\"\r\n          >\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"customerForm\" (ngSubmit)=\"customerSubmit()\">\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Bride</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"NameOfBride\"\r\n                    name=\"NameOfBride\"\r\n                    formControlName=\"NameOfBride\"\r\n                    placeholder=\"Enter bride's name\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Father</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"NameOfFather\"\r\n                    name=\"NameOfFather\"\r\n                    formControlName=\"NameOfFather\"\r\n                    placeholder=\"Enter father's name\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Mother</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"NameOfMother\"\r\n                    name=\"NameOfMother\"\r\n                    formControlName=\"NameOfMother\"\r\n                    placeholder=\"Enter mother's name\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 1</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"Contact_Number_1\"\r\n                    name=\"Contact_Number_1\"\r\n                    formControlName=\"Contact_Number_1\"\r\n                    placeholder=\"Enter primary contact number\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 2</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"Contact_Number_2\"\r\n                    name=\"Contact_Number_2\"\r\n                    formControlName=\"Contact_Number_2\"\r\n                    placeholder=\"Enter secondary contact number\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"Post_office\">Post office</label>\r\n                  <select\r\n                    class=\"form-control\"\r\n                    id=\"Post_office\"\r\n                    required\r\n                    ngModel\r\n                    name=\"Post_office\"\r\n                    formControlName=\"Post_office\"\r\n                  >\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option\r\n                      *ngFor=\"let item of postoffices\"\r\n                      value=\"{{ item.id }}\"\r\n                    >\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Latitude</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"Latitude\"\r\n                    name=\"Latitude\"\r\n                    formControlName=\"Latitude\"\r\n                    placeholder=\"Enter Latitude\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Longitude</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"Longitude\"\r\n                    name=\"Longitude\"\r\n                    formControlName=\"Longitude\"\r\n                    placeholder=\"Enter Longitude\"\r\n                  />\r\n                </div>\r\n              </div>\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"email\">Marriage date</label>\r\n                  <input\r\n                    type=\"date\"\r\n                    class=\"form-control\"\r\n                    id=\"MarriageDate\"\r\n                    name=\"MarriageDate\"\r\n                    formControlName=\"MarriageDate\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"MarriageMonth\">Marriage month</label>\r\n                  <select\r\n                    class=\"form-control\"\r\n                    id=\"MarriageMonth\"\r\n                    required\r\n                    ngModel\r\n                    name=\"MarriageMonth\"\r\n                    formControlName=\"MarriageMonth\"\r\n                  >\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of Months\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"group\">Agent</label>\r\n                  <!-- {{ details.Name }} -->\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    disabled\r\n                    id=\"tele_caller_contact\"\r\n                    [value]=\"details.Name\"\r\n                    name=\"tele_caller_contact\"\r\n                    formControlName=\"tele_caller_contact\"\r\n                  />\r\n                  <!-- <select class=\"form-control\" id=\"tele_caller_contact\" disabled [selectedIndex]=\"2\" required ngModel name=\"tele_caller_contact\"\r\n                    formControlName=\"tele_caller_contact\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of agents\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select> -->\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">House Name</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"HouseName\"\r\n                    name=\"HouseName\"\r\n                    formControlName=\"HouseName\"\r\n                    placeholder=\"Enter House Name\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Landmark</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"Landmark\"\r\n                    name=\"Landmark\"\r\n                    formControlName=\"Landmark\"\r\n                    placeholder=\"Enter Landmark\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"locality\">Name of locality</label>\r\n                  <select\r\n                    class=\"form-control\"\r\n                    id=\"locality\"\r\n                    required\r\n                    ngModel\r\n                    name=\"locality\"\r\n                    formControlName=\"locality\"\r\n                  >\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option\r\n                      *ngFor=\"let item of localities\"\r\n                      value=\"{{ item.id }}\"\r\n                    >\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Map Plus code</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"GoogleMapPlusCode\"\r\n                    name=\"GoogleMapPlusCode\"\r\n                    formControlName=\"GoogleMapPlusCode\"\r\n                    placeholder=\"Enter Google Map PlusCode\"\r\n                  />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Google Map URL</label>\r\n                  <input\r\n                    type=\"text\"\r\n                    class=\"form-control\"\r\n                    id=\"GoogleMapURL\"\r\n                    name=\"GoogleMapURL\"\r\n                    formControlName=\"GoogleMapURL\"\r\n                    placeholder=\"Enter Google Map URL\"\r\n                  />\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <button\r\n              type=\"button\"\r\n              class=\"btn btn-secondary\"\r\n              (click)=\"myModal.hide()\"\r\n            >\r\n              Close\r\n            </button>\r\n            <button\r\n              type=\"submit\"\r\n              class=\"btn btn-primary ml-2\"\r\n              [disabled]=\"btnLoading || !customerForm.valid\"\r\n            >\r\n              <span\r\n                *ngIf=\"btnLoading\"\r\n                class=\"spinner-border spinner-border-sm\"\r\n                role=\"status\"\r\n                aria-hidden=\"true\"\r\n              ></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n</div>\r\n";
+      __webpack_exports__["default"] = "<div *ngIf=\"loading\" class=\"text-center\">\r\n  <div class=\"spinner-border\" style=\"width: 3rem; height: 3rem;\" role=\"status\">\r\n    <span class=\"visually-hidden\"></span>\r\n  </div>\r\n</div>\r\n<div class=\"animated fadeIn\">\r\n  <div bsModal #deleteModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-dialog-centered modal-sm\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-body text-center\">\r\n          Do you want to delete this agent?\r\n        </div>\r\n        <div class=\"modal-footer justify-content-around\">\r\n          <button type=\"button\" class=\"btn btn-secondary\" (click)=\"deleteModal.hide()\">\r\n            No! Cancel.\r\n          </button>\r\n          <button type=\"button\" class=\"btn btn-primary\" (click)=\"deleteAgent()\">\r\n            Yes! Delete.\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"card animated fadeIn\">\r\n  <div class=\"card-header\" style=\"display: flex; justify-content: space-between\">\r\n    <h2>Agent Details</h2>\r\n    <span>\r\n      <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"customerModal.show()\">\r\n        New Customer\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"myModal.show()\">\r\n        Edit\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" (click)=\"deleteModal.show()\">\r\n        Delete\r\n      </button></span>\r\n  </div>\r\n  <div class=\"card-body\">\r\n    <div class=\"row\">\r\n      <div class=\"col\">\r\n        <table class=\"table table-striped\">\r\n          <tbody>\r\n            <tr>\r\n              <td>ID</td>\r\n              <td>{{ details.id }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Name</td>\r\n              <td>{{ details.Name }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 1</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_1 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 2</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_2 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Contact 3</td>\r\n              <td>\r\n                <h1>{{ details.Contact_Number_3 }}</h1>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>Email</td>\r\n              <td>{{ details.Email }}</td>\r\n            </tr>\r\n            <tr>\r\n              <td>Group</td>\r\n              <td>\r\n                <span class=\"badge badge-warning\">{{\r\n                  details.group?.Name\r\n                  }}</span>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"col\">\r\n        <div class=\"card\" *ngFor=\"let item of details.telecaller_remarks\">\r\n          <div class=\"card-body\">\r\n            <h5 class=\"card-title\">\r\n              {{ dateConverter(item.CallHistory?.event_date_time) }}\r\n            </h5>\r\n            <p class=\"card-text\">{{ item.RemarksText }}</p>\r\n            <span class=\"badge badge-primary\">{{\r\n              item.CallHistory.users_permissions_user?.username\r\n              }}</span>\r\n          </div>\r\n        </div>\r\n        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" (click)=\"commentModal.show()\">\r\n          Add Comment\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div bsModal #myModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Edit Agent</h4>\r\n          <button type=\"button\" class=\"close\" (click)=\"myModal.hide()\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"agentForm\" (ngSubmit)=\"FormSubmit()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"name\">Name</label>\r\n              <input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" formControlName=\"name\"\r\n                placeholder=\"Enter agent name\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"email\">E-mail</label>\r\n              <input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" formControlName=\"email\"\r\n                placeholder=\"Enter agent email\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"street\">Phone 1</label>\r\n              <input type=\"number\" class=\"form-control\" id=\"phone1\" name=\"phone1\" formControlName=\"phone1\"\r\n                placeholder=\"Enter Phone 1\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"phone2\">Phone 2</label>\r\n              <input type=\"number\" class=\"form-control\" id=\"phone2\" name=\"phone2\" formControlName=\"phone2\"\r\n                placeholder=\"Enter Phone 2\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"phone3\">Phone 3</label>\r\n              <input type=\"number\" class=\"form-control\" id=\"phone3\" name=\"phone3\" formControlName=\"phone3\"\r\n                placeholder=\"Enter Phone 3\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"group\">Group</label>\r\n              <select class=\"form-control\" id=\"group\" required ngModel name=\"group\" formControlName=\"group\">\r\n                <option value=\"\" disabled selected hidden>Choose...</option>\r\n                <option *ngFor=\"let item of groups\" value=\"{{ item.id }}\">\r\n                  {{ item.Name }}\r\n                </option>\r\n              </select>\r\n            </div>\r\n            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n              Close\r\n            </button>\r\n            <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !agentForm.valid\">\r\n              <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n  <div bsModal #commentModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Add Comment</h4>\r\n          <button type=\"button\" class=\"close\" (click)=\"commentModal.hide()\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"commentForm\" (ngSubmit)=\"CommentSubmit()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"name\">Remarks</label>\r\n              <textarea class=\"form-control\" maxlength=\"250\" id=\"RemarksText\" name=\"RemarksText\"\r\n                formControlName=\"RemarksText\" placeholder=\"Enter remarks\"></textarea>\r\n            </div>\r\n            <!-- <div class=\"form-group\">\r\n              <label for=\"email\">Date</label>\r\n              <input type=\"datetime-local\" class=\"form-control\" id=\"event_date_time\" name=\"event_date_time\"\r\n                formControlName=\"event_date_time\" />\r\n            </div> -->\r\n            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"commentModal.hide()\">\r\n              Close\r\n            </button>\r\n            <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !commentForm.valid\">\r\n              <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n  <div bsModal #customerModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">Add New Customer</h4>\r\n          <button type=\"button\" class=\"close\" (click)=\"customerModal.hide()\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form [formGroup]=\"customerForm\" (ngSubmit)=\"customerSubmit()\">\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Bride</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfBride\" name=\"NameOfBride\"\r\n                    formControlName=\"NameOfBride\" placeholder=\"Enter bride's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Father</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfFather\" name=\"NameOfFather\"\r\n                    formControlName=\"NameOfFather\" placeholder=\"Enter father's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Name of Mother</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"NameOfMother\" name=\"NameOfMother\"\r\n                    formControlName=\"NameOfMother\" placeholder=\"Enter mother's name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 1</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Contact_Number_1\" name=\"Contact_Number_1\"\r\n                    formControlName=\"Contact_Number_1\" placeholder=\"Enter primary contact number\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Contact number 2</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Contact_Number_2\" name=\"Contact_Number_2\"\r\n                    formControlName=\"Contact_Number_2\" placeholder=\"Enter secondary contact number\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"Post_office\">Post office</label>\r\n                  <!-- <select\r\n                    class=\"form-control\"\r\n                    id=\"Post_office\"\r\n                    ngModel\r\n                    name=\"Post_office\"\r\n                    formControlName=\"Post_office\"\r\n                  >\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option\r\n                      *ngFor=\"let item of postoffices\"\r\n                      value=\"{{ item.id }}\"\r\n                    >\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select> -->\r\n                  <ng-select id=\"Post_office\" name=\"Post_office\" placeholder=\"Select postoffice\" formControlName=\"Post_office\">\r\n                    <ng-option *ngFor=\"let item of postoffices\" [value]=\"item.id\">{{ item.Name }}</ng-option>\r\n                  </ng-select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Latitude</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" formControlName=\"Latitude\"\r\n                    placeholder=\"Enter Latitude\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Longitude</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" formControlName=\"Longitude\"\r\n                    placeholder=\"Enter Longitude\" />\r\n                </div>\r\n              </div>\r\n              <div class=\"col\">\r\n                <div class=\"form-group\">\r\n                  <label for=\"email\">Marriage date</label>\r\n                  <input type=\"date\" class=\"form-control\" id=\"MarriageDate\" name=\"MarriageDate\"\r\n                    formControlName=\"MarriageDate\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"MarriageMonth\">Marriage month</label>\r\n                  <select class=\"form-control\" id=\"MarriageMonth\" required ngModel name=\"MarriageMonth\"\r\n                    formControlName=\"MarriageMonth\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of Months\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"group\">Agent</label>\r\n                  <!-- {{ details.Name }} -->\r\n                  <input type=\"text\" class=\"form-control\" disabled id=\"tele_caller_contact\" [value]=\"details.Name\"\r\n                    name=\"tele_caller_contact\" formControlName=\"tele_caller_contact\" />\r\n                  <!-- <select class=\"form-control\" id=\"tele_caller_contact\" disabled [selectedIndex]=\"2\" required ngModel name=\"tele_caller_contact\"\r\n                    formControlName=\"tele_caller_contact\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of agents\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select> -->\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">House Name</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"HouseName\" name=\"HouseName\" formControlName=\"HouseName\"\r\n                    placeholder=\"Enter House Name\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Landmark</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"Landmark\" name=\"Landmark\" formControlName=\"Landmark\"\r\n                    placeholder=\"Enter Landmark\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"locality\">Name of locality</label>\r\n                  <select class=\"form-control\" id=\"locality\" ngModel name=\"locality\" formControlName=\"locality\">\r\n                    <option value=\"\" disabled selected hidden>Choose...</option>\r\n                    <option *ngFor=\"let item of localities\" value=\"{{ item.id }}\">\r\n                      {{ item.Name }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Map Plus code</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"GoogleMapPlusCode\" name=\"GoogleMapPlusCode\"\r\n                    formControlName=\"GoogleMapPlusCode\" placeholder=\"Enter Google Map PlusCode\" />\r\n                </div>\r\n                <div class=\"form-group\">\r\n                  <label for=\"name\">Google Map URL</label>\r\n                  <input type=\"text\" class=\"form-control\" id=\"GoogleMapURL\" name=\"GoogleMapURL\"\r\n                    formControlName=\"GoogleMapURL\" placeholder=\"Enter Google Map URL\" />\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <button type=\"button\" class=\"btn btn-secondary\" (click)=\"myModal.hide()\">\r\n              Close\r\n            </button>\r\n            <button type=\"submit\" class=\"btn btn-primary ml-2\" [disabled]=\"btnLoading || !customerForm.valid\">\r\n              <span *ngIf=\"btnLoading\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n              Save changes\r\n            </button>\r\n          </form>\r\n        </div>\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n</div>";
       /***/
     },
 
@@ -8765,25 +8738,31 @@
       /* harmony import */
 
 
-      var _telecaller_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      var _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @ng-select/ng-select */
+      "ZOsW");
+      /* harmony import */
+
+
+      var _telecaller_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
       /*! ./telecaller-routing.module */
       "L9pn");
       /* harmony import */
 
 
-      var ag_grid_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      var ag_grid_angular__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
       /*! ag-grid-angular */
       "YFAK");
       /* harmony import */
 
 
-      var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
       /*! ngx-bootstrap/modal */
       "LqlI");
       /* harmony import */
 
 
-      var _customerdetail_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      var _customerdetail_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
       /*! ./customerdetail.component */
       "9sCu"); // Angular
       // Forms Component
@@ -8804,9 +8783,9 @@
       };
 
       TelecallerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], ag_grid_angular__WEBPACK_IMPORTED_MODULE_16__["AgGridModule"].withComponents([]), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _telecaller_routing_module__WEBPACK_IMPORTED_MODULE_15__["TelecallerRoutingModule"], ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_10__["BsDropdownModule"].forRoot(), ngx_bootstrap_tabs__WEBPACK_IMPORTED_MODULE_8__["TabsModule"], angular_responsive_carousel__WEBPACK_IMPORTED_MODULE_4__["IvyCarouselModule"], // CarouselModule.forRoot(),
-        ngx_bootstrap_collapse__WEBPACK_IMPORTED_MODULE_9__["CollapseModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_11__["PaginationModule"].forRoot(), ngx_bootstrap_popover__WEBPACK_IMPORTED_MODULE_12__["PopoverModule"].forRoot(), ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_13__["ProgressbarModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_14__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_17__["ModalModule"].forRoot()],
-        declarations: [_customers_component__WEBPACK_IMPORTED_MODULE_5__["CustomersComponent"], _agents_component__WEBPACK_IMPORTED_MODULE_6__["AgentsComponent"], _agentdetail_component__WEBPACK_IMPORTED_MODULE_7__["AgentDetailComponent"], _customerdetail_component__WEBPACK_IMPORTED_MODULE_18__["CustomerDetailComponent"]]
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], ag_grid_angular__WEBPACK_IMPORTED_MODULE_17__["AgGridModule"].withComponents([]), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _telecaller_routing_module__WEBPACK_IMPORTED_MODULE_16__["TelecallerRoutingModule"], ngx_bootstrap_dropdown__WEBPACK_IMPORTED_MODULE_10__["BsDropdownModule"].forRoot(), ngx_bootstrap_tabs__WEBPACK_IMPORTED_MODULE_8__["TabsModule"], _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_15__["NgSelectModule"], angular_responsive_carousel__WEBPACK_IMPORTED_MODULE_4__["IvyCarouselModule"], // CarouselModule.forRoot(),
+        ngx_bootstrap_collapse__WEBPACK_IMPORTED_MODULE_9__["CollapseModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_11__["PaginationModule"].forRoot(), ngx_bootstrap_popover__WEBPACK_IMPORTED_MODULE_12__["PopoverModule"].forRoot(), ngx_bootstrap_progressbar__WEBPACK_IMPORTED_MODULE_13__["ProgressbarModule"].forRoot(), ngx_bootstrap_tooltip__WEBPACK_IMPORTED_MODULE_14__["TooltipModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_18__["ModalModule"].forRoot()],
+        declarations: [_customers_component__WEBPACK_IMPORTED_MODULE_5__["CustomersComponent"], _agents_component__WEBPACK_IMPORTED_MODULE_6__["AgentsComponent"], _agentdetail_component__WEBPACK_IMPORTED_MODULE_7__["AgentDetailComponent"], _customerdetail_component__WEBPACK_IMPORTED_MODULE_19__["CustomerDetailComponent"]]
       })], TelecallerModule);
       /***/
     },
@@ -8932,16 +8911,16 @@
         }, {
           key: "getLists",
           value: function getLists() {
-            var _this27 = this;
+            var _this24 = this;
 
             this.loading = true;
             this.dataservice.getfilteredAgents(localStorage.getItem("uid"), "last_called_date_time:desc").valueChanges.subscribe(function (result) {
               console.log("getAgents", result.data.teleCallerContacts);
-              _this27.rowData = result.data.teleCallerContacts;
+              _this24.rowData = result.data.teleCallerContacts;
             });
             this.dataservice.getGroups().valueChanges.subscribe(function (result) {
               console.log("getGroups", result.data.groups);
-              _this27.groups = result.data.groups;
+              _this24.groups = result.data.groups;
             });
           }
         }, {
@@ -8964,7 +8943,7 @@
         }, {
           key: "FormSubmit",
           value: function FormSubmit() {
-            var _this28 = this;
+            var _this25 = this;
 
             var resp = {};
             console.log(this.agentForm.value);
@@ -8973,13 +8952,13 @@
               console.log("response", result);
 
               if (result.data.createTeleCallerContact) {
-                _this28.toastr.success("Agent added successfully!");
+                _this25.toastr.success("Agent added successfully!");
 
-                _this28.getLists();
+                _this25.getLists();
 
-                _this28.myModal.hide();
+                _this25.myModal.hide();
               } else {
-                _this28.toastr.error("Failed. Please check the fields!");
+                _this25.toastr.error("Failed. Please check the fields!");
               }
             });
           }
