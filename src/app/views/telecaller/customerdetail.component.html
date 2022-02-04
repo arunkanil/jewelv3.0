@@ -29,10 +29,7 @@
     </div>
   </div> -->
   <div class="card">
-    <div
-      class="card-header"
-      style="display: flex; justify-content: space-between"
-    >
+    <div class="card-header" style="display: flex; justify-content: space-between">
       <h2>Customer Details</h2>
       <span>
         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" (click)="myModal.show()">
@@ -85,7 +82,7 @@
                 <td>
                   <span class="badge badge-warning">{{
                     details.tele_caller_contact?.Name
-                  }}</span>
+                    }}</span>
                 </td>
               </tr>
               <tr>
@@ -104,7 +101,7 @@
                 <td>Post office</td>
                 <td>{{ details.Address?.post_office?.Name }}</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>Latitude</td>
                 <td>{{ details.Address?.GeoLocation?.Latitude }}</td>
               </tr>
@@ -115,19 +112,12 @@
               <tr>
                 <td>Plus code</td>
                 <td>{{ details.Address?.GeoLocation?.GoogleMapPlusCode }}</td>
-              </tr>
+              </tr> -->
               <tr>
                 <td>Map URL</td>
                 <td>
-                  <a
-                    href="https://www.google.com/maps/place/6JXRM9GR%2BMF/@{{
-                      details.Address?.GeoLocation?.Latitude
-                    }},{{
-                      details.Address?.GeoLocation?.Longitude
-                    }},17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d9.6766875!4d76.3911875"
-                    target="_blank"
-                    >Click here to view location</a
-                  >
+                  <a href="{{ details.Address.GeoLocation.GoogleMapURL }}" target="_blank">Click here to view
+                    location</a>
                 </td>
               </tr>
             </tbody>
@@ -179,15 +169,10 @@
               <p class="card-text">{{ item.RemarksText }}</p>
               <span class="badge badge-primary">{{
                 item.CallHistory?.users_permissions_user?.username
-              }}</span>
+                }}</span>
             </div>
           </div>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            (click)="commentModal.show()"
-          >
+          <button type="button" class="btn btn-primary" data-toggle="modal" (click)="commentModal.show()">
             Add Comment
           </button>
         </div>
@@ -314,25 +299,13 @@
         </div>
       </div>
     </div> -->
-    <div
-      bsModal
-      #commentModal="bs-modal"
-      class="modal fade"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
+    <div bsModal #commentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Add Comment</h4>
-            <button
-              type="button"
-              class="close"
-              (click)="commentModal.hide()"
-              aria-label="Close"
-            >
+            <button type="button" class="close" (click)="commentModal.hide()" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -340,38 +313,20 @@
             <form [formGroup]="commentForm" (ngSubmit)="CommentSubmit()">
               <div class="form-group">
                 <label for="name">Remarks</label>
-                <textarea
-                  class="form-control"
-                  maxlength="250"
-                  id="RemarksText"
-                  name="RemarksText"
-                  formControlName="RemarksText"
-                  placeholder="Enter remarks"
-                ></textarea>
+                <textarea class="form-control" maxlength="250" id="RemarksText" name="RemarksText"
+                  formControlName="RemarksText" placeholder="Enter remarks"></textarea>
               </div>
               <!-- <div class="form-group">
                                 <label for="email">Date</label>
                                 <input type="datetime-local" class="form-control" id="event_date_time"
                                     name="event_date_time" formControlName="event_date_time" />
                             </div> -->
-              <button
-                type="button"
-                class="btn btn-secondary"
-                (click)="commentModal.hide()"
-              >
+              <button type="button" class="btn btn-secondary" (click)="commentModal.hide()">
                 Close
               </button>
-              <button
-                type="submit"
-                class="btn btn-primary ml-2"
-                [disabled]="btnLoading || !commentForm.valid"
-              >
-                <span
-                  *ngIf="btnLoading"
-                  class="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
+              <button type="submit" class="btn btn-primary ml-2" [disabled]="btnLoading || !commentForm.valid">
+                <span *ngIf="btnLoading" class="spinner-border spinner-border-sm" role="status"
+                  aria-hidden="true"></span>
                 Save changes
               </button>
             </form>

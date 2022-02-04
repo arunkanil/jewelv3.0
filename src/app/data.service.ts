@@ -8,6 +8,7 @@ const AgentsQuery = gql`
   query ($tele_caller_id: String, $condition: String) {
     teleCallerContacts(
       sort: $condition
+      limit: 200
       where: { assigned_telecaller: $tele_caller_id }
     ) {
       id
@@ -15,6 +16,7 @@ const AgentsQuery = gql`
       Contact_Number_1
       Contact_Number_2
       Contact_Number_3
+      Place
       group {
         Name
         Description
@@ -37,12 +39,55 @@ const AgentsQuery = gql`
     }
   }
 `;
+const AgentsSearchQuery = gql`
+# Write your query or mutation here
+query($Name: String, $condition: String) {
+  teleCallerContacts(
+    sort: $condition
+    where: {
+      _or: [
+        { Name_contains: $Name }
+        { Contact_Number_1_contains: $Name }
+        { Contact_Number_2_contains: $Name }
+        { Contact_Number_3_contains: $Name }
+      ]
+    }
+  ) {
+    id
+    Name
+    Contact_Number_1
+    Contact_Number_2
+    Contact_Number_3
+    Place
+    group {
+      Name
+      Description
+    }
+    Email
+    assigned_telecaller {
+      username
+      email
+    }
+    telecaller_remarks {
+      RemarksText
+      CallHistory {
+        event_date_time
+        users_permissions_user {
+          username
+        }
+      }
+    }
+    last_called_date_time
+  }
+}
+`;
 const AgentsSingleQuery = gql`
   query ($id: ID!) {
     teleCallerContact(id: $id) {
       id
       Name
       Email
+      Place
       group {
         Name
         Description
@@ -138,6 +183,7 @@ const UpdateAgentMutation = gql`
     $name: String!
     $group: ID!
     $email: String!
+    $Place: String!
     $phone1: Long!
     $phone2: Long!
     $phone3: Long!
@@ -152,6 +198,7 @@ const UpdateAgentMutation = gql`
           Contact_Number_2: $phone2
           Contact_Number_3: $phone3
           group: $group
+          Place : $Place
         }
       }
     ) {
@@ -161,6 +208,7 @@ const UpdateAgentMutation = gql`
         Contact_Number_1
         Contact_Number_2
         Contact_Number_3
+        Place
         group {
           Name
           Description
@@ -838,6 +886,15 @@ export class DataService {
       },
     });
   }
+  getAgentsSearch(searchText) {
+    return this.apollo.watchQuery({
+      query: AgentsSearchQuery,
+      fetchPolicy: "no-cache",
+      variables: {
+        Name: searchText,
+      },
+    });
+  }
   getSingleAgent(id) {
     return this.apollo.watchQuery({
       query: AgentsSingleQuery,
@@ -869,6 +926,7 @@ export class DataService {
         name: agent.name,
         email: agent.email,
         group: agent.group,
+        Place: agent.Place,
         phone1: agent.phone1,
         phone2: agent.phone2,
         phone3: agent.phone3,
@@ -962,10 +1020,10 @@ export class DataService {
         locality: Customer.locality,
         post_office: Customer.Post_office,
         added_by_user: localStorage.getItem("uid"),
-        Latitude: parseFloat(Customer.Latitude),
-        Longitude: parseFloat(Customer.Longitude),
+        // Latitude: parseFloat(Customer.Latitude),
+        // Longitude: parseFloat(Customer.Longitude),
         GoogleMapURL: Customer.GoogleMapURL,
-        GoogleMapPlusCode: Customer.GoogleMapPlusCode,
+        // GoogleMapPlusCode: Customer.GoogleMapPlusCode,
       },
       errorPolicy: "all",
     });

@@ -59,6 +59,13 @@
                                     <td>Locality</td>
                                     <td>{{ details.Address?.locality?.Name }}</td>
                                 </tr>
+                                <tr>
+                                    <td>Map URL</td>
+                                    <td>
+                                      <a href="{{ details.Address.GeoLocation.GoogleMapURL }}" target="_blank">Click here to view
+                                        location</a>
+                                    </td>
+                                  </tr>
                             </tbody>
                         </table>
                     </div>

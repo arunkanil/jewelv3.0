@@ -66,15 +66,18 @@
                     <label for="Post_office">Post office</label>
                     <!-- <input type="text" class="form-control" id="locality" name="locality" formControlName="locality"
                     placeholder="Enter locality" /> -->
-                    <select class="form-control" id="Post_office" required ngModel name="Post_office"
+                    <!-- <select class="form-control" id="Post_office" required ngModel name="Post_office"
                       formControlName="Post_office">
                       <option value="" disabled selected hidden>Choose...</option>
                       <option *ngFor="let item of postoffices" value="{{ item.id }}">
                         {{ item.Name }}
                       </option>
-                    </select>
+                    </select> -->
+                    <ng-select id="Post_office" name="Post_office" placeholder="Select postoffice" formControlName="Post_office">
+                      <ng-option *ngFor="let item of postoffices" [value]="item.id">{{ item.Name }}</ng-option>
+                    </ng-select>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="name">Latitude</label>
                     <input type="text" class="form-control" id="Latitude" name="Latitude" formControlName="Latitude"
                       placeholder="Enter Latitude" />
@@ -83,7 +86,7 @@
                     <label for="name">Longitude</label>
                     <input type="text" class="form-control" id="Longitude" name="Longitude" formControlName="Longitude"
                       placeholder="Enter Longitude" />
-                  </div>
+                  </div> -->
                 </div>
                 <div class="col">
                   <div class="form-group">
@@ -103,13 +106,18 @@
                   </div>
                   <div class="form-group">
                     <label for="group">Agent</label>
-                    <select class="form-control" id="tele_caller_contact" required ngModel name="tele_caller_contact"
+                    <!-- <select class="form-control" id="tele_caller_contact" required ngModel name="tele_caller_contact"
                       formControlName="tele_caller_contact">
                       <option value="" disabled selected hidden>Choose...</option>
                       <option *ngFor="let item of agents" value="{{ item.id }}">
                         {{ item.Name }}
                       </option>
-                    </select>
+                    </select> -->
+                    <ng-select id="tele_caller_contact" (search)= "searchAgents($event)" [searchWhileComposing]=false name="tele_caller_contact" placeholder="Select agent"
+                      formControlName="tele_caller_contact">
+                      <ng-option *ngFor="let item of agents" [value]="item.id">{{ item.Name }} -
+                        {{item.Contact_Number_1}}</ng-option>
+                    </ng-select>
                   </div>
                   <div class="form-group">
                     <label for="name">House Name</label>
@@ -133,11 +141,11 @@
                       </option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="name">Map Plus code</label>
                     <input type="text" class="form-control" id="GoogleMapPlusCode" name="GoogleMapPlusCode"
                       formControlName="GoogleMapPlusCode" placeholder="Enter Google Map PlusCode" />
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label for="name">Google Map URL</label>
                     <input type="text" class="form-control" id="GoogleMapURL" name="GoogleMapURL"

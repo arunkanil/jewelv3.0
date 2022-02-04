@@ -37,6 +37,7 @@ export class AgentDetailComponent implements OnInit {
   agentForm = this.fb.group({
     name: ["", Validators.required],
     email: [""],
+    Place: [""],
     phone1: ["", Validators.required],
     phone2: [""],
     phone3: [""],
@@ -66,6 +67,7 @@ export class AgentDetailComponent implements OnInit {
         this.agentForm = this.fb.group({
           name: [this.details.Name, Validators.required],
           email: [this.details.Email],
+          Place: [this.details.Place],
           phone1: [this.details.Contact_Number_1, Validators.required],
           phone2: [this.details.Contact_Number_2],
           phone3: [this.details.Contact_Number_3],

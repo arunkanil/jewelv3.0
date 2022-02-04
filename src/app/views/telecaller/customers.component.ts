@@ -36,10 +36,10 @@ export class CustomersComponent {
     Landmark: ["", Validators.required],
     locality: ["", Validators.required],
     Post_office: ["", Validators.required],
-    Latitude: [""],
-    Longitude: [""],
+    // Latitude: [""],
+    // Longitude: [""],
     GoogleMapURL: [""],
-    GoogleMapPlusCode: [""],
+    // GoogleMapPlusCode: [""],
   });
   loading = true;
   btnLoading = false;
@@ -90,6 +90,14 @@ export class CustomersComponent {
     console.log(selectedRows);
     this.router.navigate(["/telecaller/customer_details", selectedRows[0].id], {
       state: { data: selectedRows },
+    });
+  }
+  
+  searchAgents(e) {
+    console.log(e);
+    this.dataservice.getAgentsSearch(e.term).valueChanges.subscribe((result: any) => {
+      console.log("getAgentsSearch", result.data.teleCallerContacts);
+      this.agents = result.data.teleCallerContacts;
     });
   }
   FormSubmit() {
