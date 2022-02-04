@@ -8,7 +8,7 @@ const AgentsQuery = gql`
   query ($tele_caller_id: String, $condition: String) {
     teleCallerContacts(
       sort: $condition
-      limit: 200
+      limit: 20
       where: { assigned_telecaller: $tele_caller_id }
     ) {
       id
@@ -44,6 +44,7 @@ const AgentsSearchQuery = gql`
 query($Name: String, $condition: String) {
   teleCallerContacts(
     sort: $condition
+    limit: 20
     where: {
       _or: [
         { Name_contains: $Name }
