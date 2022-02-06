@@ -802,6 +802,24 @@ const AddCommentMutation = apollo_angular__WEBPACK_IMPORTED_MODULE_4__["gql"] `
     }
   }
 `;
+const SearchCustomersQuery = apollo_angular__WEBPACK_IMPORTED_MODULE_4__["gql"] `
+query($Name: String) {
+  customers(
+    where: {
+      _or: [
+        { NameOfBride_contains: $Name }
+        { NameOfFather_contains: $Name }
+        { NameOfMother_contains: $Name }
+      ]
+    }
+  ) {
+    NameOfBride
+    NameOfFather
+    NameOfMother
+    id
+  }
+}
+`;
 const CustomersQuery = apollo_angular__WEBPACK_IMPORTED_MODULE_4__["gql"] `
   query {
     customers {
@@ -1505,6 +1523,15 @@ let DataService = class DataService {
             fetchPolicy: "no-cache",
         });
     }
+    getSearchCustomers(searchText) {
+        return this.apollo.watchQuery({
+            query: SearchCustomersQuery,
+            fetchPolicy: "no-cache",
+            variables: {
+                Name: searchText,
+            },
+        });
+    }
     getUsers(type) {
         return this.apollo.watchQuery({
             query: UsersQuery,
@@ -1529,10 +1556,11 @@ let DataService = class DataService {
         });
     }
     Addcustomer(Customer) {
+        var _a;
         return this.apollo.mutate({
             mutation: AddCustomerMutation,
             variables: {
-                NameOfBride: Customer.NameOfBride,
+                NameOfBride: typeof Customer.NameOfBride === 'object' ? (_a = Customer === null || Customer === void 0 ? void 0 : Customer.NameOfBride) === null || _a === void 0 ? void 0 : _a.name : Customer.NameOfBride,
                 NameOfFather: Customer.NameOfFather,
                 NameOfMother: Customer.NameOfMother,
                 MarriageDate: Customer.MarriageDate,
