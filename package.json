@@ -38,6 +38,7 @@
     "@popperjs/core": "^2.10.1",
     "ag-grid-angular": "^25.1.0",
     "ag-grid-community": "^25.1.0",
+    "angular-ng-autocomplete": "^2.0.7",
     "angular-responsive-carousel": "^2.0.2",
     "apollo-angular": "^2.4.0",
     "bootstrap": "^4.6.0",

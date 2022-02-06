@@ -38,6 +38,7 @@ import { TelecallerRoutingModule } from './telecaller-routing.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CustomerDetailComponent } from './customerdetail.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { CustomerDetailComponent } from './customerdetail.component';
     TabsModule,
     NgSelectModule,
     IvyCarouselModule,
+    AutocompleteLibModule,
     // CarouselModule.forRoot(),
     CollapseModule.forRoot(),
     PaginationModule.forRoot(),

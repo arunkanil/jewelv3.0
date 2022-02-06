@@ -276,6 +276,24 @@ const AddCommentMutation = gql`
     }
   }
 `;
+const SearchCustomersQuery = gql`
+query($Name: String) {
+  customers(
+    where: {
+      _or: [
+        { NameOfBride_contains: $Name }
+        { NameOfFather_contains: $Name }
+        { NameOfMother_contains: $Name }
+      ]
+    }
+  ) {
+    NameOfBride
+    NameOfFather
+    NameOfMother
+    id
+  }
+}
+`;
 const CustomersQuery = gql`
   query {
     customers {
@@ -848,7 +866,7 @@ export class DataService {
   baseURL = environment.apiUrl;
   params: URLSearchParams = new URLSearchParams();
 
-  constructor(private http: HttpClient, private apollo: Apollo) {}
+  constructor(private http: HttpClient, private apollo: Apollo) { }
 
   Login(data): Observable<any> {
     const httpOptions1: Object = {
@@ -981,6 +999,15 @@ export class DataService {
       fetchPolicy: "no-cache",
     });
   }
+  getSearchCustomers(searchText) {
+    return this.apollo.watchQuery({
+      query: SearchCustomersQuery,
+      fetchPolicy: "no-cache",
+      variables: {
+        Name: searchText,
+      },
+    });
+  }
   getUsers(type) {
     return this.apollo.watchQuery({
       query: UsersQuery,
@@ -1008,7 +1035,7 @@ export class DataService {
     return this.apollo.mutate({
       mutation: AddCustomerMutation,
       variables: {
-        NameOfBride: Customer.NameOfBride,
+        NameOfBride: typeof Customer.NameOfBride === 'object'? Customer?.NameOfBride?.name : Customer.NameOfBride,
         NameOfFather: Customer.NameOfFather,
         NameOfMother: Customer.NameOfMother,
         MarriageDate: Customer.MarriageDate,
@@ -1029,7 +1056,7 @@ export class DataService {
       errorPolicy: "all",
     });
   }
-  Updatecustomer(id,Customer) {
+  Updatecustomer(id, Customer) {
     return this.apollo.mutate({
       mutation: UpdateCustomerMutation,
       variables: {

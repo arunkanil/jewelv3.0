@@ -48,7 +48,35 @@ export class AgentDetailComponent implements OnInit {
     RemarksText: ["", Validators.required],
     // event_date_time: ["", Validators.required],
   });
+  keyword = "name";
+  data = [];
 
+  selectEvent(item) {
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+    this.dataservice
+      .getSearchCustomers(val)
+      .valueChanges.subscribe((result: any) => {
+        console.log(
+          "getSearchCustomers",
+          result.data.customers
+        );
+        let objects = [];
+        result.data.customers.forEach((v) =>
+          objects.push({ name: v.NameOfBride, id: v.NameOfBride })
+        );
+        console.log(objects);
+        this.data = objects;
+      });
+  }
+
+  onFocused(e) {
+    // do something when input is focused
+  }
   ngOnInit(): void {
     this.getLists();
     // this.activatedRouter.params.subscribe((params) => {
@@ -75,22 +103,22 @@ export class AgentDetailComponent implements OnInit {
         });
         this.customerForm = this.fb.group({
           NameOfBride: ["", Validators.required],
-          NameOfFather: ["",],
-          NameOfMother: ["",],
-          MarriageDate: ["",],
+          NameOfFather: [""],
+          NameOfMother: [""],
+          MarriageDate: [""],
           Contact_Number_1: ["", Validators.required],
-          Contact_Number_2: ["",],
+          Contact_Number_2: [""],
           MarriageMonth: ["", Validators.required],
           tele_caller_contact: [this.details.id],
-          HouseName: ["",],
-          Landmark: ["",],
-          locality: ["",],
+          HouseName: [""],
+          Landmark: [""],
+          locality: [""],
           Post_office: ["", Validators.required],
-          Latitude: [""],
-          Longitude: [""],
+          // Latitude: [""],
+          // Longitude: [""],
           GoogleMapURL: [""],
-          GoogleMapPlusCode: [""],
-        }); 
+          // GoogleMapPlusCode: [""],
+        });
         this.loading = false;
       });
     this.dataservice.getGroups().valueChanges.subscribe((result: any) => {
